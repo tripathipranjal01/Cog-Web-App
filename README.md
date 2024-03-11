@@ -9,6 +9,9 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
 #### Project Scaffolding
 `npx @angular/cli@16 new cog-web-app --defaults --style=scss`
 
+#### Commit Message Conventions
+ [Follow these rules](https://medium.com/swlh/writing-better-commit-messages-9b0b6ff60c67)
+
 #### Few Initial Updates
  1. In `tsconfig.json` add `"strictPropertyInitialization": false` to ensure we can use class variables without initializing them.
 
