@@ -1,27 +1,23 @@
-# CogWebApp
+# Cog Web App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+#### Project Scaffolding
+`npx @angular/cli@16 new cog-web-app --defaults --style=scss`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Few Initial Updates
+ 1. In `tsconfig.json` add `"strictPropertyInitialization": false` to ensure we can use class variables without initializing them.
 
-## Build
+  2. In `angular.json` update the `outputPath` to `dist` instead of `dist/cog-web-app` to avoid the folder name being appended to the dist folder.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  3. In `package.json` update the `start` script to `ng serve --open` to open the browser automatically.
 
-## Running unit tests
+  4. Update `angular.json` styles to  `src/styles.scss` as the global style file, and delete `styles.scss` as default global file.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  5. Install Angular Material with `indigo/pink` theme, with global `typography` styles and enable `angular animations`.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  6. Configure `Prettier` and `ESLint` with `Angular`, [more here](https://itnext.io/configure-prettier-and-eslint-with-angular-e7b4ce979cd8).
