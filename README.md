@@ -24,3 +24,5 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
   5. Install Angular Material with `indigo/pink` theme, with global `typography` styles and enable `angular animations`.
 
   6. Configure `Prettier` and `ESLint` with `Angular`, [more here](https://itnext.io/configure-prettier-and-eslint-with-angular-e7b4ce979cd8).
+
+  7. Generate environment files for `development` and `production` environments `ng g environments`.
