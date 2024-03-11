@@ -26,3 +26,5 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
   6. Configure `Prettier` and `ESLint` with `Angular`, [more here](https://itnext.io/configure-prettier-and-eslint-with-angular-e7b4ce979cd8).
 
   7. Generate environment files for `development` and `production` environments `ng g environments`.
+
+  8. Configure `husky` to run lint and test before every commit. Enable these [settings](https://www.mariokandut.com/how-to-add-husky-to-angular/),  in your local environment
