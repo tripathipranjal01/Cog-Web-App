@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromAuthStore from './auth/store';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'cog-web-app';
+  title = 'cognecto';
+
+  store = inject(Store);
+
+  // ngOnInit(): void {
+  //   this.store.dispatch(fromAuthStore.autoAuthenticate());
+  // }
 }
