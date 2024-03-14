@@ -12,7 +12,7 @@ export const LOGOUT = '[Auth] Logout';
 
 export const loginStart = createAction(
   LOGIN_START,
-  props<{ companyName: string; email: string; password: string }>()
+  props<{ email: string; password: string }>()
 );
 
 export const loginSuccess = createAction(

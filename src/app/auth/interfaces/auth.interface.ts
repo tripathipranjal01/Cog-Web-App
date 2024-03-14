@@ -6,7 +6,6 @@ export interface IAuth {
 }
 
 export interface ILogin {
-  companyName: string;
   email: string;
   password: string;
 }

@@ -24,7 +24,6 @@ export class AuthEffects {
           .login({
             email: action.email,
             password: action.password,
-            companyName: action.companyName,
           })
           .pipe(
             map(data => {

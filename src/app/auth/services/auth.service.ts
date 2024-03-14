@@ -3,15 +3,15 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { IAuth, ILogin, User } from '../interfaces';
 
+import { StorageService } from './../../shared/services/storage.service';
 import { environment } from 'src/environments/environment';
-
-const LOCAL_STORAGE_KEY = 'user_data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   http = inject(HttpClient);
+  localStorageService = inject(StorageService);
   private tokenTimer: NodeJS.Timer;
 
   login(data: ILogin): Observable<IAuth> {
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   getAuthDataFromLocalStorage(): User | null {
-    const userData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const userData = this.localStorageService.loadAuthInfo();
     if (!userData) {
       return null;
     }
@@ -57,10 +57,10 @@ export class AuthService {
     }, duration);
   }
   private clearAuthDataFromLocalStorage(): void {
-    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    this.localStorageService.clearAuthInfo();
   }
   private saveAuthDataToLocalStorage(user: User): void {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(user));
+    this.localStorageService.saveAuthInfo(user);
   }
 
   private calcAuthExpirationDate(millisecsToExpire: number): Date {

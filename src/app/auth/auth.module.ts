@@ -9,10 +9,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
 import { AUTH_ROUTES } from './auth.route';
 import { LoginComponent } from './login/login.component';
+import { LoginFormComponent } from './login/ui/login-form.component';
 import { AUTH_STATE_NAME, AuthEffects, reducers } from './store';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, LoginFormComponent],
   imports: [
     CommonModule,
     HttpClientModule,
