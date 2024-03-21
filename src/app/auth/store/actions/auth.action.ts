@@ -12,13 +12,10 @@ export const LOGOUT = '[Auth] Logout';
 
 export const loginStart = createAction(
   LOGIN_START,
-  props<{ email: string; password: string }>()
+  props<{ username: string; password: string }>()
 );
 
-export const loginSuccess = createAction(
-  LOGIN_SUCCESS,
-  props<{ user: User }>()
-);
+export const loginSuccess = createAction(LOGIN_SUCCESS, props<User>());
 
 export const loginFailure = createAction(
   LOGIN_FAIL,

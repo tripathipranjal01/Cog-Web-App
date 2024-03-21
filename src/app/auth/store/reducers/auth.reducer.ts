@@ -20,7 +20,7 @@ export const _authReducer = createReducer(
   on(loginSuccess, (state, action): AuthState => {
     return {
       ...state,
-      user: action.user,
+      user: action,
       loaded: true,
       loading: false,
     };

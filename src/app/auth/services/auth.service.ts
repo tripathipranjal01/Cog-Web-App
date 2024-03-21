@@ -22,7 +22,7 @@ export class AuthService {
 
   handleLogin(data: IAuth): User {
     const expiration = this.calcAuthExpirationDate(data.expiresIn);
-    const user = new User(data.role, data.token, expiration);
+    const user = new User(data.roles, data.token, expiration);
     this.saveAuthDataToLocalStorage(user);
     this.onSuccessfulAuthentication(expiration);
     return user;
@@ -34,7 +34,8 @@ export class AuthService {
   }
   onSuccessfulAuthentication(expiration: Date): void {
     const expiresIn = this.calcAuthExpirationForTimer(expiration);
-    this.setAuthTimer(expiresIn);
+    const expiresInMs = expiresIn * 1000;
+    this.setAuthTimer(expiresInMs);
   }
 
   getAuthDataFromLocalStorage(): User | null {
@@ -51,6 +52,14 @@ export class AuthService {
     return user;
   }
 
+  getTokenFromLocalStorage(): string | null {
+    const user = this.getAuthDataFromLocalStorage();
+    if (!user) {
+      return null;
+    }
+    return user._token;
+  }
+
   private setAuthTimer(duration: number) {
     this.tokenTimer = setTimeout(() => {
       this.logout();
@@ -63,9 +72,9 @@ export class AuthService {
     this.localStorageService.saveAuthInfo(user);
   }
 
-  private calcAuthExpirationDate(millisecsToExpire: number): Date {
+  private calcAuthExpirationDate(secsToExpire: number): Date {
     const now = new Date();
-    const expirationDate = new Date(now.getTime() + millisecsToExpire);
+    const expirationDate = new Date(now.getTime() + secsToExpire * 1000);
     return expirationDate;
   }
 

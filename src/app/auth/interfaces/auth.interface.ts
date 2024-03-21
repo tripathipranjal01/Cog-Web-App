@@ -1,11 +1,11 @@
 export interface IAuth {
   token: string;
   expiresIn: number;
-  role: string;
+  roles: Array<string>;
   message: string;
 }
 
 export interface ILogin {
-  email: string;
+  username: string;
   password: string;
 }

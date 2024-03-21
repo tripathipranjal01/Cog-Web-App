@@ -7,8 +7,7 @@ import { ILogin } from '../interfaces';
 @Component({
   selector: 'app-login',
   template: `<app-login-form
-    (submitLogin)="initiateLogin($event)"
-    )></app-login-form>`,
+    (submitLogin)="initiateLogin($event)"></app-login-form>`,
 })
 export class LoginComponent {
   store = inject(Store);

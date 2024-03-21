@@ -38,11 +38,11 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
     this.validationMessages = {
-      email: {
+      username: {
         required: 'Username is required',
       },
       password: {

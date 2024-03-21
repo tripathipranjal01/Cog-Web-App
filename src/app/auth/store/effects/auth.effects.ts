@@ -22,13 +22,13 @@ export class AuthEffects {
       exhaustMap(action => {
         return this.authService
           .login({
-            email: action.email,
+            username: action.username,
             password: action.password,
           })
           .pipe(
             map(data => {
               const user = this.authService.handleLogin(data);
-              return loginSuccess({ user });
+              return loginSuccess(user);
             }),
             catchError(error => {
               return of(loginFailure({ error: error.message }));
@@ -38,28 +38,27 @@ export class AuthEffects {
     );
   });
 
-  autoAuthenticate$ = createEffect(
-    () => {
-      return this.action$.pipe(
-        ofType(autoAuthenticate),
-        map(() => {
-          const user = this.authService.getAuthDataFromLocalStorage();
-          if (user && user._expiration && user._expiration > new Date()) {
-            this.authService.onSuccessfulAuthentication(user._expiration);
-          }
-          return;
-        })
-      );
-    },
-    { dispatch: false }
-  );
+  autoAuthenticate$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(autoAuthenticate),
+      map(() => {
+        const user = this.authService.getAuthDataFromLocalStorage();
+        if (user && user._expiration && user._expiration > new Date()) {
+          this.authService.onSuccessfulAuthentication(user._expiration);
+          return loginSuccess(user);
+        } else {
+          return loginFailure({ error: 'Login Failed' });
+        }
+      })
+    );
+  });
 
   loginRedirect$ = createEffect(
     () => {
       return this.action$.pipe(
         ofType(loginSuccess),
         map(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['home']);
         })
       );
     },
