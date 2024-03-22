@@ -27,8 +27,7 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ],
-        "@ngrx/prefer-inline-action-props": "off"
+        ]
       }
     },
     {
@@ -55,7 +54,11 @@
     },
     {
       "files": ["*.ts"],
-      "extends": ["plugin:@ngrx/recommended"]
+      "extends": ["plugin:@ngrx/recommended"],
+      "rules": {
+        "@ngrx/no-store-subscription": "off",
+        "@ngrx/prefer-inline-action-props": "off"
+      }
     }
   ]
 }

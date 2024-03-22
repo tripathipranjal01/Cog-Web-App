@@ -6,6 +6,7 @@ import {
   ViewChildren,
   ElementRef,
   Output,
+  Input,
   EventEmitter,
 } from '@angular/core';
 import {
@@ -27,6 +28,7 @@ import { ILogin } from '../../interfaces';
 })
 export class LoginFormComponent implements OnInit, AfterViewInit {
   @Output() submitLogin = new EventEmitter<ILogin>();
+  @Input({ required: true }) isSpinner: boolean;
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements!: ElementRef[];
   loginForm: FormGroup;

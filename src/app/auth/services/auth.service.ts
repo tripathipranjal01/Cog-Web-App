@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { IAuth, ILogin, User } from '../interfaces';
 
+import { IAuth, ILogin, User } from '../interfaces';
 import { StorageService } from './../../shared/services/storage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,6 @@ export class AuthService {
   http = inject(HttpClient);
   localStorageService = inject(StorageService);
   private tokenTimer: NodeJS.Timer;
-
   login(data: ILogin): Observable<IAuth> {
     return this.http
       .post<IAuth>(`${environment.baseUrl}/auth/login`, data)

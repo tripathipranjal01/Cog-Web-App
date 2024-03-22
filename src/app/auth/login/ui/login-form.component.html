@@ -42,6 +42,7 @@
             [disabled]="loginForm.invalid">
             <mat-icon>login</mat-icon>Signin
           </button>
+          <mat-spinner *ngIf="isSpinner" color="accent"></mat-spinner>
         </mat-card-footer>
       </form>
     </mat-card>
