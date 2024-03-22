@@ -1,4 +1,4 @@
-# Cog Web App
+# Cognecto Web App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
 
@@ -27,4 +27,7 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
 
   7. Generate environment files for `development` and `production` environments `ng g environments`.
 
-  8. Configure `husky` to run lint and test before every commit. Enable these [settings](https://www.mariokandut.com/how-to-add-husky-to-angular/),  in your local environment
+  8. Configure `husky` to run lint and test before every commit. Enable these [settings](https://www.mariokandut.com/how-to-add-husky-to-angular/),  in your local environment.
+
+  9. Update `tsconfig.app.json` to support NodeJs Timer by adding `compilerOptions.types` as `["node"]`.
+  10. Update `.eslintrc.json` and add `"@ngrx/no-store-subscription": "off"`  and `"@ngrx/prefer-inline-action-props": "off"` to avoid explicit any error.
