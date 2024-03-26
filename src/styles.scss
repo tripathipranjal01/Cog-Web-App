@@ -1,0 +1,15 @@
+@import './styles/abstracts/mixins';
+@import './styles/abstracts/variables';
+
+/* as base uses mixins it should be imported after mixins */
+@import './styles/base/base';
+@import './styles/base/utilities';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

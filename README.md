@@ -13,7 +13,7 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
  [Follow these rules](https://medium.com/swlh/writing-better-commit-messages-9b0b6ff60c67)
 
 #### Few Initial Updates
- 1. In `tsconfig.json` add `"strictPropertyInitialization": false` to ensure we can use class variables without initializing them.
+ 1.  In `tsconfig.json` add `"strictPropertyInitialization": false` to ensure we can use class variables without initializing them.
 
   2. In `angular.json` update the `outputPath` to `dist` instead of `dist/cog-web-app` to avoid the folder name being appended to the dist folder.
 
@@ -30,4 +30,4 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The 
   8. Configure `husky` to run lint and test before every commit. Enable these [settings](https://www.mariokandut.com/how-to-add-husky-to-angular/),  in your local environment.
 
   9. Update `tsconfig.app.json` to support NodeJs Timer by adding `compilerOptions.types` as `["node"]`.
-  10. Update `.eslintrc.json` and add `"@ngrx/no-store-subscription": "off"`  and `"@ngrx/prefer-inline-action-props": "off"` to avoid explicit any error.
+ 10. Update `.eslintrc.json` and add `"@ngrx/no-store-subscription": "off"`  and `"@ngrx/prefer-inline-action-props": "off"` to avoid explicit any error.
