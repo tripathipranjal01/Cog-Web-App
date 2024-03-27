@@ -43,7 +43,6 @@ export class AuthEffects {
       ofType(autoAuthenticate),
       map(() => {
         const user = this.authService.getAuthDataFromLocalStorage();
-        console.log('🕵️‍♂️ 🥷🏻 : ==> AuthEffects : ==> user:', user);
         if (user && user._expiration && user._expiration > new Date()) {
           this.authService.onSuccessfulAuthentication(user._expiration);
           return loginSuccess(user);

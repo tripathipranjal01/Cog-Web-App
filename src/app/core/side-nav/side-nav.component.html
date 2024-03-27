@@ -19,17 +19,17 @@
 
   <div class="navigation">
     <mat-list-item
-      [routerLink]="['/']"
+      [routerLink]="['fleet']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       role="listitem">
       <div class="container-list">
         <mat-icon>deployed_code</mat-icon>
-        <span *ngIf="isSidenavExpanded">Operator</span>
+        <span *ngIf="isSidenavExpanded">Fleet</span>
       </div>
     </mat-list-item>
     <mat-list-item
-      [routerLink]="['/']"
+      [routerLink]="['fuel']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       role="listitem">
@@ -39,30 +39,30 @@
       </div>
     </mat-list-item>
     <mat-list-item
-      [routerLink]="['/']"
+      [routerLink]="['maintenance']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       role="listitem">
       <div class="container-list">
         <mat-icon>settings</mat-icon>
-        <span *ngIf="isSidenavExpanded">Settings</span>
+        <span *ngIf="isSidenavExpanded">Maintenance</span>
       </div>
     </mat-list-item>
     <mat-list-item
-      [routerLink]="['/']"
+      [routerLink]="['production']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       role="listitem">
       <div class="container-list">
         <mat-icon>shopping_cart</mat-icon>
-        <span *ngIf="isSidenavExpanded">Maintenance</span>
+        <span *ngIf="isSidenavExpanded">Production</span>
       </div>
     </mat-list-item>
   </div>
   <div class="footer">
     <mat-divider class="divider"></mat-divider>
     <mat-list-item
-      [routerLink]="['/']"
+      [routerLink]="['configuration']"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       role="listitem">
