@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-fuel',
   templateUrl: './fuel.component.html',
-  styleUrls: ['./fuel.component.scss']
+  styleUrls: ['./fuel.component.scss'],
 })
-export class FuelComponent {
-
-}
+export class FuelComponent {}
