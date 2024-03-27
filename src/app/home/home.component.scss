@@ -1,0 +1,11 @@
+.sidenav-container {
+  height: 100%;
+}
+.sidenav-content {
+  padding: 1rem;
+  padding-bottom: 0;
+  transition: all 0.5s ease;
+  :last-child {
+    margin-bottom: 2rem;
+  }
+}

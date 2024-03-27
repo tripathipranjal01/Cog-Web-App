@@ -33,7 +33,7 @@ export class AuthService {
   }
   onSuccessfulAuthentication(expiration: Date): void {
     const expiresIn = this.calcAuthExpirationForTimer(expiration);
-    const expiresInMs = expiresIn * 1000;
+    const expiresInMs = expiresIn;
     this.setAuthTimer(expiresInMs);
   }
 

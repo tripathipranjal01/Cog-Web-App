@@ -1,0 +1,75 @@
+<mat-nav-list role="navigation" class="container">
+  <div class="branding">
+    <mat-list-item
+      [routerLink]="['/home']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onSideBarToggle()"
+      role="listitem">
+      <div class="container-list">
+        <img
+          src="../../../assets/logo-white.svg"
+          alt="branding"
+          class="branding__logo" />
+        <span *ngIf="isSidenavExpanded">Cognecto</span>
+      </div>
+    </mat-list-item>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+  <div class="navigation">
+    <mat-list-item
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="listitem">
+      <div class="container-list">
+        <mat-icon>deployed_code</mat-icon>
+        <span *ngIf="isSidenavExpanded">Operator</span>
+      </div>
+    </mat-list-item>
+    <mat-list-item
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="listitem">
+      <div class="container-list">
+        <mat-icon>water_drop</mat-icon>
+        <span *ngIf="isSidenavExpanded">Fuel</span>
+      </div>
+    </mat-list-item>
+    <mat-list-item
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="listitem">
+      <div class="container-list">
+        <mat-icon>settings</mat-icon>
+        <span *ngIf="isSidenavExpanded">Settings</span>
+      </div>
+    </mat-list-item>
+    <mat-list-item
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="listitem">
+      <div class="container-list">
+        <mat-icon>shopping_cart</mat-icon>
+        <span *ngIf="isSidenavExpanded">Maintenance</span>
+      </div>
+    </mat-list-item>
+  </div>
+  <div class="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-list-item
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      role="listitem">
+      <div class="container-list">
+        <mat-icon>manufacturing</mat-icon>
+        <span *ngIf="isSidenavExpanded">Configuration</span>
+      </div>
+    </mat-list-item>
+  </div>
+</mat-nav-list>

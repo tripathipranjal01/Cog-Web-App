@@ -1,0 +1,52 @@
+@import '../../../styles';
+
+.container {
+  background: linear-gradient(90deg, #1f60c0 0%, #0d4493 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  flex-wrap: wrap;
+
+  &-list {
+    display: flex;
+    align-items: center;
+
+    span {
+      color: $color-white;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.branding__logo {
+  height: 3rem;
+  width: 3rem;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.mat-icon {
+  color: $color-white;
+}
+
+.active {
+  border-radius: 7px;
+  background: #3282eb;
+  box-shadow: 0px 0px 3px 0px #adb5c2;
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.divider {
+  border-color: white;
+}
