@@ -1,5 +1,7 @@
 import { CanActivateFn } from '@angular/router';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const AuthGuard: CanActivateFn = (route, state) => {
+  console.log('🕵️‍♂️ 🥷🏻 : ==> state:', state);
+  console.log('🕵️‍♂️ 🥷🏻 : ==> route:', route);
   return true;
 };

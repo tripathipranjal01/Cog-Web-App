@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
-import { AUTH_ROUTES } from './auth.route';
+import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/ui/login-form.component';
 import { AUTH_STATE_NAME, AuthEffects, reducers } from './store';
@@ -18,7 +17,7 @@ import { AUTH_STATE_NAME, AuthEffects, reducers } from './store';
     CommonModule,
     HttpClientModule,
     SharedModule,
-    RouterModule.forChild(AUTH_ROUTES),
+    AuthRoutingModule,
     EffectsModule.forFeature([AuthEffects]),
     StoreModule.forFeature(AUTH_STATE_NAME, reducers),
   ],
