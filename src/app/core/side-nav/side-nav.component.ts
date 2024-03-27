@@ -9,7 +9,7 @@ export class SideNavComponent implements OnInit {
   isSidenavExpanded: boolean;
 
   ngOnInit(): void {
-    this.isSidenavExpanded = true;
+    this.isSidenavExpanded = false;
   }
 
   onSideBarToggle() {

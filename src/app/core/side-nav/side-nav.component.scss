@@ -40,8 +40,11 @@
 }
 
 .active {
-  background-color: #1f60c0;
-  transition: all 0.6s ease;
+  border-radius: 7px;
+  background: #3282eb;
+  box-shadow: 0px 0px 3px 0px #adb5c2;
+  width: 5.5rem;
+  height: 5.5rem;
 }
 
 .divider {
