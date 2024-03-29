@@ -40,13 +40,12 @@
 }
 
 .active {
-  border-radius: 7px;
+  border-radius: 1rem;
   background: #3282eb;
   box-shadow: 0px 0px 3px 0px #adb5c2;
-  width: 5.5rem;
-  height: 5.5rem;
 }
 
 .divider {
+  margin: 0.5rem 0;
   border-color: white;
 }

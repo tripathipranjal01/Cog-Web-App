@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="container__icon">
+    <mat-icon>{{ icon }}</mat-icon>
+  </div>
+  <div class="container__title">{{ title }}</div>
+  <div class="container__breadcrumb">{{ title | titlecase }} > Overview</div>
+  <div class="container__spacer"></div>
+  <div class="container__search">
+    <input placeholder="Search Site, Asset, Asset Class" />
+  </div>
+  <div class="container__info">
+    <mat-icon matBadge="15" matBadgeColor="warn" matBadgeSize="small"
+      >notifications</mat-icon
+    >
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="container__info-person">person</mat-icon>
+    </button>
+  </div>
+  <div class="container__actions">
+    <button mat-flat-button class="container__actions-item">
+      <mat-icon>lab_profile</mat-icon>
+      Report
+    </button>
+    <button mat-flat-button class="container__actions-item">
+      <mat-icon>task</mat-icon>Task
+    </button>
+    <button mat-flat-button class="container__actions-item">
+      <mat-icon>auto_stories</mat-icon>
+      LogBook
+    </button>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

@@ -1,11 +1,6 @@
 <mat-nav-list role="navigation" class="container">
   <div class="branding">
-    <mat-list-item
-      [routerLink]="['/home']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      (click)="onSideBarToggle()"
-      role="listitem">
+    <mat-list-item (click)="onSideBarToggle()" role="listitem">
       <div class="container-list">
         <img
           src="../../../assets/logo-white.svg"
@@ -60,7 +55,6 @@
     </mat-list-item>
   </div>
   <div class="footer">
-    <mat-divider class="divider"></mat-divider>
     <mat-list-item
       [routerLink]="['configuration']"
       routerLinkActive="active"
