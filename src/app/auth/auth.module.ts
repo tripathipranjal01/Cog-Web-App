@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/ui/login-form.component';
-import { AUTH_STATE_NAME, AuthEffects, reducers } from './store';
+import { AUTH_STATE_NAME, AuthEffects, authReducer } from './store';
 
 @NgModule({
   declarations: [LoginComponent, LoginFormComponent],
@@ -19,7 +19,7 @@ import { AUTH_STATE_NAME, AuthEffects, reducers } from './store';
     SharedModule,
     AuthRoutingModule,
     EffectsModule.forFeature([AuthEffects]),
-    StoreModule.forFeature(AUTH_STATE_NAME, reducers),
+    StoreModule.forFeature(AUTH_STATE_NAME, authReducer),
   ],
 })
 export class AuthModule {}

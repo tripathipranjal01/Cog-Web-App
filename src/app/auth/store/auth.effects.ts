@@ -1,14 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of } from 'rxjs';
-import {
-  loginFailure,
-  loginStart,
-  loginSuccess,
-  autoAuthenticate,
-} from '../actions';
-import { AuthService } from '../../services/auth.service';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import * as fromActions from './auth.action';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +13,7 @@ export class AuthEffects {
 
   login$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(loginStart),
+      ofType(fromActions.loginStart),
       exhaustMap(action => {
         return this.authService
           .login({
@@ -28,10 +23,10 @@ export class AuthEffects {
           .pipe(
             map(data => {
               const user = this.authService.handleLogin(data);
-              return loginSuccess(user);
+              return fromActions.loginSuccess(user);
             }),
             catchError(error => {
-              return of(loginFailure({ error: error.message }));
+              return of(fromActions.loginFailure({ error: error.message }));
             })
           );
       })
@@ -40,24 +35,36 @@ export class AuthEffects {
 
   autoAuthenticate$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(autoAuthenticate),
+      ofType(fromActions.autoAuthenticate),
       map(() => {
         const user = this.authService.getAuthDataFromLocalStorage();
-        console.log('🕵️‍♂️ 🥷🏻 : ==> AuthEffects : ==> user:', user);
         if (user && user._expiration && user._expiration > new Date()) {
           this.authService.onSuccessfulAuthentication(user._expiration);
-          return loginSuccess(user);
+          return fromActions.loginSuccess(user);
         } else {
-          return loginFailure({ error: 'Login Failed' });
+          return fromActions.loginFailure({ error: 'Login Failed' });
         }
       })
     );
   });
 
+  logout$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(fromActions.logout),
+        tap(() => {
+          this.authService.logout();
+          this.router.navigate(['/']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
   loginRedirect$ = createEffect(
     () => {
       return this.action$.pipe(
-        ofType(loginSuccess),
+        ofType(fromActions.loginSuccess),
         map(() => {
           this.router.navigate(['home']);
         })

@@ -1,0 +1,26 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 13rem 10rem 1fr;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+    'header header'
+    'actions actions'
+    'aside main';
+
+  .header {
+    grid-area: header;
+  }
+  .actions {
+    grid-area: actions;
+    background-color: mediumaquamarine;
+  }
+  .aside {
+    grid-area: aside;
+    background-color: hotpink;
+  }
+  .main {
+    grid-area: main;
+    background-color: lightseagreen;
+  }
+}

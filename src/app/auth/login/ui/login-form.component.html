@@ -1,20 +1,10 @@
 <div class="container">
   <div class="main">
     <mat-card>
-      <mat-card-header class="branding">
-        <img
-          mat-card-avatar
-          src="../../../assets/logo.svg"
-          alt="logo"
-          class="branding__logo" />
-        <mat-card-title class="branding__text">Cognecto</mat-card-title>
+      <mat-card-header>
+        <mat-card-title>Sign In</mat-card-title>
+        <mat-card-subtitle>Please login to continue</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content class="greetings">
-        <mat-card-title class="greetings__text">Welcome</mat-card-title>
-        <mat-card-subtitle class="greetings__subtext"
-          >Login to continue to connect machines</mat-card-subtitle
-        >
-      </mat-card-content>
       <form
         [formGroup]="loginForm"
         autocomplete="off"

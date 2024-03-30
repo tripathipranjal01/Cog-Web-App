@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authSub$ = this.store
       .select(fromStore.selectAuthState)
       .subscribe(authState => {
-        this.loginSpinnerLoading = authState.auth.loading;
+        this.loginSpinnerLoading = authState.loading;
       });
   }
   initiateLogin(event: ILogin) {
