@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { User } from '../../interfaces';
+import { User } from '../interfaces';
 
 /* Get Authentication Information */
 

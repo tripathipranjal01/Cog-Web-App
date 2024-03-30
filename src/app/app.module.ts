@@ -14,6 +14,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import * as fromApp from './store/app.reducer';
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
@@ -23,7 +25,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreRouterConnectingModule.forRoot(),

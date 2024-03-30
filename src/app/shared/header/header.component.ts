@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromAuthStore from '../../auth/store';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  store = inject(Store);
   @Input({ required: true }) title: string;
   @Input({ required: true }) icon: string;
+
+  initiateLogout(): void {
+    this.store.dispatch(fromAuthStore.logout());
+  }
 }
