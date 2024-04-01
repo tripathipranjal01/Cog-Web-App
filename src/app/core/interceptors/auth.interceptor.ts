@@ -12,9 +12,9 @@ import { AuthService } from './../../auth/services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   authService = inject(AuthService);
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     const token = this.authService.getTokenFromLocalStorage();
     if (token) {
       const authRequest = req.clone({
