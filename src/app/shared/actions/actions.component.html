@@ -3,6 +3,7 @@
     <span class="view__title">View: </span>
     <mat-button-toggle-group
       [(ngModel)]="selectedView"
+      class="toggle-button-container"
       (click)="onViewChange()">
       <mat-button-toggle [value]="availableViews[0]" aria-label="Home">
         <mat-icon>home</mat-icon>

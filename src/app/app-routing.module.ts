@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
-import { HomeComponent } from './home/home.component';
 
 export const APP_ROUTE_NAMES = {
   AUTH: 'auth',
@@ -19,42 +18,34 @@ const APP_ROUTES: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {
-    path: APP_ROUTE_NAMES.HOME,
-    component: HomeComponent,
+    path: APP_ROUTE_NAMES.FLEET,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: APP_ROUTE_NAMES.FLEET,
-        loadChildren: () =>
-          import('./fleet/fleet.module').then(m => m.FleetModule),
-      },
-      {
-        path: APP_ROUTE_NAMES.FUEL,
-        loadChildren: () =>
-          import('./fuel/fuel.module').then(m => m.FuelModule),
-      },
-      {
-        path: APP_ROUTE_NAMES.MAINTENANCE,
-        loadChildren: () =>
-          import('./maintenance/maintenance.module').then(
-            m => m.MaintenanceModule
-          ),
-      },
-      {
-        path: APP_ROUTE_NAMES.PRODUCTION,
-        loadChildren: () =>
-          import('./production/production.module').then(
-            m => m.ProductionModule
-          ),
-      },
-      {
-        path: APP_ROUTE_NAMES.CONFIGURATION,
-        loadChildren: () =>
-          import('./configuration/configuration.module').then(
-            m => m.ConfigurationModule
-          ),
-      },
-    ],
+    loadChildren: () => import('./fleet/fleet.module').then(m => m.FleetModule),
+  },
+  {
+    path: APP_ROUTE_NAMES.FUEL,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./fuel/fuel.module').then(m => m.FuelModule),
+  },
+  {
+    path: APP_ROUTE_NAMES.MAINTENANCE,
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./maintenance/maintenance.module').then(m => m.MaintenanceModule),
+  },
+  {
+    path: APP_ROUTE_NAMES.PRODUCTION,
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./production/production.module').then(m => m.ProductionModule),
+  },
+  {
+    path: APP_ROUTE_NAMES.CONFIGURATION,
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./configuration/configuration.module').then(
+        m => m.ConfigurationModule
+      ),
   },
 ];
 

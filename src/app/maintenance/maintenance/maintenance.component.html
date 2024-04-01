@@ -1,6 +1,6 @@
 <div
+  class="app-container"
   [ngClass]="{
-    'app-container': !isAsideVisible,
     'app-container-aside': isAsideVisible
   }">
   <div class="app-header">
@@ -13,5 +13,5 @@
       (clickViewChange)="onClickViewChange($any($event))"></app-actions>
   </div>
   <div class="app-aside"></div>
-  <div class="app-main"><h1>main</h1></div>
+  <div class="app-main"></div>
 </div>

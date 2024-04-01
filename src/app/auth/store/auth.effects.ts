@@ -66,7 +66,7 @@ export class AuthEffects {
       return this.action$.pipe(
         ofType(fromActions.loginSuccess),
         map(() => {
-          this.router.navigate(['home']);
+          this.router.navigate(['maintenance']);
         })
       );
     },
