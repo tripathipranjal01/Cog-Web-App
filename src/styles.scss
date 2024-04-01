@@ -4,6 +4,7 @@
 /* as base uses mixins it should be imported after mixins */
 @import './styles/base/base';
 @import './styles/base/utilities';
+@import './styles/base/grid';
 
 html,
 body {

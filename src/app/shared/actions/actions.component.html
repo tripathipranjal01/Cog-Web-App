@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="view">
+    <span class="view__title">View: </span>
+    <mat-button-toggle-group
+      [(ngModel)]="selectedView"
+      (click)="onViewChange()">
+      <mat-button-toggle [value]="availableViews[0]" aria-label="Home">
+        <mat-icon>home</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle [value]="availableViews[1]" aria-label="Map">
+        <mat-icon>location_on</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle [value]="availableViews[2]" aria-label="Side Nav">
+        <mat-icon>side_navigation</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="spacer"></div>
+  <div class="toggle">
+    <mat-tab-group>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">update</mat-icon>
+          Machine Hour
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Second"
+        ><ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">garden_cart</mat-icon>
+          Stock Entry
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Third">
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">construction</mat-icon>
+          Service
+        </ng-template></mat-tab
+      >
+    </mat-tab-group>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="container__info-person">add</mat-icon>
+    </button>
+  </div>
+  <div class="events">
+    <button mat-stroked-button class="events-item">
+      <mat-icon>tune</mat-icon>
+      Filter
+    </button>
+    <button mat-stroked-button class="events-item">
+      <mat-icon>post_add</mat-icon>
+      Activity
+    </button>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

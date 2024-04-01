@@ -11,6 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const modules = [
   MatProgressSpinnerModule,
@@ -25,6 +27,8 @@ const modules = [
   MatListModule,
   MatBadgeModule,
   MatMenuModule,
+  MatButtonToggleModule,
+  MatTabsModule,
 ];
 
 @NgModule({

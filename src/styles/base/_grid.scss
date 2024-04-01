@@ -1,0 +1,52 @@
+.app-container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 13rem 8rem 1fr;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+    'header header'
+    'actions actions'
+    'main main';
+
+  .app-header {
+    grid-area: header;
+    border-bottom: 1px solid #ccc;
+  }
+  .app-actions {
+    grid-area: actions;
+    border-bottom: 1px solid #ccc;
+  }
+  .app-aside {
+    display: none;
+  }
+  .app-main {
+    grid-area: main;
+  }
+}
+
+.app-container-aside {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 12rem 8rem 1fr;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+    'header header'
+    'actions actions'
+    'aside main';
+
+  .app-header {
+    grid-area: header;
+    border-bottom: 1px solid #ccc;
+  }
+  .app-actions {
+    grid-area: actions;
+    border-bottom: 1px solid #ccc;
+  }
+  .app-aside {
+    grid-area: aside;
+    border-right: 1px solid #ccc;
+  }
+  .app-main {
+    grid-area: main;
+  }
+}

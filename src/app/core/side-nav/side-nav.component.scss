@@ -29,20 +29,24 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 1.5rem;
+
+  .mdc-list-item {
+    height: 6rem;
+  }
 }
 
+mat-icon {
+  color: $color-white;
+}
 .footer {
   margin-top: auto;
-}
-
-.mat-icon {
-  color: $color-white;
 }
 
 .active {
   border-radius: 1rem;
   background: #3282eb;
   box-shadow: 0px 0px 3px 0px #adb5c2;
+  width: 95%;
 }
 
 .divider {

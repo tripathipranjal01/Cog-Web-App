@@ -1,0 +1,45 @@
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(max-content, 10rem) 1fr 1fr max-content;
+  grid-template-rows: 1fr;
+  align-items: center;
+  .view {
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    &__title {
+      margin: 0 4rem 0 2rem;
+      color: #494949;
+    }
+  }
+
+  .spacer {
+    grid-column: 2 / 3;
+  }
+
+  .toggle {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .events {
+    grid-column: 4 / -1;
+    margin-left: 1rem;
+    border-left: 1px solid #ccc;
+
+    &-item {
+      margin: 0 1rem;
+
+      mat-icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.example-tab-icon {
+  margin-right: 1rem;
+}
