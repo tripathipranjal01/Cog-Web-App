@@ -1,16 +1,29 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromMaintenanceActions from './maintenance.action';
-import { IMaintenanceModuleResponse } from '../interfaces';
+import {
+  IMaintenanceModuleResponse,
+  IServiceReminder,
+  IServiceReminderPagination,
+} from '../interfaces';
 
 export interface MaintenanceState {
   globalActionsView: string;
   modules: Array<IMaintenanceModuleResponse>;
+  serviceReminders: Array<IServiceReminder>;
+  serviceReminderPagination: IServiceReminderPagination;
 }
 
 const initialState: MaintenanceState = {
   globalActionsView: 'home',
   modules: [],
+  serviceReminders: [],
+  serviceReminderPagination: {
+    pageNumber: 1,
+    pageSize: 5,
+    totalElements: 0,
+    totalPages: 0,
+  },
 };
 export const _maintenanceReducer = createReducer(
   initialState,
@@ -44,6 +57,34 @@ export const _maintenanceReducer = createReducer(
           }
           return module;
         }),
+      };
+    }
+  ),
+  on(
+    fromMaintenanceActions.serviceReminderSuccess,
+    (state, action): MaintenanceState => {
+      return {
+        ...state,
+        serviceReminders: action.serviceReminders,
+        serviceReminderPagination: {
+          pageNumber: action.pageNumber,
+          pageSize: action.pageSize,
+          totalElements: action.totalElements,
+          totalPages: action.totalPages,
+        },
+      };
+    }
+  ),
+  on(
+    fromMaintenanceActions.updateServiceReminderPagination,
+    (state, action): MaintenanceState => {
+      return {
+        ...state,
+        serviceReminderPagination: {
+          ...state.serviceReminderPagination,
+          pageNumber: action.pageNumber,
+          pageSize: action.pageSize,
+        },
       };
     }
   )

@@ -23,11 +23,11 @@ export class MaintenanceService {
   ): Observable<IServiceRemindersResponse> {
     return this.http
       .post<IServiceRemindersResponse>(
-        `${environment.baseUrl}/service-reminder/`,
+        `${environment.baseUrl}/service-reminder`,
         {
-          pageNumber: 1,
-          pageSize: 10,
-          statuses: ['upcomingss'],
+          pageNumber,
+          pageSize,
+          statuses,
         }
       )
       .pipe(catchError(this.handleError));
@@ -55,8 +55,6 @@ export class MaintenanceService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    // You can send the error to your server-side logging, or handle it in other ways
-    // For client-side, you might want to transform the error into something more user-friendly
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
@@ -64,7 +62,6 @@ export class MaintenanceService {
         `Backend returned code ${error.status}, ` + `body was: ${error.error}`
       );
     }
-    // Return an observable with a user-facing error message
     return throwError(() => error);
   }
 }

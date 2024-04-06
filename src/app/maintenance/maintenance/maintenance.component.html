@@ -1,1 +1,12 @@
-<h1>maintenance works</h1>
+<ng-container *ngFor="let serviceReminder of serviceReminders">
+  <mat-card [ngStyle]="{ margin: '5rem' }">
+    <mat-card-title>{{ serviceReminder.reminderName }}</mat-card-title>
+  </mat-card>
+</ng-container>
+<mat-paginator
+  #paginator
+  (page)="handlePageEvent($event)"
+  [length]="pagination.totalElements"
+  [pageSize]="5"
+  [showFirstLastButtons]="true"
+  [pageSizeOptions]="[5, 10, 15]"></mat-paginator>

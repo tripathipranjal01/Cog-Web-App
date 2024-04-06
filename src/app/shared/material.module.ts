@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const modules = [
   MatProgressSpinnerModule,
@@ -31,6 +32,7 @@ const modules = [
   MatButtonToggleModule,
   MatTabsModule,
   MatCheckboxModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
