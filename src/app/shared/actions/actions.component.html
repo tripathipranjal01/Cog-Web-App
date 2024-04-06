@@ -18,26 +18,11 @@
   </div>
   <div class="spacer"></div>
   <div class="toggle">
-    <mat-tab-group>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">update</mat-icon>
-          Machine Hour
-        </ng-template>
-      </mat-tab>
-      <mat-tab label="Second"
-        ><ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">garden_cart</mat-icon>
-          Stock Entry
-        </ng-template>
-      </mat-tab>
-      <mat-tab label="Third">
-        <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">construction</mat-icon>
-          Service
-        </ng-template></mat-tab
-      >
-    </mat-tab-group>
+    <ng-container *ngFor="let button of modules">
+      <button mat-raised-button *ngIf="button.preferred">
+        {{ button.subModuleName }}
+      </button>
+    </ng-container>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class="container__info-person">add</mat-icon>
     </button>
@@ -56,7 +41,16 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item>
-    <mat-icon>logout</mat-icon>
-    <span>Logout</span>
+    <ng-container *ngFor="let button of modules">
+      <mat-checkbox
+        [checked]="button.preferred"
+        (change)="onActionSelectionChange(button.subModuleId)">
+        <button mat-button>
+          {{ button.subModuleName }}
+        </button>
+      </mat-checkbox>
+
+      <mat-divider></mat-divider>
+    </ng-container>
   </button>
 </mat-menu>

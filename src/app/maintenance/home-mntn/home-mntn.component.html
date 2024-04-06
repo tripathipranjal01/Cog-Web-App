@@ -1,0 +1,23 @@
+<div
+  class="app-container"
+  [ngClass]="{
+    'app-container-aside': isAsideVisible
+  }">
+  <div class="app-header">
+    <app-header icon="settings" title="Maintenance"></app-header>
+  </div>
+  <div class="app-actions">
+    <app-actions
+      [availableViews]="viewTypes"
+      [selectedView]="currentSelectedView"
+      [modules]="modules"
+      (clickViewChange)="onClickViewChange($any($event))"
+      (changeActionSelection)="
+        onChangeActionSelection($any($event))
+      "></app-actions>
+  </div>
+  <div class="app-aside"></div>
+  <div class="app-main">
+    <router-outlet></router-outlet>
+  </div>
+</div>

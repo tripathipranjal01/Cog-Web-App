@@ -12,6 +12,7 @@ import { AuthEffects } from './auth/store';
 import * as fromApp from './store/app.reducer';
 
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ResponseInterceptor } from './core/interceptors/response.interceptor';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -36,6 +37,11 @@ import { AppComponent } from './app.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true,
     },
   ],

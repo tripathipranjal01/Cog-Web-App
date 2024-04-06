@@ -12,3 +12,8 @@ export const selectMaintenanceActionView = createSelector(
   selectMaintenanceState,
   state => state.globalActionsView
 );
+
+export const selectMaintenanceModules = createSelector(
+  selectMaintenanceState,
+  state => state.modules
+);

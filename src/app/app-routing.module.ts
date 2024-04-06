@@ -4,7 +4,6 @@ import { AuthGuard } from './core/guard/auth.guard';
 
 export const APP_ROUTE_NAMES = {
   AUTH: 'auth',
-  HOME: 'home',
   FLEET: 'fleet',
   FUEL: 'fuel',
   MAINTENANCE: 'maintenance',
