@@ -22,7 +22,7 @@ export const selectServiceReminders = createSelector(
   selectMaintenanceState,
   state => state.serviceReminders
 );
-export const selectServiceReminderPagination = createSelector(
+export const selectTotalServiceReminders = createSelector(
   selectMaintenanceState,
-  state => state.serviceReminderPagination
+  state => state.serviceRemindersCount
 );

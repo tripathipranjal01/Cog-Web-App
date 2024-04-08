@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../store';
-import { IServiceReminder, IServiceReminderPagination } from '../interfaces';
+import { IServiceReminder, REMINDER_STATUS } from '../interfaces';
 
 @Component({
   selector: 'app-maintenance',
@@ -14,7 +14,7 @@ import { IServiceReminder, IServiceReminderPagination } from '../interfaces';
 export class MaintenanceComponent implements OnInit, OnDestroy {
   store = inject(Store);
   serviceReminders: Array<IServiceReminder>;
-  pagination: IServiceReminderPagination;
+  serviceRemindersCount: number;
 
   private serviceReminderPaginationSub$: Subscription;
   private serviceReminderSub$: Subscription;
@@ -26,31 +26,31 @@ export class MaintenanceComponent implements OnInit, OnDestroy {
         this.serviceReminders = data;
       });
     this.serviceReminderPaginationSub$ = this.store
-      .select(fromStore.selectServiceReminderPagination)
-      .subscribe(pagination => {
-        this.pagination = pagination;
+      .select(fromStore.selectTotalServiceReminders)
+      .subscribe(count => {
+        this.serviceRemindersCount = count;
       });
-    this.store.dispatch(
-      fromStore.getServiceReminderStart({
-        statuses: ['upcoming'],
-      })
-    );
+    this.loadServiceReminders(1, 5, ['upcoming']);
   }
 
   handlePageEvent(pageEvent: PageEvent) {
+    const { pageSize, pageIndex } = pageEvent;
+    this.loadServiceReminders(pageIndex + 1, pageSize, ['upcoming']);
+  }
+
+  loadServiceReminders(
+    pageNumber: number,
+    pageSize: number,
+    statuses: Array<REMINDER_STATUS>
+  ) {
     this.store.dispatch(
-      fromStore.updateServiceReminderPagination({
-        pageSize: pageEvent.pageSize,
-        pageNumber: pageEvent.pageIndex + 1,
-      })
-    );
-    this.store.dispatch(
-      fromStore.getServiceReminderStart({
-        statuses: ['upcoming'],
+      fromStore.loadServiceReminders({
+        pageNumber,
+        pageSize,
+        statuses,
       })
     );
   }
-
   ngOnDestroy(): void {
     if (this.serviceReminderSub$) {
       this.serviceReminderSub$.unsubscribe();

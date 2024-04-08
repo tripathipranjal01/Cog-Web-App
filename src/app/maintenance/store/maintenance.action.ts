@@ -16,9 +16,8 @@ const GET_MAINTENANCE_MODULES_SUCCESS =
 
 const SET_MAINTENANCE_MODULE_PREFERENCE =
   '[Maintenance] Set Maintenance Module Preference';
-const GET_SERVICE_REMINDER_START = '[Maintenance] Get Service Reminder Start';
+const LOAD_SERVICE_REMINDERS = '[Maintenance] Get Service Reminder Start';
 const SERVICE_REMINDER_SUCCESS = '[Maintenance] Get Service Reminder Success';
-const UPDATE_SERVICE_REMINDER_PAGINATION = '[Maintenance] Update Pagination';
 
 export const setMaintenanceActionView = createAction(
   SET_MAINTENANCE_ACTION_VIEW,
@@ -39,9 +38,11 @@ export const setMaintenanceModulePreference = createAction(
   props<{ moduleId: number }>()
 );
 
-export const getServiceReminderStart = createAction(
-  GET_SERVICE_REMINDER_START,
+export const loadServiceReminders = createAction(
+  LOAD_SERVICE_REMINDERS,
   props<{
+    pageSize: number;
+    pageNumber: number;
     statuses: Array<REMINDER_STATUS>;
   }>()
 );
@@ -50,17 +51,6 @@ export const serviceReminderSuccess = createAction(
   SERVICE_REMINDER_SUCCESS,
   props<{
     serviceReminders: IServiceReminder[];
-    pageSize: number;
-    pageNumber: number;
     totalElements: number;
-    totalPages: number;
-  }>()
-);
-
-export const updateServiceReminderPagination = createAction(
-  UPDATE_SERVICE_REMINDER_PAGINATION,
-  props<{
-    pageSize: number;
-    pageNumber: number;
   }>()
 );

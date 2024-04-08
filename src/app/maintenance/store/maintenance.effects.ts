@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
@@ -30,15 +30,12 @@ export class MaintenanceEffects {
 
   loadServiceReminder$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(fromStore.getServiceReminderStart),
-      concatLatestFrom(() =>
-        this.store.select(fromStore.selectServiceReminderPagination)
-      ),
-      switchMap(([action, store]) => {
+      ofType(fromStore.loadServiceReminders),
+      switchMap(action => {
         return this.maintenanceService
           .getServiceReminders(
-            store.pageNumber,
-            store.pageSize,
+            action.pageNumber,
+            action.pageSize,
             action.statuses
           )
           .pipe(
@@ -46,9 +43,6 @@ export class MaintenanceEffects {
               return fromStore.serviceReminderSuccess({
                 serviceReminders: data.data,
                 totalElements: data.totalElements,
-                pageNumber: data.pageNumber,
-                pageSize: data.pageSize,
-                totalPages: data.totalPages,
               });
             }),
             catchError(error => {
@@ -59,3 +53,7 @@ export class MaintenanceEffects {
     );
   });
 }
+
+/* concatLatestFrom(() =>
+  this.store.select(fromStore.selectServiceReminderPagination)
+), */
