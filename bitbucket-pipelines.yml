@@ -1,0 +1,69 @@
+definitions:
+  steps:
+    - step: &lint-test-step
+          name: Lint Test
+          script:
+            - echo 'lint test will be performed here'
+          artifacts:
+            download: false
+
+    - step: &build-creation-step
+          name: Build Creation
+          image: node:16.16.0-alpine3.16
+          size: 2x
+          script:
+            - npm i
+            - npm run dev-build
+          artifacts:
+            download: false
+            paths:
+              - dist/**
+
+    - step: &uploading-to-S3-step
+          name: Uploading to S3
+          script:
+            - pipe: atlassian/aws-s3-deploy:1.6.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_ACCESS_SECRET
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET_NAME
+                LOCAL_PATH: 'dist/'
+          artifacts:
+            paths: []
+
+    - step: &invalidation-cloudfront-step
+          name: Invalidating AWS Cloudfront
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.10.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_ACCESS_SECRET
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                DISTRIBUTION_ID: $CLOUDFRONT_DISTRIBUTION_ID
+          artifacts:
+            paths: []
+
+    - step: &send-slack-message-step
+          name: Sending Confirmation
+          script:
+            - pipe: atlassian/slack-notify:2.3.0
+              variables:
+                PRETEXT: ${PRE_TEXT}
+                WEBHOOK_URL: ${SLACK_WEBHOOK}
+                MESSAGE: "Frontend: Branch ${BITBUCKET_BRANCH} deployed successfully"
+          artifacts:
+              paths: []
+
+pipelines:
+  branches:
+    feature/CD-424-enable-ci-cd-pipeline:
+      - step: *lint-test-step
+      - step: *build-creation-step
+      - stage:
+          name: Uploading to S3 and Invalidating Cloudfront
+          deployment: Develop
+          steps:
+            - step: *uploading-to-S3-step
+            - step: *invalidation-cloudfront-step
+            - step: *send-slack-message-step
