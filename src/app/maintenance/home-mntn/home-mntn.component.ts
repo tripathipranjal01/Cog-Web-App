@@ -7,7 +7,6 @@ import {
   IMaintenanceModuleResponse,
   MaintenanceActionViewTypes,
 } from '../interfaces';
-import { MaintenanceService } from '../services';
 
 @Component({
   selector: 'app-home-mntn',
@@ -16,7 +15,6 @@ import { MaintenanceService } from '../services';
 })
 export class HomeMntnComponent implements OnInit, OnDestroy {
   store = inject(Store);
-  maintenanceService = inject(MaintenanceService);
 
   isAsideVisible = false;
   viewTypes: MaintenanceActionViewTypes[] = ['home', 'map', 'side'];

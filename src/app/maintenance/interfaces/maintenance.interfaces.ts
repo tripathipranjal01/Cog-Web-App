@@ -28,6 +28,11 @@ export interface IServiceRemindersResponse {
   pageNumber: number;
 }
 
+export type IServiceReminderPagination = Omit<
+  IServiceRemindersResponse,
+  'data'
+>;
+
 export interface IAllModulesResponse {
   moduleId: number;
   moduleName: string;

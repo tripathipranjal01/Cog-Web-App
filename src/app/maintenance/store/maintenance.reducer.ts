@@ -1,16 +1,20 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromMaintenanceActions from './maintenance.action';
-import { IMaintenanceModuleResponse } from '../interfaces';
+import { IMaintenanceModuleResponse, IServiceReminder } from '../interfaces';
 
 export interface MaintenanceState {
   globalActionsView: string;
   modules: Array<IMaintenanceModuleResponse>;
+  serviceReminders: Array<IServiceReminder>;
+  serviceRemindersCount: number;
 }
 
 const initialState: MaintenanceState = {
   globalActionsView: 'home',
   modules: [],
+  serviceReminders: [],
+  serviceRemindersCount: 0,
 };
 export const _maintenanceReducer = createReducer(
   initialState,
@@ -44,6 +48,16 @@ export const _maintenanceReducer = createReducer(
           }
           return module;
         }),
+      };
+    }
+  ),
+  on(
+    fromMaintenanceActions.serviceReminderSuccess,
+    (state, action): MaintenanceState => {
+      return {
+        ...state,
+        serviceReminders: action.serviceReminders,
+        serviceRemindersCount: action.totalElements,
       };
     }
   )

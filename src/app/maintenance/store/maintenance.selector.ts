@@ -17,3 +17,12 @@ export const selectMaintenanceModules = createSelector(
   selectMaintenanceState,
   state => state.modules
 );
+
+export const selectServiceReminders = createSelector(
+  selectMaintenanceState,
+  state => state.serviceReminders
+);
+export const selectTotalServiceReminders = createSelector(
+  selectMaintenanceState,
+  state => state.serviceRemindersCount
+);
