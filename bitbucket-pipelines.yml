@@ -12,6 +12,7 @@ definitions:
           image: node:16.16.0-alpine3.16
           size: 2x
           script:
+            - npm i
             - npm run dev-build 
           artifacts:
             download: false
