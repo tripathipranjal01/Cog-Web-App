@@ -49,20 +49,20 @@ definitions:
           script:
             - pipe: atlassian/slack-notify:2.3.0
               variables:
-                PRETEXT: ${PRE_TEXT}
                 WEBHOOK_URL: ${SLACK_WEBHOOK}
+                PRETEXT: ${SLACK_PRE_TEXT}
                 MESSAGE: "Frontend: Branch ${BITBUCKET_BRANCH} deployed successfully"
           artifacts:
               paths: []
 
 pipelines:
   branches:
-    feature/CD-424-enable-ci-cd-pipeline:
+    develop:
       - step: *lint-test-step
       - step: *build-creation-step
       - stage:
           name: Uploading to S3 and Invalidating Cloudfront
-          deployment: Develop
+          deployment: Development
           steps:
             - step: *uploading-to-S3-step
             - step: *invalidation-cloudfront-step
