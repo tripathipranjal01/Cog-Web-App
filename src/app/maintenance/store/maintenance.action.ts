@@ -18,6 +18,7 @@ const SET_MAINTENANCE_MODULE_PREFERENCE =
   '[Maintenance] Set Maintenance Module Preference';
 const LOAD_SERVICE_REMINDERS = '[Maintenance] Get Service Reminder Start';
 const SERVICE_REMINDER_SUCCESS = '[Maintenance] Get Service Reminder Success';
+const SET_MAINTENANCE_ACTIVE_ACTION = '[Maintenance] Set Active Action';
 
 export const setMaintenanceActionView = createAction(
   SET_MAINTENANCE_ACTION_VIEW,
@@ -35,6 +36,11 @@ export const getMaintenanceModulesSuccess = createAction(
 
 export const setMaintenanceModulePreference = createAction(
   SET_MAINTENANCE_MODULE_PREFERENCE,
+  props<{ moduleId: number }>()
+);
+
+export const setMaintenanceActiveAction = createAction(
+  SET_MAINTENANCE_ACTIVE_ACTION,
   props<{ moduleId: number }>()
 );
 
