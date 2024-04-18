@@ -1,5 +1,6 @@
 <mat-drawer-container class="sidenav-container mat-typography" autosize>
   <mat-drawer
+    *ngIf="!isLoginPage"
     #drawer
     mode="side"
     disableClose="true"
