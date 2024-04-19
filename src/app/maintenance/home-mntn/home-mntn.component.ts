@@ -19,9 +19,11 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
   isAsideVisible = false;
   viewTypes: MaintenanceActionViewTypes[] = ['home', 'map', 'side'];
   currentSelectedView: MaintenanceActionViewTypes;
+  currentSelectedSubModule: number | null;
   modules: Array<IMaintenanceModuleResponse> = [];
 
   private actionViewSub$: Subscription;
+  private activeSubModule$: Subscription;
   private maintenanceModulesSub$: Subscription;
 
   ngOnInit(): void {
@@ -36,6 +38,11 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
       .subscribe(modules => {
         this.modules = modules;
       });
+    this.activeSubModule$ = this.store
+      .select(fromStore.selectMaintenanceAction)
+      .subscribe(action => {
+        this.currentSelectedSubModule = action;
+      });
     this.store.dispatch(fromStore.getMaintenanceModules());
   }
 
@@ -49,12 +56,19 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
     this.store.dispatch(fromStore.setMaintenanceModulePreference({ moduleId }));
   }
 
+  onChangeSubModule(moduleId: number) {
+    this.store.dispatch(fromStore.setMaintenanceActiveAction({ moduleId }));
+  }
+
   ngOnDestroy(): void {
     if (this.actionViewSub$) {
       this.actionViewSub$.unsubscribe();
     }
     if (this.maintenanceModulesSub$) {
       this.maintenanceModulesSub$.unsubscribe();
+    }
+    if (this.activeSubModule$) {
+      this.activeSubModule$.unsubscribe();
     }
   }
 }

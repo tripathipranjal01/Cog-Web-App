@@ -19,7 +19,13 @@
   <div class="spacer"></div>
   <div class="toggle">
     <ng-container *ngFor="let button of modules">
-      <button mat-raised-button *ngIf="button.preferred">
+      <button
+        (click)="onActionNavigate(button.subModuleId)"
+        mat-raised-button
+        *ngIf="button.preferred"
+        [ngClass]="{
+          'button-selection': button.subModuleId === selectedSubModule
+        }">
         {{ button.subModuleName }}
       </button>
     </ng-container>

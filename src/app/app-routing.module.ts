@@ -15,28 +15,33 @@ const APP_ROUTES: Routes = [
   {
     path: APP_ROUTE_NAMES.AUTH,
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    data: { breadcrumb: { skip: true } },
   },
   {
     path: APP_ROUTE_NAMES.FLEET,
     canActivate: [AuthGuard],
     loadChildren: () => import('./fleet/fleet.module').then(m => m.FleetModule),
+    data: { breadcrumb: { skip: true } },
   },
   {
     path: APP_ROUTE_NAMES.FUEL,
     canActivate: [AuthGuard],
     loadChildren: () => import('./fuel/fuel.module').then(m => m.FuelModule),
+    data: { breadcrumb: { skip: true } },
   },
   {
     path: APP_ROUTE_NAMES.MAINTENANCE,
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./maintenance/maintenance.module').then(m => m.MaintenanceModule),
+    data: { breadcrumb: { skip: true } },
   },
   {
     path: APP_ROUTE_NAMES.PRODUCTION,
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./production/production.module').then(m => m.ProductionModule),
+    data: { breadcrumb: { skip: true } },
   },
   {
     path: APP_ROUTE_NAMES.CONFIGURATION,
@@ -45,6 +50,7 @@ const APP_ROUTES: Routes = [
       import('./configuration/configuration.module').then(
         m => m.ConfigurationModule
       ),
+    data: { breadcrumb: { skip: true } },
   },
 ];
 

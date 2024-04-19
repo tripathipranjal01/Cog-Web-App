@@ -10,10 +10,12 @@
     <app-actions
       [availableViews]="viewTypes"
       [selectedView]="currentSelectedView"
+      [selectedSubModule]="currentSelectedSubModule"
       [modules]="modules"
       (clickViewChange)="onClickViewChange($any($event))"
-      (changeActionSelection)="
-        onChangeActionSelection($any($event))
+      (changeActionSelection)="onChangeActionSelection($any($event))"
+      (changeNavigationOnAction)="
+        onChangeSubModule($any($event))
       "></app-actions>
   </div>
   <div class="app-aside"></div>

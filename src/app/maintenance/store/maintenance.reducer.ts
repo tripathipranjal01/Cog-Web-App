@@ -5,6 +5,7 @@ import { IMaintenanceModuleResponse, IServiceReminder } from '../interfaces';
 
 export interface MaintenanceState {
   globalActionsView: string;
+  globalSelectedSubModule: number | null;
   modules: Array<IMaintenanceModuleResponse>;
   serviceReminders: Array<IServiceReminder>;
   serviceRemindersCount: number;
@@ -12,6 +13,7 @@ export interface MaintenanceState {
 
 const initialState: MaintenanceState = {
   globalActionsView: 'home',
+  globalSelectedSubModule: null,
   modules: [],
   serviceReminders: [],
   serviceRemindersCount: 0,
@@ -58,6 +60,15 @@ export const _maintenanceReducer = createReducer(
         ...state,
         serviceReminders: action.serviceReminders,
         serviceRemindersCount: action.totalElements,
+      };
+    }
+  ),
+  on(
+    fromMaintenanceActions.setMaintenanceActiveAction,
+    (state, action): MaintenanceState => {
+      return {
+        ...state,
+        globalSelectedSubModule: action.moduleId,
       };
     }
   )

@@ -49,6 +49,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    .mat-mdc-raised-button.button-selection {
+      background-color: $color-primary;
+      color: $color-white;
+    }
   }
 
   .events {

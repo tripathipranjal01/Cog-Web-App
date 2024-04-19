@@ -14,8 +14,16 @@ const MAINTENANCE_ROUTES = [
     path: MAINTENANCE_ROUTES_NAMES.HOME,
     component: HomeMntnComponent,
     children: [
-      { path: '', component: MaintenanceComponent },
-      { path: MAINTENANCE_ROUTES_NAMES.MACHINE, component: MachineHrComponent },
+      {
+        path: '',
+        component: MaintenanceComponent,
+        data: { breadcrumb: { alias: 'Maintenance' } },
+      },
+      {
+        path: MAINTENANCE_ROUTES_NAMES.MACHINE,
+        component: MachineHrComponent,
+        data: { breadcrumb: { alias: 'Machine hr' } },
+      },
     ],
   },
 ];

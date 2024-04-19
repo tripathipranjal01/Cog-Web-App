@@ -26,3 +26,8 @@ export const selectTotalServiceReminders = createSelector(
   selectMaintenanceState,
   state => state.serviceRemindersCount
 );
+
+export const selectMaintenanceAction = createSelector(
+  selectMaintenanceState,
+  state => state.globalSelectedSubModule
+);
