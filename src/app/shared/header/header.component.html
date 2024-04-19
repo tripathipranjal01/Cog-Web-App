@@ -3,7 +3,12 @@
     <mat-icon>{{ icon }}</mat-icon>
   </div>
   <div class="container__title">{{ title }}</div>
-  <div class="container__breadcrumb">{{ title | titlecase }} > Overview</div>
+  <div class="container__breadcrumb">
+    <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+    <ng-template #iconTemplate>
+      <mat-icon>chevron_right</mat-icon>
+    </ng-template>
+  </div>
   <div class="container__spacer"></div>
   <div class="container__search">
     <input placeholder="Search Site, Asset, Asset Class" />
