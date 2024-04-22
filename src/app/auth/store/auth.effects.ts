@@ -1,9 +1,13 @@
 import { Injectable, inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as fromActions from './auth.action';
+
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -11,6 +15,7 @@ export class AuthEffects {
   action$ = inject(Actions);
   authService = inject(AuthService);
   router = inject(Router);
+  location = inject(Location);
 
   login$ = createEffect(() => {
     return this.action$.pipe(
@@ -67,7 +72,8 @@ export class AuthEffects {
       return this.action$.pipe(
         ofType(fromActions.loginSuccess),
         map(() => {
-          this.router.navigate(['maintenance', 'home']);
+          const currentRoute = this.location.path();
+          this.router.navigate([currentRoute]);
         })
       );
     },
