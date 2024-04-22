@@ -12,7 +12,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 })
 export class AppComponent implements OnInit {
   title = 'cognecto';
-  isLoginPage = true;
+  isSideNavVisible = false;
 
   store = inject(Store);
   matIconReg = inject(MatIconRegistry);
@@ -20,12 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fromAuthStore.autoAuthenticate());
-    /*
-      TODO:
-      Replace isLoginPage with a more dynamic way to determine if the user is on the login page
-      use global state te to set if sidenav should be avilable or not
-    */
-    this.isLoginPage = this.location.path() === '/auth';
+    this.isSideNavVisible = this.location.path() !== '/auth';
     this.matIconReg.setDefaultFontSetClass('material-symbols-outlined');
   }
 }
