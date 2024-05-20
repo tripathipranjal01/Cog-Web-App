@@ -3,6 +3,7 @@
 .container {
   height: 100%;
   display: grid;
+  gap: 1rem;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: [icon-start] max-content [icon-end title-start] max-content [title-end spacer-start] 2fr [spacer-end search-start] 1.5fr [search-middle] 1.5fr [search-end info-start] 0.5fr [info-end];
 
@@ -23,18 +24,17 @@
 
   &__title {
     grid-row: 1 / 2;
-    grid-template-columns: title-start / title-end;
+    grid-column: title-start / title-end;
     font-size: 4.8rem;
     font-weight: 500;
+    align-self: flex-end;
     color: $color-grey-dark;
-    padding-top: 4rem;
   }
 
   &__breadcrumb {
     grid-row: 2 / -1;
+    font-size: 1.5rem;
     grid-column: title-start / title-end;
-    padding-top: 1rem;
-    margin-left: 0.5rem;
   }
 
   &__spacer {
@@ -46,11 +46,9 @@
     grid-row: 1 / 2;
     grid-column: search-start / search-end;
     color: $color-grey-light-1;
-
+    align-self: flex-end;
     input {
-      margin-top: 1rem;
       width: 90%;
-      padding: 1rem;
       font-size: 1.6rem;
       font-weight: 400;
       border: 0.1rem solid $color-grey-light-1;
