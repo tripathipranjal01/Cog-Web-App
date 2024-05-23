@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../store';
@@ -33,10 +32,10 @@ export class MaintenanceComponent implements OnInit, OnDestroy {
     this.loadServiceReminders(1, 5, ['upcoming']);
   }
 
-  handlePageEvent(pageEvent: PageEvent) {
-    const { pageSize, pageIndex } = pageEvent;
-    this.loadServiceReminders(pageIndex + 1, pageSize, ['upcoming']);
-  }
+  // handlePageEvent(pageEvent: PageEvent) {
+  //   const { pageSize, pageIndex } = pageEvent;
+  //   this.loadServiceReminders(pageIndex + 1, pageSize, ['upcoming']);
+  // }
 
   loadServiceReminders(
     pageNumber: number,
