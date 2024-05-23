@@ -20,7 +20,7 @@ import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from '../../../shared/validators/generic.validators';
 import { ILogin } from '../../interfaces';
-
+import { carouselData } from '../../interfaces/login-screen-carousel-data';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -37,6 +37,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   private genericValidator: GenericValidator;
 
   fb = inject(FormBuilder);
+  carouselData = carouselData;
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -71,6 +72,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
     const formValues: ILogin = {
       ...this.loginForm.value,
     };
+    console.log(formValues);
     this.submitLogin.emit(formValues);
   }
 }
