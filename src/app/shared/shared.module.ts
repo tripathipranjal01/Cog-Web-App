@@ -8,6 +8,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { ActionsComponent } from './actions/actions.component';
+import { PrimeNgModule } from './primeng.module';
 
 @NgModule({
   declarations: [ErrorDialogComponent, HeaderComponent, ActionsComponent],
@@ -16,12 +17,14 @@ import { ActionsComponent } from './actions/actions.component';
     ReactiveFormsModule,
     FormsModule,
     BreadcrumbModule,
+    PrimeNgModule
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     HeaderComponent,
     ActionsComponent,
+    PrimeNgModule
   ],
   providers: [BreadcrumbService],
 })
