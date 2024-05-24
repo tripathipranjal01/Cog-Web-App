@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="container__left-container">
-    <div class="container__left-container__header">
-      <img src="./../../../../assets/cog_white logo.svg" alt="cognecto_logo" class="container__left-container__header__logo" />
-      <div class="container__left-container__header__content">
-        <h5>Trusted by industria leaders for Operational Excellence.</h5>
+  <div class="container__left">
+    <div class="container__header">
+      <img src="./../../../../assets/cog_white logo.svg" alt="cognecto_logo" class="container__logo" />
+      <div class="container__content">
+        <h5>Trusted by industrial leaders for Operational Excellence.</h5>
         <p>Unlock real-time insights to transform to transform operations with sustainable practices and operational excellence.</p>
       </div>
     </div>
@@ -15,14 +15,14 @@
       [showIndicators]="true"
       [autoplayInterval]="2000">
       <ng-template let-carouselData pTemplate="item">
-        <div class="container__left-container__banner-slider">
-          <div class="container__left-container__banner-slider__desc-left">
+        <div class="container__banner-slider">
+          <div class="container__desc-left">
             <img
-              class="container__left-container__banner-slider__desc-left__icon"
-              src="{{ carouselData.icon }}"
-              alt="{{ carouselData.iconAlt }}" />
+              class="container__icon"
+              [src]="carouselData.icon"
+              [alt]="carouselData.iconAlt" />
           </div>
-          <div class="container__left-container__banner-slider__desc-right">
+          <div class="container__desc-right">
             <h6>{{ carouselData.title }}</h6>
             <p>{{ carouselData.description }}</p>
           </div>
@@ -30,9 +30,9 @@
       </ng-template>
     </p-carousel>
   </div>
-  <div class="container__right-container">
-    <div class="container__right-container__signin-form">
-      <div class="container__right-container__signin-form__header">
+  <div class="container__right">
+    <div class="container__signin-form">
+      <div class="container__right-header">
         <h3>Sign in</h3>
         <p>Please login to continue to your account.</p>
       </div>
@@ -41,7 +41,7 @@
         autocomplete="off"
         novalidate
         (ngSubmit)="onSubmit()"
-        class="container__right-container__signin-form__form">
+        class="container__form">
         <span class=" p-float-label p-input-icon-right">
           <input
             type="text"
@@ -65,7 +65,7 @@
           [loading]="isSpinner"
           type="submit"></p-button>
       </form>
-      <div class="container__right-container__footer">
+      <div class="container__footer">
         <p-divider align="center">
           <p>or</p>
         </p-divider>
