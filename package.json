@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@awesome.me/kit-f96483d6d8": "^1.0.10",
     "@ngrx/effects": "^16.3.0",
     "@ngrx/router-store": "^16.3.0",
     "@ngrx/store": "^16.3.0",
