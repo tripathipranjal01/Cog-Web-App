@@ -1,7 +1,7 @@
 import { Component, Input, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromAuthStore from '../../auth/store';
 import { MenuItem } from 'primeng/api';
+import * as fromAuthStore from '../../auth/store';
 
 @Component({
   selector: 'app-header',
