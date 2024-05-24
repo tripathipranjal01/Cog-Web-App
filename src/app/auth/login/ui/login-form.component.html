@@ -1,41 +1,76 @@
 <div class="container">
-  <div class="main">
-    <!-- <mat-card>
-      <mat-card-header>
-        <mat-card-title>Sign In</mat-card-title>
-        <mat-card-subtitle>Please login to continue</mat-card-subtitle>
-      </mat-card-header>
+  <div class="container__left">
+    <div class="container__header">
+      <img src="./../../../../assets/cog_white logo.svg" alt="cognecto_logo" class="container__logo" />
+      <div class="container__content">
+        <h5>Trusted by industrial leaders for Operational Excellence.</h5>
+        <p>Unlock real-time insights to transform to transform operations with sustainable practices and operational excellence.</p>
+      </div>
+    </div>
+
+    <p-carousel
+      [value]="carouselData"
+      [circular]="true"
+      [showNavigators]="false"
+      [showIndicators]="true"
+      [autoplayInterval]="2000">
+      <ng-template let-carouselData pTemplate="item">
+        <div class="container__banner-slider">
+          <div class="container__desc-left">
+            <img
+              class="container__icon"
+              [src]="carouselData.icon"
+              [alt]="carouselData.iconAlt" />
+          </div>
+          <div class="container__desc-right">
+            <h6>{{ carouselData.title }}</h6>
+            <p>{{ carouselData.description }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div class="container__right">
+    <div class="container__signin-form">
+      <div class="container__right-header">
+        <h3>Sign in</h3>
+        <p>Please login to continue to your account.</p>
+      </div>
       <form
         [formGroup]="loginForm"
         autocomplete="off"
         novalidate
-        (ngSubmit)="onSubmit()">
-        <mat-card-content class="content">
-          <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="username" />
-            <mat-icon matSuffix>person</mat-icon>
-            <mat-error>{{ displayMessage['username'] }}</mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName="password" type="password" />
-            <mat-icon matSuffix>password</mat-icon>
-            <mat-error>{{ displayMessage['password'] }}</mat-error>
-          </mat-form-field>
-        </mat-card-content>
-        <mat-card-footer class="footer">
-          <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            [disabled]="loginForm.invalid">
-            <mat-icon>login</mat-icon>Signin
-          </button>
-          <mat-spinner *ngIf="isSpinner" color="accent"></mat-spinner>
-        </mat-card-footer>
+        (ngSubmit)="onSubmit()"
+        class="container__form">
+        <span class=" p-float-label p-input-icon-right">
+          <input
+            type="text"
+            pInputText
+            class="p-inputtext-lg"
+            formControlName="username" />
+          <i class="pi pi-user"></i>
+          <label>Username</label>
+        </span>
+        <span class="p-float-label">
+          <p-password
+            [feedback]="false"
+            formControlName="password"
+            class="p-inputtext-lg"
+            [toggleMask]="true"></p-password>
+          <label>Password</label>
+        </span>
+        <a href="">forgot password ?</a>
+        <p-button
+          label="Sign In"
+          [loading]="isSpinner"
+          type="submit"></p-button>
       </form>
-    </mat-card> -->
+      <div class="container__footer">
+        <p-divider align="center">
+          <p>or</p>
+        </p-divider>
+        <p>Need an account? <a href="#">connect</a></p>
+      </div>
+    </div>
   </div>
-  <div class="bg"></div>
 </div>

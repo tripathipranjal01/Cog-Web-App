@@ -19,8 +19,7 @@ import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from '../../../shared/validators/generic.validators';
-import { ILogin } from '../../interfaces';
-
+import { ILogin, carouselData } from '../../interfaces';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -37,6 +36,7 @@ export class LoginFormComponent implements OnInit, AfterViewInit {
   private genericValidator: GenericValidator;
 
   fb = inject(FormBuilder);
+  carouselData = carouselData;
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
