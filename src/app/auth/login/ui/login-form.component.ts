@@ -19,8 +19,7 @@ import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { GenericValidator } from '../../../shared/validators/generic.validators';
-import { ILogin } from '../../interfaces';
-import { carouselData } from '../../interfaces/login-screen-carousel-data';
+import { ILogin, carouselData } from '../../interfaces';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
