@@ -7,6 +7,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 const modules = [
     FormsModule,
@@ -17,6 +19,8 @@ const modules = [
     InputNumberModule,
     PasswordModule,
     DividerModule,
+    BreadcrumbModule,
+    TabMenuModule
 ];
 
 @NgModule({

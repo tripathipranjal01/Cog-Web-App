@@ -44,3 +44,33 @@
     <span>Logout</span>
   </button>
 </mat-menu> -->
+<div class="container">
+  <div class="container__left">
+    <div class="container__header-icon">
+      <i class={{icon}}></i>
+    </div>
+    <div class="container__header-content">
+      <div class="title">{{title}}</div>
+      <div class="breadcrumb">
+        <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+      </div>
+    </div>
+  </div>
+  <div class="container__right">
+    <div class="container__right-content">
+      <div class="container__input-action-content">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Search asset, asset class or site name" />
+        </span>
+        <div class="container__icons">
+          <i class="fa-regular fa-bell"></i>
+          <i class="fa-solid fa-user primary-theme"></i>
+        </div>
+      </div>
+      <div class="container__action-menu">
+        <p-tabMenu class="header-tab-btn" [model]="actionItems"></p-tabMenu>
+      </div>
+    </div>
+  </div>
+</div>
