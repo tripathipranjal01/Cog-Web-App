@@ -19,3 +19,98 @@ body {
   margin: 0;
   font-family: Poppins, 'Helvetica Neue', sans-serif;
 }
+
+// custom primeng css for action-bar Component
+.tgl-btn{
+  .p-button.p-button-icon-only {
+    width: 4rem;
+    border: none;
+    box-shadow: 0px 4px 30px 1px rgba(133, 133, 133, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .p-button:focus {
+    outline: none;
+    box-shadow: none;
+    box-shadow: 0px 4px 30px 1px rgba(133, 133, 133, 0.25);
+  }
+}
+
+.action-bar-divider {
+  height: 6rem;
+}
+
+.action-menu-btn {
+  .p-button {
+    background-color: #ffffff;
+    color: var(--text-color);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: none;
+    font-size: 1.3rem;
+
+    svg {
+      font-size: 2rem;
+    }
+  }
+
+  .p-button:hover {
+    color: var(--primary-color);
+  }
+}
+
+.sub-menu-btn {
+  .p-button {
+    background-color: #ffffff;
+    border: 1px solid var(--text-color-secondary);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--text-color-secondary);
+    gap: 1rem;
+    width: 100%;
+
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+
+  .p-button:focus {
+    border: 1px solid var(--primary-color);
+    color: var(--surface-a);
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--highlight-text-color) 100%);
+    box-shadow: none;
+    outline: none;
+  }
+
+  .p-button:not(:focus):hover {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+.add-btn {
+  .p-button {
+    background-color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+
+    .pi{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.p-overlaypanel .p-overlaypanel-content {
+  .field-checkbox {
+    gap: 1rem;
+    font-size: 1.3rem;
+  }
+}

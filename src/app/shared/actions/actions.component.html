@@ -1,62 +1,49 @@
-<!-- <div class="container">
-  <div class="view">
-    <span class="view__title">View: </span>
-    <mat-button-toggle-group
-      [(ngModel)]="selectedView"
-      class="toggle-button-container"
-      (click)="onViewChange()">
-      <mat-button-toggle [value]="availableViews[0]" aria-label="Home">
-        <mat-icon>home</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle [value]="availableViews[1]" aria-label="Map">
-        <mat-icon>location_on</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle [value]="availableViews[2]" aria-label="Side Nav">
-        <mat-icon>side_navigation</mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+<div class="container">
+  <div class="container__left">
+    <div class="container__title">View :</div>
+    <div class="container__toggle-btn-menu">
+      <p-toggleButton class="tgl-btn" onIcon="pi pi-map" offIcon="pi pi-map">
+      </p-toggleButton>
+      <p-toggleButton class="tgl-btn" onIcon="pi pi-chevron-left" offIcon="pi pi-chevron-right">
+      </p-toggleButton>
+      <p-toggleButton class="tgl-btn" onIcon="pi pi-arrows-alt" offIcon="pi pi-arrows-alt">
+      </p-toggleButton>
+    </div>
   </div>
-  <div class="spacer"></div>
-  <div class="toggle">
-    <ng-container *ngFor="let button of modules">
-      <button
-        (click)="onActionNavigate(button.subModuleId)"
-        mat-raised-button
-        *ngIf="button.preferred"
-        [ngClass]="{
-          'button-selection': button.subModuleId === selectedSubModule
-        }">
-        {{ button.subModuleName }}
-      </button>
-    </ng-container>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon class="container__info-person">add</mat-icon>
-    </button>
-  </div>
-  <div class="events">
-    <button mat-stroked-button class="events-item">
-      <mat-icon>tune</mat-icon>
-      Filter
-    </button>
-    <button mat-stroked-button class="events-item">
-      <mat-icon>post_add</mat-icon>
-      Activity
-    </button>
+  <div class="container__right">
+    <div class="container__sub-menu-bar">
+      <ng-container *ngFor="let button of modules">
+        <div class="container__sub-menu-div" *ngIf="button.preferred">
+          <p-button class="sub-menu-btn"
+          (click)="onActionNavigate(button.subModuleId)"
+          [ngClass]="{
+            'button-selection': button.subModuleId === selectedSubModule
+          }">
+            <i [class]="button.icon"></i>
+            <span>{{button.subModuleName}}</span>
+          </p-button>
+        </div>  
+      </ng-container>
+    </div>
+    <div class="container__add-btn">
+      <p-overlayPanel #op class="overlay-panel">
+        <div *ngFor="let button of modules" class="field-checkbox">
+          <p-checkbox name="group" [value]="button.subModuleId" [inputId]="button.subModuleName"></p-checkbox>
+          <label [for]="button.subModuleName">{{ button.subModuleName }}</label>
+      </div>
+      </p-overlayPanel>
+      <p-button class="add-btn" (click)="op.toggle($event)" icon="pi pi-plus"></p-button>    
+    </div>
+    <p-divider class="action-bar-divider" layout="vertical"></p-divider>
+    <div class="container__action-menu">
+      <p-button class="action-menu-btn">
+        <i class="fa-regular fa-sliders-up"></i>
+        <span>Filter</span>
+      </p-button>
+      <p-button class="action-menu-btn">
+        <i class="fa-regular fa-square-dashed-circle-plus"></i>
+        <span>Activity</span>
+      </p-button>
+    </div>
   </div>
 </div>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <ng-container *ngFor="let button of modules">
-      <mat-checkbox
-        [checked]="button.preferred"
-        (change)="onActionSelectionChange(button.subModuleId)">
-        <button mat-button>
-          {{ button.subModuleName }}
-        </button>
-      </mat-checkbox>
-
-      <mat-divider></mat-divider>
-    </ng-container>
-  </button>
-</mat-menu> -->

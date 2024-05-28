@@ -48,4 +48,5 @@ export interface IMaintenanceModuleResponse {
   sequenceNumber: number;
   subModuleType: string;
   preferred: boolean;
+  icon: string;
 }
