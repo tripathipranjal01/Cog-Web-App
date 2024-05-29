@@ -9,6 +9,7 @@ import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { BadgeModule } from 'primeng/badge';
 
 const modules = [
     FormsModule,
@@ -20,7 +21,8 @@ const modules = [
     PasswordModule,
     DividerModule,
     BreadcrumbModule,
-    TabMenuModule
+    TabMenuModule,
+    BadgeModule    
 ];
 
 @NgModule({

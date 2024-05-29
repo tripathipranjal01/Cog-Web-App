@@ -19,3 +19,12 @@ body {
   margin: 0;
   font-family: Poppins, 'Helvetica Neue', sans-serif;
 }
+
+.container__badge {
+  span {
+    background-color: #FF6961;
+  }
+  .pi {
+    font-size: 2rem;
+  }
+}
