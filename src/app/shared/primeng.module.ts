@@ -13,6 +13,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { BadgeModule } from 'primeng/badge';
+import { TooltipModule } from 'primeng/tooltip';
 
 const modules = [
     FormsModule,
@@ -28,7 +29,8 @@ const modules = [
     ToggleButtonModule,
     OverlayPanelModule,
     CheckboxModule,
-    BadgeModule    
+    BadgeModule,
+    TooltipModule
 ];
 
 @NgModule({

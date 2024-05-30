@@ -14,27 +14,27 @@ export class SideNavComponent implements OnInit {
     // this.isSidenavExpanded = false;
     this.items = [
       {
-        label: '',
+        label: 'Fleet Management',
         icon: 'fa-light fa-cube',
         routerLink: 'fleet',
       },
       {
-        label: '',
+        label: 'Fuel Management',
         icon: 'fa-light fa-droplet',
         routerLink: 'fuel',
       },
       {
-        label: '',
+        label: 'Maintenance',
         icon: 'fa-light fa-gear-complex',
         routerLink: 'maintenance/home',
       },
       {
-        label: '',
+        label: 'Production',
         icon: 'fa-light fa-cubes',
         routerLink: 'production',
       },
       {
-        label: '',
+        label: 'Configurator',
         icon: 'fa-light fa-sliders',
         routerLink: 'configuration',
         styleClass: 'config-bottom',
