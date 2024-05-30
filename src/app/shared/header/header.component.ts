@@ -22,9 +22,9 @@ export class HeaderComponent {
     this.items = [{label: 'Maintenance'}, {label: 'Service'}];
     this.home = {icon: 'pi pi-home', routerLink: '/fleet'}
     this.actionItems = [
-      { label: 'Report', icon: 'pi pi-fw pi-file-excel' },
-      { label: 'Task', icon: 'pi pi-fw pi-server' },
-      { label: 'Logbook', icon: 'pi pi-fw pi-book' },
+      { label: 'Report', icon: 'fa-light fa-file-chart-pie' },
+      { label: 'Task', icon: 'fa-light fa-server' },
+      { label: 'Logbook', icon: 'fa-light fa-notebook' },
   ];
   }
 

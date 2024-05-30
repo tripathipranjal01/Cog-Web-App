@@ -67,6 +67,12 @@
       color: var(--primary-color);
     }
   }
+
+  &__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 :host ::ng-deep {
@@ -93,10 +99,10 @@
   }
 
   .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link{
-    padding: 0;
+    padding: 0.5rem 0;
     border: none;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-color);
   }
 

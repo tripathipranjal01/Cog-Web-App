@@ -9,6 +9,11 @@ import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { CheckboxModule } from 'primeng/checkbox';
+import { BadgeModule } from 'primeng/badge';
+import { TooltipModule } from 'primeng/tooltip';
 
 const modules = [
     FormsModule,
@@ -20,7 +25,12 @@ const modules = [
     PasswordModule,
     DividerModule,
     BreadcrumbModule,
-    TabMenuModule
+    TabMenuModule,
+    ToggleButtonModule,
+    OverlayPanelModule,
+    CheckboxModule,
+    BadgeModule,
+    TooltipModule
 ];
 
 @NgModule({

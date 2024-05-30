@@ -1,69 +1,16 @@
-<!-- <mat-nav-list role="navigation" class="container">
-  <div class="branding">
-    <mat-list-item (click)="onSideBarToggle()" role="listitem">
-      <div class="container-list">
-        <img
-          src="../../../assets/logo-white.svg"
-          alt="branding"
-          class="branding__logo" />
-        <span *ngIf="isSidenavExpanded">Cognecto</span>
-      </div>
-    </mat-list-item>
-    <mat-divider class="divider"></mat-divider>
+<div class="sidebar">
+  <div class="branding sidebar-logo">
+    <img src="assets/cog_sidebar_logo.svg" alt="Logo" />
   </div>
-
-  <div class="navigation">
-    <mat-list-item
-      [routerLink]="['fleet']"
+  <div class="sidebar-icons">
+    <button
+      *ngFor="let item of items"
+      pButton
+      [routerLink]="item.routerLink"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
-      role="listitem">
-      <div class="container-list">
-        <mat-icon>deployed_code</mat-icon>
-        <span *ngIf="isSidenavExpanded">Fleet</span>
-      </div>
-    </mat-list-item>
-    <mat-list-item
-      [routerLink]="['fuel']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      role="listitem">
-      <div class="container-list">
-        <mat-icon>water_drop</mat-icon>
-        <span *ngIf="isSidenavExpanded">Fuel</span>
-      </div>
-    </mat-list-item>
-    <mat-list-item
-      [routerLink]="['maintenance', 'home']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      role="listitem">
-      <div class="container-list">
-        <mat-icon>settings</mat-icon>
-        <span *ngIf="isSidenavExpanded">Maintenance</span>
-      </div>
-    </mat-list-item>
-    <mat-list-item
-      [routerLink]="['production']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      role="listitem">
-      <div class="container-list">
-        <mat-icon>shopping_cart</mat-icon>
-        <span *ngIf="isSidenavExpanded">Production</span>
-      </div>
-    </mat-list-item>
+      icon="{{ item.icon }}"
+      class="p-button-text {{ item.styleClass }}"
+      [pTooltip]="item.label"></button>
   </div>
-  <div class="footer">
-    <mat-list-item
-      [routerLink]="['configuration']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      role="listitem">
-      <div class="container-list">
-        <mat-icon>manufacturing</mat-icon>
-        <span *ngIf="isSidenavExpanded">Configuration</span>
-      </div>
-    </mat-list-item>
-  </div>
-</mat-nav-list> -->
+</div>

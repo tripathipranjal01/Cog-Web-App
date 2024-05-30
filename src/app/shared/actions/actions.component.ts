@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IMaintenanceModuleResponse } from 'src/app/maintenance/interfaces';
 
 @Component({
   selector: 'app-actions',
@@ -9,13 +10,7 @@ export class ActionsComponent {
   @Input({ required: true }) availableViews: string[] = [];
   @Input({ required: true }) selectedView: string;
   @Input({ required: true }) selectedSubModule: number | null;
-  @Input({ required: true }) modules: Array<{
-    subModuleId: number;
-    subModuleName: string;
-    sequenceNumber: number;
-    subModuleType: string;
-    preferred: boolean;
-  }>;
+  @Input({ required: true }) modules: Array<IMaintenanceModuleResponse>;
   @Output() clickViewChange = new EventEmitter<string>();
   @Output() changeActionSelection = new EventEmitter<number>();
   @Output() changeNavigationOnAction = new EventEmitter<number>();
