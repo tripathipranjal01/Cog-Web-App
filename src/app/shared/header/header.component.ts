@@ -8,8 +8,7 @@ import * as fromAuthStore from '../../auth/store';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
   items: MenuItem[];
   home: MenuItem;
   actionItems: MenuItem[];
@@ -19,13 +18,13 @@ export class HeaderComponent {
   @Input({ required: true }) icon: string;
 
   ngOnInit() {
-    this.items = [{label: 'Maintenance'}, {label: 'Service'}];
-    this.home = {icon: 'pi pi-home', routerLink: '/fleet'}
+    this.items = [{ label: 'Maintenance' }, { label: 'Service' }];
+    this.home = { icon: 'pi pi-home', routerLink: '/fleet' };
     this.actionItems = [
       { label: 'Report', icon: 'fa-light fa-file-chart-pie' },
       { label: 'Task', icon: 'fa-light fa-server' },
       { label: 'Logbook', icon: 'fa-light fa-notebook' },
-  ];
+    ];
   }
 
   initiateLogout(): void {
