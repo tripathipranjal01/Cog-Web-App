@@ -1,58 +1,15 @@
-<!-- <div class="container">
-  <div class="container__icon">
-    <mat-icon>{{ icon }}</mat-icon>
-  </div>
-  <div class="container__title">{{ title }}</div>
-  <div class="container__breadcrumb">
-    <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
-    <ng-template #iconTemplate>
-      <mat-icon>chevron_right</mat-icon>
-    </ng-template>
-  </div>
-  <div class="container__spacer"></div>
-  <div class="container__search">
-    <input placeholder="Search Site, Asset, Asset Class" />
-  </div>
-  <div class="container__info">
-    <button mat-icon-button>
-      <mat-icon matBadge="15" matBadgeColor="warn" matBadgeSize="small"
-        >notifications</mat-icon
-      >
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon class="container__info-person">person</mat-icon>
-    </button>
-  </div>
-  <div class="container__actions">
-    <button mat-flat-button class="container__actions-item">
-      <mat-icon>lab_profile</mat-icon>
-      Report
-    </button>
-    <button mat-flat-button class="container__actions-item">
-      <mat-icon>task</mat-icon>Task
-    </button>
-    <button mat-flat-button class="container__actions-item">
-      <mat-icon>auto_stories</mat-icon>
-      LogBook
-    </button>
-  </div>
-</div>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="initiateLogout()">
-    <mat-icon>logout</mat-icon>
-    <span>Logout</span>
-  </button>
-</mat-menu> -->
 <div class="container">
   <div class="container__left">
     <div class="container__header-icon">
-      <i class={{icon}}></i>
+      <i class="{{ icon }}"></i>
     </div>
     <div class="container__header-content">
-      <div class="title">{{title}}</div>
+      <div class="title">{{ title }}</div>
       <div class="breadcrumb">
-        <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        <p-breadcrumb
+          class="max-w-full"
+          [model]="items"
+          [home]="home"></p-breadcrumb>
       </div>
     </div>
   </div>
@@ -61,12 +18,15 @@
       <div class="container__input-action-content">
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <input type="text" pInputText placeholder="Search asset, asset class or site name" />
+          <input
+            type="text"
+            pInputText
+            placeholder="Search asset, asset class or site name" />
         </span>
-        <div class="container__icons">  
+        <div class="container__icons">
           <div class="container__badge">
             <i class="pi pi-bell" pBadge value="2"></i>
-          </div> 
+          </div>
           <i class="fa-solid fa-user primary-theme"></i>
         </div>
       </div>

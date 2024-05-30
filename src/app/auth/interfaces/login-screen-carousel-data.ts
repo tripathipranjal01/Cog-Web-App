@@ -1,8 +1,8 @@
 interface CarouselData {
-    title: string;
-    description: string;
-    icon: string;
-    iconAlt: string;
+  title: string;
+  description: string;
+  icon: string;
+  iconAlt: string;
 }
 
 export const carouselData: CarouselData[] = [

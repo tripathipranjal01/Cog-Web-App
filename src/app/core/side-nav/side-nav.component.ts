@@ -7,11 +7,8 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent implements OnInit {
-  isSidenavExpanded = true;
   items: MenuItem[] = [];
-
   ngOnInit(): void {
-    // this.isSidenavExpanded = false;
     this.items = [
       {
         label: 'Fleet Management',
@@ -40,9 +37,5 @@ export class SideNavComponent implements OnInit {
         styleClass: 'config-bottom',
       },
     ];
-  }
-
-  onSideBarToggle() {
-    this.isSidenavExpanded = !this.isSidenavExpanded;
   }
 }

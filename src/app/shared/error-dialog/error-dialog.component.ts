@@ -5,6 +5,4 @@ import { Component, inject } from '@angular/core';
   templateUrl: './error-dialog.component.html',
   styleUrls: ['./error-dialog.component.scss'],
 })
-export class ErrorDialogComponent {
-  
-}
+export class ErrorDialogComponent {}

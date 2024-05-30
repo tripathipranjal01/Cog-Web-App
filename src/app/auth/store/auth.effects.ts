@@ -73,7 +73,9 @@ export class AuthEffects {
         ofType(fromActions.loginSuccess),
         map(() => {
           const currentRoute = this.location.path();
-          this.router.navigate([currentRoute]);
+          currentRoute === '/auth'
+            ? this.router.navigate(['maintenance', 'home'])
+            : this.router.navigate([currentRoute]);
         })
       );
     },

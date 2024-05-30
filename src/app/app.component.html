@@ -1,5 +1,5 @@
 <div class="flex flex-row">
-  <app-side-nav></app-side-nav>
+  <app-side-nav *ngIf="isSideNavVisible"></app-side-nav>
   <main class="sidenav-content">
     <router-outlet></router-outlet>
   </main>

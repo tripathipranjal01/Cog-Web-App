@@ -17,14 +17,14 @@ import { PrimeNgModule } from './primeng.module';
     ReactiveFormsModule,
     FormsModule,
     BreadcrumbModule,
-    PrimeNgModule
+    PrimeNgModule,
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     HeaderComponent,
     ActionsComponent,
-    PrimeNgModule
+    PrimeNgModule,
   ],
   providers: [BreadcrumbService],
 })

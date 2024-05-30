@@ -2,11 +2,20 @@
   <div class="container__left">
     <div class="container__title">View :</div>
     <div class="container__toggle-btn-menu">
-      <p-toggleButton class="tgl-btn" onIcon="fa-regular fa-map" offIcon="fa-regular fa-map">
+      <p-toggleButton
+        class="tgl-btn"
+        [onIcon]="'fa-regular fa-map'"
+        offIcon="fa-regular fa-map">
       </p-toggleButton>
-      <p-toggleButton class="tgl-btn" onIcon="pi pi-chevron-left" offIcon="pi pi-chevron-right">
+      <p-toggleButton
+        class="tgl-btn"
+        [onIcon]="'pi pi-chevron-left'"
+        offIcon="pi pi-chevron-right">
       </p-toggleButton>
-      <p-toggleButton class="tgl-btn" onIcon="fa-regular fa-expand-wide" offIcon="fa-regular fa-expand-wide">
+      <p-toggleButton
+        class="tgl-btn"
+        [onIcon]="'fa-regular fa-expand-wide'"
+        offIcon="fa-regular fa-expand-wide">
       </p-toggleButton>
     </div>
   </div>
@@ -14,25 +23,32 @@
     <div class="container__sub-menu-bar">
       <ng-container *ngFor="let button of modules">
         <div class="container__sub-menu-div" *ngIf="button.preferred">
-          <p-button class="sub-menu-btn"
-          (click)="onActionNavigate(button.subModuleId)"
-          [ngClass]="{
-            'button-selection': button.subModuleId === selectedSubModule
-          }">
+          <p-button
+            class="sub-menu-btn"
+            (click)="onActionNavigate(button.subModuleId)"
+            [ngClass]="{
+              'button-selection': button.subModuleId === selectedSubModule
+            }">
             <i [class]="button.icon"></i>
-            <span>{{button.subModuleName}}</span>
+            <span>{{ button.subModuleName }}</span>
           </p-button>
-        </div>  
+        </div>
       </ng-container>
     </div>
     <div class="container__add-btn">
       <p-overlayPanel #op class="overlay-panel">
         <div *ngFor="let button of modules" class="field-checkbox">
-          <p-checkbox name="group" [value]="button.subModuleId" [inputId]="button.subModuleName"></p-checkbox>
+          <p-checkbox
+            name="group"
+            [value]="button.subModuleId"
+            [inputId]="button.subModuleName"></p-checkbox>
           <label [for]="button.subModuleName">{{ button.subModuleName }}</label>
-      </div>
+        </div>
       </p-overlayPanel>
-      <p-button class="add-btn" (click)="op.toggle($event)" icon="pi pi-plus"></p-button>    
+      <p-button
+        class="add-btn"
+        (click)="op.toggle($event)"
+        icon="pi pi-plus"></p-button>
     </div>
     <p-divider class="action-bar-divider" layout="vertical"></p-divider>
     <div class="container__action-menu">

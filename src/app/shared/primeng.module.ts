@@ -16,26 +16,25 @@ import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
 
 const modules = [
-    FormsModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    CarouselModule,
-    InputTextModule,
-    InputNumberModule,
-    PasswordModule,
-    DividerModule,
-    BreadcrumbModule,
-    TabMenuModule,
-    ToggleButtonModule,
-    OverlayPanelModule,
-    CheckboxModule,
-    BadgeModule,
-    TooltipModule
+  FormsModule,
+  ReactiveFormsModule,
+  ButtonModule,
+  CarouselModule,
+  InputTextModule,
+  InputNumberModule,
+  PasswordModule,
+  DividerModule,
+  BreadcrumbModule,
+  TabMenuModule,
+  ToggleButtonModule,
+  OverlayPanelModule,
+  CheckboxModule,
+  BadgeModule,
+  TooltipModule,
 ];
 
 @NgModule({
-    imports: [...modules],
-    exports: [...modules],
+  imports: [...modules],
+  exports: [...modules],
 })
-
 export class PrimeNgModule {}
