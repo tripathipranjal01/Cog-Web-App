@@ -9,9 +9,15 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { ActionsComponent } from './actions/actions.component';
 import { PrimeNgModule } from './primeng.module';
+import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
 
 @NgModule({
-  declarations: [ErrorDialogComponent, HeaderComponent, ActionsComponent],
+  declarations: [
+    ErrorDialogComponent,
+    HeaderComponent,
+    ActionsComponent,
+    CrudComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
