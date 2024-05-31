@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { ActionsComponent } from './actions/actions.component';
 import { PrimeNgModule } from './primeng.module';
 import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
     FormsModule,
     BreadcrumbModule,
     PrimeNgModule,
+    AgGridModule,
   ],
   exports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
     HeaderComponent,
     ActionsComponent,
     PrimeNgModule,
+    AgGridModule,
   ],
   providers: [BreadcrumbService],
 })
