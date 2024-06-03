@@ -1,7 +1,7 @@
 <div class="btn">
   <a
     *ngIf="viewButton"
-    (click)="viewBtn($event)"
+    (click)="onView($event)"
     matTooltip="View"
     triggers="mouseenter:mouseleave"
     container="body">
@@ -9,7 +9,7 @@
   </a>
   <a
     *ngIf="editButton"
-    (click)="editBtn($event)"
+    (click)="onEdit($event)"
     matTooltip="Edit"
     triggers="mouseenter:mouseleave"
     container="body">
@@ -17,7 +17,7 @@
   </a>
   <a
     *ngIf="deleteButton"
-    (click)="deleteBtn($event)"
+    (click)="onDelete($event)"
     matTooltip="Delete"
     triggers="mouseenter:mouseleave"
     container="body">

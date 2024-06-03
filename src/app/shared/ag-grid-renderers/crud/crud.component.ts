@@ -8,15 +8,15 @@ import { AgCellRendererEvent } from '../ag-cell-renderer.event';
   styleUrls: ['./crud.component.scss'],
 })
 export class CrudComponent extends AgCellRendererBase {
-  viewBtn(event: MouseEvent) {
+  onView(event: MouseEvent) {
     this.sendEvent(AgCellRendererEvent.VIEW_EVENT, event);
   }
 
-  editBtn(event: MouseEvent) {
+  onEdit(event: MouseEvent) {
     this.sendEvent(AgCellRendererEvent.EDIT_EVENT, event);
   }
 
-  deleteBtn(event: MouseEvent) {
+  onDelete(event: MouseEvent) {
     this.sendEvent(AgCellRendererEvent.DELETE_EVENT, event);
   }
 }
