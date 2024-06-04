@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BreadcrumbModule } from 'xng-breadcrumb';
-import { BreadcrumbService } from 'xng-breadcrumb';
-
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { ActionsComponent } from './actions/actions.component';
 import { PrimeNgModule } from './primeng.module';
+import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
+import { AgGridModule } from 'ag-grid-angular';
 import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -17,14 +16,15 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ErrorDialogComponent,
     HeaderComponent,
     ActionsComponent,
+    CrudComponent,
     ChartCardComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    BreadcrumbModule,
     PrimeNgModule,
+    AgGridModule,
     HighchartsChartModule,
   ],
   exports: [
@@ -33,9 +33,10 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HeaderComponent,
     ActionsComponent,
     PrimeNgModule,
+    AgGridModule,
     ChartCardComponent,
     HighchartsChartModule,
   ],
-  providers: [BreadcrumbService],
+  providers: [],
 })
 export class SharedModule {}
