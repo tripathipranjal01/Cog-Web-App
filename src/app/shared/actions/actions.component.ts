@@ -15,7 +15,8 @@ export class ActionsComponent {
   @Output() changeActionSelection = new EventEmitter<number>();
   @Output() changeNavigationOnAction = new EventEmitter<number>();
 
-  onViewChange(): void {
+  onViewChange(view: string): void {
+    this.selectedView = view;
     this.clickViewChange.emit(this.selectedView);
   }
 

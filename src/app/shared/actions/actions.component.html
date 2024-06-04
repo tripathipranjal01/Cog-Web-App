@@ -5,17 +5,20 @@
       <p-toggleButton
         class="tgl-btn"
         [onIcon]="'fa-regular fa-map'"
-        offIcon="fa-regular fa-map">
+        offIcon="fa-regular fa-map"
+        (click)="onViewChange(availableViews[0])">
       </p-toggleButton>
       <p-toggleButton
         class="tgl-btn"
         [onIcon]="'pi pi-chevron-left'"
-        offIcon="pi pi-chevron-right">
+        offIcon="pi pi-chevron-right"
+        (click)="onViewChange(availableViews[1])">
       </p-toggleButton>
       <p-toggleButton
         class="tgl-btn"
         [onIcon]="'fa-regular fa-expand-wide'"
-        offIcon="fa-regular fa-expand-wide">
+        offIcon="fa-regular fa-expand-wide"
+        (click)="onViewChange(availableViews[2])">
       </p-toggleButton>
     </div>
   </div>
