@@ -1,12 +1,12 @@
 .container {
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     width: max-content;
     background-color: var(--surface-0);
     border-radius: 1rem;
-    box-shadow: 0px 0px 12px 1px rgba(144, 144, 144, 0.075), 0px 4px 12.7px 0px rgba(144, 144, 144, 0.075);
+    box-shadow: 0px 0px 12px 1px rgba(144, 144, 144, 0.15), 0px 4px 12.7px 0px rgba(144, 144, 144, 0.15);
 
     &__header {
         display: flex;
@@ -17,7 +17,7 @@
 
     &__icon-div {
         svg {
-            color: var(--primary-color);
+            color: var(--blue-300);
             font-size: 2rem;
         }
     }
@@ -36,22 +36,15 @@
 
     &__chart-div {
         display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 1.5rem;
-        height: 5rem;
-    }
-
-    &__chart-data {
-        display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        align-items: center;
+        gap: 1rem;
         color: #FF6961;
 
         .total {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 500;
             line-height: 2.7rem;
         }
 
@@ -68,12 +61,12 @@
         align-items: center;
         gap: 2rem;
         font-size: 1.5rem;
-        font-weight: 500;
+        font-weight: 400;
         color: var(--text-color);
 
         span {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 500;
             color: #FF7E20;
         }
     }

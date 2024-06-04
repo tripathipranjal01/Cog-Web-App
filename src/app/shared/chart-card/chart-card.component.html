@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="chartData">
   <div class="container__header">
     <div class="container__icon-div">
       <i class="{{ chartData.icon }}"></i>
@@ -9,16 +9,11 @@
     </div>
   </div>
   <div class="container__chart-div">
-    <div class="container__chart-plot">
-      <div id="analyticChart" style="width: 18rem; height: 5rem"></div>
-    </div>
-    <div class="container__chart-data">
-      <div class="total">{{ chartData.totalValue }}</div>
+    <div class="total">{{ chartData.totalValue }}</div>
       <div class="percentage">
         <i class="fa-solid fa-arrow-down"></i>
         {{ chartData.precentage }}%
       </div>
-    </div>
   </div>
   <div class="container__monthly-data-div">
     <div class="current-month">
