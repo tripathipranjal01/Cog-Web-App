@@ -1,0 +1,22 @@
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+
+  .fa-edit {
+    color: #008713;
+  }
+
+  .fa-trash-alt {
+    color: #d94524;
+  }
+
+  .fa-eye {
+    color: #3271cd;
+  }
+}
+
+a {
+  cursor: pointer;
+}
