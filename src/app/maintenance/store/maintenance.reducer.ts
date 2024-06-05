@@ -4,7 +4,7 @@ import * as fromMaintenanceActions from './maintenance.action';
 import { IMaintenanceModuleResponse, IServiceReminder } from '../interfaces';
 
 export interface MaintenanceState {
-  globalActionsView: string;
+  isAsideVisible: boolean;
   globalSelectedSubModule: number | null;
   modules: Array<IMaintenanceModuleResponse>;
   serviceReminders: Array<IServiceReminder>;
@@ -12,7 +12,7 @@ export interface MaintenanceState {
 }
 
 const initialState: MaintenanceState = {
-  globalActionsView: 'home',
+  isAsideVisible: false,
   globalSelectedSubModule: null,
   modules: [],
   serviceReminders: [],
@@ -21,10 +21,10 @@ const initialState: MaintenanceState = {
 export const _maintenanceReducer = createReducer(
   initialState,
   on(
-    fromMaintenanceActions.setMaintenanceActionView,
+    fromMaintenanceActions.setMaintenanceAside,
     (state, action): MaintenanceState => ({
       ...state,
-      globalActionsView: action.selectedView,
+      isAsideVisible: action.isAsideVisible,
     })
   ),
   on(

@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import {
-  MaintenanceActionViewTypes,
   IMaintenanceModuleResponse,
   REMINDER_STATUS,
   IServiceReminder,
 } from '../interfaces';
 
-const SET_MAINTENANCE_ACTION_VIEW = '[Maintenance] Set Maintenance Action View';
+const SET_MAINTENANCE_ASIDE_VISIBILITY =
+  '[Maintenance] Set Maintenance Aside Visibility';
 
 const GET_MAINTENANCE_MODULES_START =
   '[Maintenance] Get Maintenance Modules Start';
@@ -20,9 +20,9 @@ const LOAD_SERVICE_REMINDERS = '[Maintenance] Get Service Reminder Start';
 const SERVICE_REMINDER_SUCCESS = '[Maintenance] Get Service Reminder Success';
 const SET_MAINTENANCE_ACTIVE_ACTION = '[Maintenance] Set Active Action';
 
-export const setMaintenanceActionView = createAction(
-  SET_MAINTENANCE_ACTION_VIEW,
-  props<{ selectedView: MaintenanceActionViewTypes }>()
+export const setMaintenanceAside = createAction(
+  SET_MAINTENANCE_ASIDE_VISIBILITY,
+  props<{ isAsideVisible: boolean }>()
 );
 
 export const getMaintenanceModules = createAction(

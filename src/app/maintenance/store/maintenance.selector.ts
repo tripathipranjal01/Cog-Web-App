@@ -8,9 +8,9 @@ export const selectMaintenanceState =
     MAINTENANCE_STATE_NAME
   );
 
-export const selectMaintenanceActionView = createSelector(
+export const selectIsAsideVisible = createSelector(
   selectMaintenanceState,
-  state => state.globalActionsView
+  state => state.isAsideVisible
 );
 
 export const selectMaintenanceModules = createSelector(

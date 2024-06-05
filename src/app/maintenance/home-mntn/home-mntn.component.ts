@@ -39,10 +39,9 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.actionViewSub$ = this.store
-      .select(fromStore.selectMaintenanceActionView)
-      .subscribe(view => {
-        this.currentSelectedView = view as MaintenanceActionViewTypes;
-        this.isAsideVisible = view === 'side';
+      .select(fromStore.selectIsAsideVisible)
+      .subscribe(value => {
+        this.isAsideVisible = value;
       });
     this.maintenanceModulesSub$ = this.store
       .select(fromStore.selectMaintenanceModules)
@@ -58,9 +57,15 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
   }
 
   onClickViewChange(event: MaintenanceActionViewTypes) {
-    this.store.dispatch(
-      fromStore.setMaintenanceActionView({ selectedView: event })
-    );
+    switch (event) {
+      case 'side':
+        this.store.dispatch(
+          fromStore.setMaintenanceAside({
+            isAsideVisible: !this.isAsideVisible,
+          })
+        );
+        break;
+    }
   }
 
   onChangeActionSelection(moduleId: number) {
