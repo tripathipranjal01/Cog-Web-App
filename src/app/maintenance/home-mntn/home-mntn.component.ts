@@ -7,6 +7,7 @@ import {
   IMaintenanceModuleResponse,
   MaintenanceActionViewTypes,
 } from '../interfaces';
+import { IChartData } from 'src/app/shared/chart-card/chart.interface';
 
 @Component({
   selector: 'app-home-mntn',
@@ -25,6 +26,16 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
   private actionViewSub$: Subscription;
   private activeSubModule$: Subscription;
   private maintenanceModulesSub$: Subscription;
+
+  chartData: IChartData = {
+    icon: 'fa-solid fa-screwdriver-wrench',
+    heading: 'Maintenance Cost',
+    subHeading: 'Sub description',
+    totalValue: '17,075',
+    precentage: '78',
+    currentMonth: '1.81',
+    ytd: '1.66',
+  };
 
   ngOnInit(): void {
     this.actionViewSub$ = this.store

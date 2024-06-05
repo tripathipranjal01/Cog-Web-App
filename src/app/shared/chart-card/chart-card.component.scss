@@ -1,0 +1,73 @@
+.container {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: max-content;
+    background-color: var(--surface-0);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 12px 1px rgba(144, 144, 144, 0.15), 0px 4px 12.7px 0px rgba(144, 144, 144, 0.15);
+
+    &__header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__icon-div {
+        svg {
+            color: var(--blue-300);
+            font-size: 2rem;
+        }
+    }
+
+    &__heading {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: var(--text-color);
+    }
+
+    &__subHeading {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--text-color-secondary);
+    }
+
+    &__chart-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        color: #FF6961;
+
+        .total {
+            font-size: 2.5rem;
+            font-weight: 500;
+            line-height: 2.7rem;
+        }
+
+        .percentage {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.8rem;
+        }
+    }
+
+    &__monthly-data-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--text-color);
+
+        span {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #FF7E20;
+        }
+    }
+}

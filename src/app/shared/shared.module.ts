@@ -8,6 +8,8 @@ import { ActionsComponent } from './actions/actions.component';
 import { PrimeNgModule } from './primeng.module';
 import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ChartCardComponent } from './chart-card/chart-card.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { AgGridModule } from 'ag-grid-angular';
     HeaderComponent,
     ActionsComponent,
     CrudComponent,
+    ChartCardComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { AgGridModule } from 'ag-grid-angular';
     FormsModule,
     PrimeNgModule,
     AgGridModule,
+    HighchartsChartModule,
   ],
   exports: [
     CommonModule,
@@ -30,6 +34,8 @@ import { AgGridModule } from 'ag-grid-angular';
     ActionsComponent,
     PrimeNgModule,
     AgGridModule,
+    ChartCardComponent,
+    HighchartsChartModule,
   ],
   providers: [],
 })

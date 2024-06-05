@@ -20,7 +20,14 @@
         onChangeSubModule($any($event))
       "></app-actions>
   </div>
-  <div class="app-aside"></div>
+  <div class="app-aside">
+    <div class="aside-content">
+      <app-chart-card [chartData]="chartData"></app-chart-card>
+      <app-chart-card [chartData]="chartData"></app-chart-card>
+      <app-chart-card [chartData]="chartData"></app-chart-card>
+      <app-chart-card [chartData]="chartData"></app-chart-card>
+    </div>
+  </div>
   <div class="app-main">
     <router-outlet></router-outlet>
   </div>

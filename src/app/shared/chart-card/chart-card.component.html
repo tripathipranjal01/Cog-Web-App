@@ -1,0 +1,26 @@
+<div class="container" *ngIf="chartData">
+  <div class="container__header">
+    <div class="container__icon-div">
+      <i class="{{ chartData.icon }}"></i>
+    </div>
+    <div class="container__title-div">
+      <div class="container__heading">{{ chartData.heading }}</div>
+      <div class="container__subHeading">{{ chartData.subHeading }}</div>
+    </div>
+  </div>
+  <div class="container__chart-div">
+    <div class="total">{{ chartData.totalValue }}</div>
+      <div class="percentage">
+        <i class="fa-solid fa-arrow-down"></i>
+        {{ chartData.precentage }}%
+      </div>
+  </div>
+  <div class="container__monthly-data-div">
+    <div class="current-month">
+      <span>{{ chartData.currentMonth }}</span> Current Month
+    </div>
+    <div class="ytd">
+      <span>{{ chartData.ytd }}</span> YTD
+    </div>
+  </div>
+</div>
