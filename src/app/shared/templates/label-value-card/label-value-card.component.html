@@ -1,0 +1,31 @@
+<div class="step-card">
+  <div class="card-flex">
+    <div class="title-section">
+      <i
+        *ngIf="showIcon"
+        class="title-icon fa"
+        [ngClass]="faIconClass"
+        [style.color]="faIconColor"></i>
+      <ng-container *ngIf="isTemplateRef(title); else DefaultTitle">
+        <ng-container *ngTemplateOutlet="title"></ng-container>
+      </ng-container>
+      <ng-template #DefaultTitle>
+        <div class="title">
+          <h1 class="main-title" [style.color]="titleColor">
+            {{ title }}
+          </h1>
+          <span [style.color]="subtitleColor">
+            {{ subtitle }}
+          </span>
+        </div>
+      </ng-template>
+    </div>
+    <i
+      *ngIf="showArrow"
+      class="fa fa-arrow-right"
+      style="font-size: 1.75rem; color: #adacac"></i>
+    <div class="children-input">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

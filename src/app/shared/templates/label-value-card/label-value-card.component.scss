@@ -1,0 +1,61 @@
+.step-card {
+    border: 1px solid #C7C7C7;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #FEFFFE;
+}
+
+.card-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+
+    .title-section {
+        display: flex;
+        width: 30%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+
+        .title-icon {
+            font-size: large;
+            border: 1px solid #C7C7C7;
+            padding: 7px;
+            border-radius: 8px;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            // width: 8rem;
+
+            >* {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .main-title {
+                margin: 0;
+            }
+
+            span {
+                font-size: small;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .children-input {
+        width: 75%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 2rem;
+    }
+}

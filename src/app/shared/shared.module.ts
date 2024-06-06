@@ -10,6 +10,7 @@ import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { LabelValueCardComponent } from './templates/label-value-card/label-value-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ActionsComponent,
     CrudComponent,
     ChartCardComponent,
+    LabelValueCardComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AgGridModule,
     ChartCardComponent,
     HighchartsChartModule,
+    LabelValueCardComponent,
   ],
   providers: [],
 })
