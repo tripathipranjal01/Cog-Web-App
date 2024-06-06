@@ -14,6 +14,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 const modules = [
   FormsModule,
@@ -31,6 +33,8 @@ const modules = [
   CheckboxModule,
   BadgeModule,
   TooltipModule,
+  DropdownModule,
+  CalendarModule,
 ];
 
 @NgModule({
