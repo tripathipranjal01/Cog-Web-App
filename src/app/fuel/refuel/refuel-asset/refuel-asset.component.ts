@@ -24,6 +24,7 @@ export class RefuelAssetComponent implements OnInit {
 
   selectedAssetClass: string;
   assetFueledbyMeter = true;
+  fuelQuantity = 0;
 
   assetRefillForm: FormGroup = new FormGroup({
     erpRef: new FormControl<string | null>(''),
@@ -108,10 +109,12 @@ export class RefuelAssetComponent implements OnInit {
   onFuelMeterValueChanged(): void {
     const formData = this.assetRefillForm.value;
     if (this.assetFueledbyMeter) {
-      if (formData.tankEndReading > formData.tankStartReading)
-        this.assetRefillForm
-          .get('fuelDispensed')
-          ?.setValue(formData.tankEndReading - formData.tankStartReading);
+      const liters =
+        formData.tankEndReading > formData.tankStartReading
+          ? formData.tankEndReading - formData.tankStartReading
+          : 0;
+      this.assetRefillForm.get('fuelDispensed')?.setValue(liters);
+      this.fuelQuantity = liters;
     } else {
       if (formData.fuelDispensed !== null && formData.fuelDispensed !== 0)
         this.assetRefillForm
@@ -183,5 +186,6 @@ export class RefuelAssetComponent implements OnInit {
     } else {
       this.assetRefillForm.get('tankStartReading')?.setValue(null);
     }
+    this.onFuelMeterValueChanged();
   }
 }

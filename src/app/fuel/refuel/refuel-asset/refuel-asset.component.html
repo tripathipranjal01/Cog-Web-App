@@ -30,33 +30,42 @@
     </app-label-value-card>
   </div>
   <div class="refuel-asset">
-    <app-label-value-card title="Fuel Source" subtitle="Select Fuel Source">
+    <app-label-value-card
+      title="Fuel Source"
+      subtitle="Select Fuel Source"
+      faIconClass="fa-tint">
       <p-dropdown
         [options]="fuelSourceList"
         optionLabel="name"
+        [filter]="true"
+        filterBy="label"
         formControlName="fuelSource"
         [showClear]="true"
         [style]="inputStyle"
         placeholder="Select a Fuel Source"
         (onChange)="onFuelSourceChanged($event)"
-        [filter]="true"
-        filterBy="label"
         [required]="true" />
     </app-label-value-card>
     <app-label-value-card
       title="Fuel Start Meter"
       subtitle="Enter tank start meter reading">
       <p-inputNumber
+        mode="decimal"
+        [maxFractionDigits]="2"
         placeholder="Enter tank start reading"
         formControlName="tankStartReading"
         [style]="inputStyle"
-        (onChange)="onFuelMeterValueChanged()" />
+        (onInput)="onFuelMeterValueChanged()" />
     </app-label-value-card>
-    <app-label-value-card title="Asset" subtitle="Select Asset">
+    <app-label-value-card
+      title="Asset"
+      subtitle="Select Asset"
+      faIconClass="fa-cogs">
       <p-dropdown
         placeholder="Select asset Class"
         formControlName="assetClassName"
         [options]="assetClassNameList"
+        [filter]="true"
         (onChange)="onAssetClassChanged($event)"
         [showClear]="true"
         [style]="inputStyle" />
@@ -65,31 +74,48 @@
         formControlName="asset"
         [options]="filteredAssetList"
         optionLabel="name"
+        [filter]="true"
+        filterBy="label"
         [showClear]="true"
         (onChange)="onAssetChanged($event)"
         [style]="inputStyle" />
     </app-label-value-card>
-    <app-label-value-card title="Hour Reading" subtitle="Enter hour reading">
+    <app-label-value-card
+      title="Hour Reading"
+      subtitle="Enter hour reading"
+      faIconClass="fa-clock-o">
       <p-inputNumber
+        mode="decimal"
+        [maxFractionDigits]="2"
         placeholder="Enter hour reading"
         formControlName="hourMeterReading"
         [style]="inputStyle" />
     </app-label-value-card>
-    <app-label-value-card title="Work Location" subtitle="Select location">
+    <app-label-value-card
+      title="Work Location"
+      subtitle="Select location"
+      faIconClass="fa-map-marker">
       <p-dropdown
         placeholder="Select work Location"
         formControlName="location"
         [options]="locationlist"
         optionLabel="name"
+        [filter]="true"
+        filterBy="label"
         [showClear]="true"
         [style]="inputStyle" />
     </app-label-value-card>
-    <app-label-value-card title="Department" subtitle="Select department">
+    <app-label-value-card
+      title="Department"
+      subtitle="Select department"
+      faIconClass="fa-building">
       <p-dropdown
         placeholder="Select department"
         formControlName="department"
         [options]="departmentList"
         optionLabel="name"
+        [filter]="true"
+        filterBy="label"
         [showClear]="true"
         [style]="inputStyle" />
     </app-label-value-card>
@@ -98,10 +124,18 @@
         title="Fuel End Meter"
         subtitle="Enter tank end meter reading">
         <p-inputNumber
+          mode="decimal"
+          [maxFractionDigits]="2"
           placeholder="Enter tank end reading"
           formControlName="tankEndReading"
           [style]="inputStyle"
-          (onChange)="onFuelMeterValueChanged()" />
+          (onInput)="onFuelMeterValueChanged()" />
+        <ng-container *ngIf="fuelQuantity > 0">
+          <span
+            style="font-size: large; color: cornflowerblue; font-weight: 600">
+            Refueled {{ fuelQuantity.toFixed(2) }} (L)
+          </span>
+        </ng-container>
       </app-label-value-card>
     </ng-container>
     <ng-template #FueledByOtherMeans>
@@ -109,13 +143,18 @@
         title="Fuel Recieved Quantity"
         subtitle="Enter fuel quantity recieved (L)">
         <p-inputNumber
+          mode="decimal"
+          [maxFractionDigits]="2"
           placeholder="Enter fuel quantity recieved"
           formControlName="fuelDispensed"
           [style]="inputStyle"
-          (onChange)="onFuelMeterValueChanged()" />
+          (onInput)="onFuelMeterValueChanged()" />
       </app-label-value-card>
     </ng-template>
-    <app-label-value-card title="Comment" subtitle="Leave a comment">
+    <app-label-value-card
+      title="Comment"
+      subtitle="Leave a comment"
+      faIconClass="fa-comments">
       <textarea rows="5" cols="40" pInputTextarea formControlName="comment">
       </textarea>
     </app-label-value-card>
