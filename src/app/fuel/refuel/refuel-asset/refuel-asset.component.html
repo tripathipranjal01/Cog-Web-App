@@ -1,0 +1,126 @@
+<form [formGroup]="assetRefillForm" (ngSubmit)="onSubmit()">
+  <div class="top-row">
+    <app-label-value-card
+      [title]="Title"
+      [showArrow]="false"
+      [showIcon]="false">
+      <ng-template #Title>
+        <div class="refill-header">
+          <div class="refill-title">
+            <h1>Asset Fuel Refill</h1>
+          </div>
+          <div class="refill-ref-no">
+            <span>ERP Ref:</span>
+            <input
+              type="text"
+              pInputText
+              formControlName="erpRef"
+              placeholder="Enter ERP Reference" />
+          </div>
+        </div>
+      </ng-template>
+      <div style="display: flex; justify-content: flex-end; width: 100%">
+        <p-calendar
+          dateFormat="dd/mm/yy"
+          inputId="calendar-12h"
+          formControlName="timestamp"
+          [showTime]="true"
+          hourFormat="12" />
+      </div>
+    </app-label-value-card>
+  </div>
+  <div class="refuel-asset">
+    <app-label-value-card title="Fuel Source" subtitle="Select Fuel Source">
+      <p-dropdown
+        [options]="fuelSourceList"
+        optionLabel="name"
+        formControlName="fuelSource"
+        [showClear]="true"
+        [style]="inputStyle"
+        placeholder="Select a Fuel Source"
+        (onChange)="onFuelSourceChanged($event)"
+        [filter]="true"
+        filterBy="label"
+        [required]="true" />
+    </app-label-value-card>
+    <app-label-value-card
+      title="Fuel Start Meter"
+      subtitle="Enter tank start meter reading">
+      <p-inputNumber
+        placeholder="Enter tank start reading"
+        formControlName="tankStartReading"
+        [style]="inputStyle"
+        (onChange)="onFuelMeterValueChanged()" />
+    </app-label-value-card>
+    <app-label-value-card title="Asset" subtitle="Select Asset">
+      <p-dropdown
+        placeholder="Select asset Class"
+        formControlName="assetClassName"
+        [options]="assetClassNameList"
+        (onChange)="onAssetClassChanged($event)"
+        [showClear]="true"
+        [style]="inputStyle" />
+      <p-dropdown
+        placeholder="Select asset"
+        formControlName="asset"
+        [options]="filteredAssetList"
+        optionLabel="name"
+        [showClear]="true"
+        (onChange)="onAssetChanged($event)"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <app-label-value-card title="Hour Reading" subtitle="Enter hour reading">
+      <p-inputNumber
+        placeholder="Enter hour reading"
+        formControlName="hourMeterReading"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <app-label-value-card title="Work Location" subtitle="Select location">
+      <p-dropdown
+        placeholder="Select work Location"
+        formControlName="location"
+        [options]="locationlist"
+        optionLabel="name"
+        [showClear]="true"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <app-label-value-card title="Department" subtitle="Select department">
+      <p-dropdown
+        placeholder="Select department"
+        formControlName="department"
+        [options]="departmentList"
+        optionLabel="name"
+        [showClear]="true"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <ng-container *ngIf="assetFueledbyMeter; else FueledByOtherMeans">
+      <app-label-value-card
+        title="Fuel End Meter"
+        subtitle="Enter tank end meter reading">
+        <p-inputNumber
+          placeholder="Enter tank end reading"
+          formControlName="tankEndReading"
+          [style]="inputStyle"
+          (onChange)="onFuelMeterValueChanged()" />
+      </app-label-value-card>
+    </ng-container>
+    <ng-template #FueledByOtherMeans>
+      <app-label-value-card
+        title="Fuel Recieved Quantity"
+        subtitle="Enter fuel quantity recieved (L)">
+        <p-inputNumber
+          placeholder="Enter fuel quantity recieved"
+          formControlName="fuelDispensed"
+          [style]="inputStyle"
+          (onChange)="onFuelMeterValueChanged()" />
+      </app-label-value-card>
+    </ng-template>
+    <app-label-value-card title="Comment" subtitle="Leave a comment">
+      <textarea rows="5" cols="40" pInputTextarea formControlName="comment">
+      </textarea>
+    </app-label-value-card>
+    <div class="footer">
+      <p-button label="Save" type="submit" icon="pi pi-check"></p-button>
+    </div>
+  </div>
+</form>
