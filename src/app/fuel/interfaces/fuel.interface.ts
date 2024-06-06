@@ -1,26 +1,29 @@
 export interface RefuelAssetReqObject {
-  timestamp: string;
-  assetId: number;
-  hourMeterReading: number;
-  fuelSourceId: number;
-  tankStartReading: number;
-  tankEndReading: number;
-  departmentId: number;
-  locationId: number;
-  comment: string;
+  erpRef?: string;
+  timestamp?: string;
+  assetId?: number;
+  hourMeterReading?: number;
+  fuelSourceId?: number;
+  tankStartReading?: number;
+  tankEndReading?: number;
+  departmentId?: number;
+  locationId?: number;
+  comment?: string;
 }
 
 export interface RefuelTankReqObject {
-  timestamp: string;
-  hourMeterReading: number;
-  fuelSourceId: number;
-  tankStartReading: number;
-  tankEndReading: number;
-  locationId: number;
-  comment: string;
+  erpRef?: string;
+  timestamp?: string;
+  hourMeterReading?: number;
+  fuelSourceId?: number;
+  tankStartReading?: number;
+  tankEndReading?: number;
+  locationId?: number;
+  comment?: string;
 }
 
 export interface RefuelRecord {
+  erpRef?: string;
   id?: number;
   timestamp?: string;
   assetId?: number;

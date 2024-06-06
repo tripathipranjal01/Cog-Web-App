@@ -133,6 +133,7 @@ export class RefuelAssetComponent implements OnInit {
         departmentId: formData.department.id,
         locationId: formData.location.id,
         comment: formData.comment,
+        erpRef: formData.erpRef,
       };
       this.fuelService.saveAssetFuelRefillRecord(responseObject).subscribe({
         next: res => {
