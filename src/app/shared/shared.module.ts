@@ -10,6 +10,8 @@ import { CrudComponent } from './ag-grid-renderers/crud/crud.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     PrimeNgModule,
     AgGridModule,
     HighchartsChartModule,
+    BreadcrumbModule,
   ],
   exports: [
     CommonModule,
@@ -37,6 +40,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ChartCardComponent,
     HighchartsChartModule,
   ],
-  providers: [],
+  providers: [BreadcrumbService],
 })
 export class SharedModule {}
