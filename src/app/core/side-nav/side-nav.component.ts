@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,12 +10,22 @@ import { MenuItem } from 'primeng/api';
 })
 export class SideNavComponent implements OnInit {
   items: MenuItem[] = [];
+  currentSideNavModule = '';
+
+  router = inject(Router);
+
   ngOnInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.currentSideNavModule = this.router.url.split('/')[1];
+      });
+
     this.items = [
       {
         label: 'Fleet Management',
         icon: 'fa-light fa-cube',
-        routerLink: 'fleet',
+        routerLink: 'fleet/home',
       },
       {
         label: 'Fuel Management',

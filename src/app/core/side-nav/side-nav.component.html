@@ -10,7 +10,12 @@
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       icon="{{ item.icon }}"
-      class="p-button-text {{ item.styleClass }}"
+      (click)="currentSideNavModule = item.routerLink"
+      class="p-button-text {{ item.styleClass }} {{
+        currentSideNavModule === item.routerLink.split('/')[0]
+          ? 'active-module'
+          : ''
+      }}"
       [pTooltip]="item.label"></button>
   </div>
 </div>
