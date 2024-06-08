@@ -42,11 +42,12 @@ export interface IAllModulesResponse {
   subModules: null;
 }
 
-export interface IMaintenanceModuleResponse {
+export interface ISubModuleResponse {
   subModuleId: number;
   subModuleName: string;
   sequenceNumber: number;
   subModuleType: string;
   preferred: boolean;
   icon: string;
+  subModulePath: string;
 }

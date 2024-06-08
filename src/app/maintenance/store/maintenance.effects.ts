@@ -52,6 +52,31 @@ export class MaintenanceEffects {
       })
     );
   });
+
+  setMaintenanceModulePreference$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(fromStore.setMaintenanceModulePreference),
+      switchMap(action => {
+        return this.maintenanceService
+          .updateSubModulePreference(action.subModules)
+          .pipe(
+            map(data => {
+              return fromStore.setMaintenanceModulePreferenceSuccess({
+                status: data['message'],
+                subModules: action.subModules,
+              });
+            }),
+            catchError(error => {
+              return of(
+                fromStore.setMaintenanceModulePreferenceFailure({
+                  error: error.error.message,
+                })
+              );
+            })
+          );
+      })
+    );
+  });
 }
 
 /* concatLatestFrom(() =>

@@ -1,14 +1,16 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromMaintenanceActions from './maintenance.action';
-import { IMaintenanceModuleResponse, IServiceReminder } from '../interfaces';
+import { ISubModuleResponse, IServiceReminder } from '../interfaces';
+import { IMessageStatus } from 'src/app/shared/interfaces';
 
 export interface MaintenanceState {
   isAsideVisible: boolean;
   globalSelectedSubModule: number | null;
-  modules: Array<IMaintenanceModuleResponse>;
+  modules: Array<ISubModuleResponse>;
   serviceReminders: Array<IServiceReminder>;
   serviceRemindersCount: number;
+  messageStatus: IMessageStatus | null;
 }
 
 const initialState: MaintenanceState = {
@@ -17,6 +19,7 @@ const initialState: MaintenanceState = {
   modules: [],
   serviceReminders: [],
   serviceRemindersCount: 0,
+  messageStatus: null,
 };
 export const _maintenanceReducer = createReducer(
   initialState,
@@ -37,19 +40,33 @@ export const _maintenanceReducer = createReducer(
     }
   ),
   on(
-    fromMaintenanceActions.setMaintenanceModulePreference,
+    fromMaintenanceActions.setMaintenanceModulePreferenceSuccess,
     (state, action): MaintenanceState => {
       return {
         ...state,
+        messageStatus: { type: 'success', message: action.status },
         modules: state.modules.map(module => {
-          if (module.subModuleId === action.moduleId) {
+          const subModuleChange = action.subModules.find(
+            subModule => subModule.subModuleId === module.subModuleId
+          );
+          if (subModuleChange) {
             return {
               ...module,
-              preferred: !module.preferred,
+              preferred: subModuleChange.isPreferred,
             };
           }
           return module;
         }),
+      };
+    }
+  ),
+  on(
+    fromMaintenanceActions.setMaintenanceModulePreferenceFailure,
+    (state, action): MaintenanceState => {
+      return {
+        ...state,
+        modules: state.modules.map(module => ({ ...module })),
+        messageStatus: { type: 'error', message: action.error },
       };
     }
   ),
@@ -71,7 +88,13 @@ export const _maintenanceReducer = createReducer(
         globalSelectedSubModule: action.moduleId,
       };
     }
-  )
+  ),
+  on(fromMaintenanceActions.resetMessageStatus, (state): MaintenanceState => {
+    return {
+      ...state,
+      messageStatus: null,
+    };
+  })
 );
 
 export function maintenanceReducer(
