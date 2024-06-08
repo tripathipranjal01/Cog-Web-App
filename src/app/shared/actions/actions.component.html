@@ -39,14 +39,24 @@
       </ng-container>
     </div>
     <div class="container__add-btn">
-      <p-overlayPanel #op class="overlay-panel">
-        <div *ngFor="let button of modules" class="field-checkbox">
-          <p-checkbox
-            name="group"
-            [value]="button.subModuleId"
-            [inputId]="button.subModuleName"></p-checkbox>
-          <label [for]="button.subModuleName">{{ button.subModuleName }}</label>
-        </div>
+      <p-overlayPanel #op styleClass="app-action-overlay-panel">
+        <ng-container *ngFor="let button of modules">
+          <div class="checkbox-container">
+            <p-checkbox
+              class="checkbox-item"
+              [binary]="true"
+              [ngModel]="button.preferred"
+              (onChange)="onActionSelectionChange(button)">
+            </p-checkbox>
+            <label
+              class="checkbox-label"
+              (click)="onActionNavigate(button.subModuleId)">
+              <i [class]="'checkbox-label-icon pi ' + button.icon"></i>
+              {{ button.subModuleName }}
+            </label>
+          </div>
+          <p-divider></p-divider>
+        </ng-container>
       </p-overlayPanel>
       <p-button
         class="add-btn"
