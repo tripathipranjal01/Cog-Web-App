@@ -30,7 +30,7 @@ export class SideNavComponent implements OnInit {
       {
         label: 'Fuel Management',
         icon: 'fa-light fa-droplet',
-        routerLink: 'fuel',
+        routerLink: 'fuel/home',
       },
       {
         label: 'Maintenance',
