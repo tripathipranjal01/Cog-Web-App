@@ -40,7 +40,7 @@ export class SideNavComponent implements OnInit {
       {
         label: 'Production',
         icon: 'fa-light fa-cubes',
-        routerLink: 'production',
+        routerLink: 'production/home',
       },
       {
         label: 'Configurator',
