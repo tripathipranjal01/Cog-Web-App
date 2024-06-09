@@ -240,6 +240,12 @@ app-actions {
   }
 
   .checkbox-container {
+
+    &.button-selection .checkbox-label {
+      color: #134da2;
+      font-weight: 600;
+    }
+
     .checkbox-item {
       .p-checkbox.p-component {
         display: flex;

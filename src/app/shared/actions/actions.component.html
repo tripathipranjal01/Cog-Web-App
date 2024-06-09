@@ -41,7 +41,11 @@
     <div class="container__add-btn">
       <p-overlayPanel #op styleClass="app-action-overlay-panel">
         <ng-container *ngFor="let button of modules">
-          <div class="checkbox-container">
+          <div
+            class="checkbox-container"
+            [ngClass]="{
+              'button-selection': button.subModuleId === selectedSubModule
+            }">
             <p-checkbox
               class="checkbox-item"
               [binary]="true"
