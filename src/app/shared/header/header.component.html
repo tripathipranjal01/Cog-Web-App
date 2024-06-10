@@ -6,10 +6,10 @@
     <div class="container__header-content">
       <div class="title">{{ title }}</div>
       <div class="breadcrumb">
-        <p-breadcrumb
-          class="max-w-full"
-          [model]="items"
-          [home]="home"></p-breadcrumb>
+        <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+        <ng-template #iconTemplate>
+          <i class="fa-light fa-angle-right"></i>
+        </ng-template>
       </div>
     </div>
   </div>

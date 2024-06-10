@@ -11,13 +11,13 @@ import * as fromAuthStore from './auth/store';
 })
 export class AppComponent implements OnInit {
   title = 'cognecto';
-  isSideNavVisible = false;
 
   store = inject(Store);
   location = inject(Location);
 
+  isSideNavVisible$ = this.store.select(fromAuthStore.selectIsAuthenticated);
+
   ngOnInit(): void {
     this.store.dispatch(fromAuthStore.autoAuthenticate());
-    this.isSideNavVisible = this.location.path() !== '/auth';
   }
 }

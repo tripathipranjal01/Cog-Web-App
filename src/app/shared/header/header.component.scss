@@ -75,39 +75,6 @@
   }
 }
 
-:host ::ng-deep {
-  .p-breadcrumb{
-    padding: 0;
-    font-size: 1.3rem;
-    border: none;
-  }
-
-  .p-input-icon-left {
-    width: 100%;
-  }
-
-  .p-inputtext {
-    width: 100%;
-  }
-
-  .p-tabmenu .p-tabmenu-nav{
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    gap: 2rem;
-    border: none;
-  }
-
-  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link{
-    padding: 0.5rem 0;
-    border: none;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--text-color);
-  }
-
-  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link .p-menuitem-icon {
-    font-size: 2rem;
-    line-height: 3rem;
-  }
+.breadcrumb {
+  font-size: 1.15rem;
 }

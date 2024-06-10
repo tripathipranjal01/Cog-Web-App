@@ -11,6 +11,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { LabelValueCardComponent } from './templates/label-value-card/label-value-card.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { LabelValueCardComponent } from './templates/label-value-card/label-valu
     PrimeNgModule,
     AgGridModule,
     HighchartsChartModule,
+    BreadcrumbModule,
   ],
   exports: [
     CommonModule,
@@ -40,6 +43,6 @@ import { LabelValueCardComponent } from './templates/label-value-card/label-valu
     HighchartsChartModule,
     LabelValueCardComponent,
   ],
-  providers: [],
+  providers: [BreadcrumbService],
 })
 export class SharedModule {}

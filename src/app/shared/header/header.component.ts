@@ -9,8 +9,6 @@ import * as fromAuthStore from '../../auth/store';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  items: MenuItem[];
-  home: MenuItem;
   actionItems: MenuItem[];
 
   store = inject(Store);
@@ -18,8 +16,6 @@ export class HeaderComponent implements OnInit {
   @Input({ required: true }) icon: string;
 
   ngOnInit() {
-    this.items = [{ label: 'Maintenance' }, { label: 'Service' }];
-    this.home = { icon: 'pi pi-home', routerLink: '/fleet' };
     this.actionItems = [
       { label: 'Report', icon: 'fa-light fa-file-chart-pie' },
       { label: 'Task', icon: 'fa-light fa-server' },

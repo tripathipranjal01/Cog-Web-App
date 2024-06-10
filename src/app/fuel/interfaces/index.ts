@@ -1,1 +1,1 @@
-export * from './fuel.interface';
+export * from './fuel.interfaces';

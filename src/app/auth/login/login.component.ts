@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private authSub$: Subscription;
 
   ngOnInit(): void {
+    this.store.dispatch(fromStore.autoAuthenticate());
     this.authSub$ = this.store
       .select(fromStore.selectAuthState)
       .subscribe(authState => {

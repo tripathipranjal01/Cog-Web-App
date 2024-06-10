@@ -32,17 +32,13 @@
   height: 5rem;
 }
 
-.sidebar-icons button:hover {
+.sidebar-icons button:not(.active,.active-module):hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.sidebar-icons.active{
-  background:#3282EB;
+.sidebar-icons .active,.active-module {
+  background: #3282EB;
   box-shadow: none;
-}
-
-::ng-deep .sidebar-icons button svg {
-  font-size: 3rem;
 }
 
 .config-bottom {

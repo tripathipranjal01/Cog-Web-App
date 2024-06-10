@@ -7,7 +7,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -16,6 +15,9 @@ import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 const modules = [
   FormsModule,
@@ -26,7 +28,6 @@ const modules = [
   InputNumberModule,
   PasswordModule,
   DividerModule,
-  BreadcrumbModule,
   TabMenuModule,
   ToggleButtonModule,
   OverlayPanelModule,
@@ -35,10 +36,13 @@ const modules = [
   TooltipModule,
   DropdownModule,
   CalendarModule,
+  DialogModule,
+  ToastModule,
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
+  providers: [MessageService],
 })
 export class PrimeNgModule {}

@@ -4,7 +4,7 @@ import {
   FuelAssetData,
   FuelSource,
   RefuelAssetReqObject,
-} from '../../interfaces/fuel.interface';
+} from '../../interfaces/fuel.interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuelService } from '../../services/fuel.service';
 import * as moment from 'moment';

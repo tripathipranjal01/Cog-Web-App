@@ -1,0 +1,29 @@
+<div
+  class="app-container"
+  [ngClass]="{
+    'app-container-aside': isAsideVisible
+  }">
+  <div class="app-header">
+    <app-header icon="fa-light fa-cube" title="Fleet Management"></app-header>
+  </div>
+  <div class="app-actions">
+    <app-actions
+      [availableViews]="viewTypes"
+      [selectedView]="currentSelectedView"
+      [selectedSubModule]="currentSelectedSubModule"
+      [modules]="modules"
+      (clickViewChange)="onClickViewChange($any($event))"
+      (changeActionSelection)="onChangeActionSelection($any($event))"
+      (changeNavigationOnAction)="
+        onChangeSubModule($any($event))
+      "></app-actions>
+  </div>
+  <div class="app-aside">
+    <div class="aside-content"></div>
+  </div>
+  <div class="app-main">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<p-toast position="bottom-right" key="br"></p-toast>
