@@ -31,3 +31,8 @@ export const selectMaintenanceAction = createSelector(
   selectMaintenanceState,
   state => state.globalSelectedSubModule
 );
+
+export const selectMessageStatus = createSelector(
+  selectMaintenanceState,
+  state => state.messageStatus
+);

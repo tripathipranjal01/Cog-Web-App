@@ -6,9 +6,10 @@ import { environment } from 'src/environments/environment.development';
 import {
   IServiceRemindersResponse,
   REMINDER_STATUS,
-  IMaintenanceModuleResponse,
+  ISubModuleResponse,
   IAllModulesResponse,
 } from '../interfaces';
+import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +34,7 @@ export class MaintenanceService {
       .pipe(catchError(this.handleError));
   }
 
-  getMaintenanceModules(): Observable<IMaintenanceModuleResponse[]> {
+  getMaintenanceModules(): Observable<ISubModuleResponse[]> {
     return this.http
       .get<{
         sidebar: IAllModulesResponse[];
@@ -46,9 +47,35 @@ export class MaintenanceService {
         switchMap(module => {
           return this.http
             .get<{
-              button: IMaintenanceModuleResponse[];
+              button: ISubModuleResponse[];
             }>(`${environment.baseUrl}/auth/modules/${module[0].moduleId}`)
             .pipe(map(data => data.button));
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  updateSubModulePreference(
+    modules: ISubModulePreferenceRequest[]
+  ): Observable<{ [status: string]: string }> {
+    return this.http
+      .get<{
+        sidebar: IAllModulesResponse[];
+      }>(`${environment.baseUrl}/auth/modules`)
+      .pipe(
+        map(data => data.sidebar),
+        map(item =>
+          item.filter(modules => modules.moduleName === 'Maintenance')
+        ),
+        switchMap(module => {
+          return this.http
+            .patch<{
+              [status: string]: string;
+            }>(
+              `${environment.baseUrl}/auth/modules/${module[0].moduleId}/update-submodule-preference`,
+              modules
+            )
+            .pipe(map(data => data));
         }),
         catchError(this.handleError)
       );

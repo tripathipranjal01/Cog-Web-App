@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IMaintenanceModuleResponse } from 'src/app/maintenance/interfaces';
+import {
+  ISubModuleResponse,
+  ISubModulePreferenceRequest,
+} from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-actions',
@@ -10,9 +13,10 @@ export class ActionsComponent {
   @Input({ required: true }) availableViews: string[] = [];
   @Input({ required: true }) selectedView: string;
   @Input({ required: true }) selectedSubModule: number | null;
-  @Input({ required: true }) modules: Array<IMaintenanceModuleResponse>;
+  @Input({ required: true }) modules: Array<ISubModuleResponse>;
   @Output() clickViewChange = new EventEmitter<string>();
-  @Output() changeActionSelection = new EventEmitter<number>();
+  @Output() changeActionSelection =
+    new EventEmitter<ISubModulePreferenceRequest>();
   @Output() changeNavigationOnAction = new EventEmitter<number>();
 
   onViewChange(view: string): void {
@@ -20,8 +24,11 @@ export class ActionsComponent {
     this.clickViewChange.emit(this.selectedView);
   }
 
-  onActionSelectionChange(moduleId: number): void {
-    this.changeActionSelection.emit(moduleId);
+  onActionSelectionChange(submodule: ISubModuleResponse): void {
+    this.changeActionSelection.emit({
+      subModuleId: submodule.subModuleId,
+      isPreferred: !submodule.preferred,
+    });
   }
 
   onActionNavigate(moduleId: number): void {

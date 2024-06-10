@@ -3,7 +3,7 @@ export interface IChartData {
   heading: string;
   subHeading: string;
   totalValue: string;
-  precentage: string;
+  percentage: string;
   currentMonth: string;
   ytd: string;
 }
