@@ -13,7 +13,7 @@
 
     .title-section {
         display: flex;
-        width: 30%;
+        width: 40%;
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
@@ -42,6 +42,7 @@
 
             .main-title {
                 margin: 0;
+                font-weight: 500;
             }
 
             span {
@@ -52,10 +53,11 @@
     }
 
     .children-input {
-        width: 75%;
+        width: 60%;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        column-gap: 2rem;
+        margin-right: 1rem;
     }
 }
