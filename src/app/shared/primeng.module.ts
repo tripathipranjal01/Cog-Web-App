@@ -18,6 +18,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const modules = [
   FormsModule,
@@ -38,11 +39,12 @@ const modules = [
   CalendarModule,
   DialogModule,
   ToastModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
 })
 export class PrimeNgModule {}
