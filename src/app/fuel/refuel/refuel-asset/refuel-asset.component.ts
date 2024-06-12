@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   DepartmentLocation,
   FuelAssetData,
@@ -8,6 +8,10 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuelService } from '../../services/fuel.service';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
+import { ErrorMessage, TimeFormat_YYYY_MM_DD_HH_MM } from '../../constants';
 
 @Component({
   selector: 'app-refuel-asset',
@@ -15,6 +19,8 @@ import * as moment from 'moment';
   styleUrls: ['./refuel-asset.component.scss'],
 })
 export class RefuelAssetComponent implements OnInit {
+  store = inject(Store);
+
   fuelSourceList: FuelSource[];
   assetByClassNameMap: { [assetClassName: string]: FuelAssetData[] };
   assetClassNameList: string[] = [];
@@ -60,40 +66,43 @@ export class RefuelAssetComponent implements OnInit {
     comment: new FormControl<string | null>('', []),
   });
   inputStyle = {
-    width: '300px',
-    height: '40px',
+    width: '18vw',
+    height: '3vw',
     display: 'flex',
     'align-items': 'center',
   };
 
+  private fuelSourcesSub$: Subscription;
+  private fuelAssetsSub$: Subscription;
+  private departmentLocationSub$: Subscription;
+
   constructor(private fuelService: FuelService) {}
 
   ngOnInit(): void {
-    this.initializeData(-1);
-  }
-
-  initializeData(siteId: number): void {
-    this.fuelService.getFuelSources(siteId).subscribe((res: FuelSource[]) => {
-      this.fuelSourceList = res.filter(
-        (source: FuelSource) => source.type !== 'SUPPLIER_TANK'
-      );
-    });
-    this.fuelService
-      .getAssetDataGroupedByAssetClassName(siteId)
-      .subscribe((res: { [assetClassName: string]: FuelAssetData[] }) => {
-        this.assetByClassNameMap = res;
-        this.assetClassNameList = Object.keys(res);
+    this.fuelSourcesSub$ = this.store
+      .select(fromStore.selectFuelSources)
+      .subscribe(fuelSources => {
+        this.fuelSourceList = fuelSources;
       });
-    this.fuelService
-      .getDepartmentAndLocations(siteId)
-      .subscribe((res: { [type: string]: DepartmentLocation[] }) => {
-        if (res['LOCATION'] !== undefined) {
-          this.locationlist = res['LOCATION'];
+    this.store.dispatch(fromStore.getFuelSources({ siteId: -1 }));
+    this.fuelAssetsSub$ = this.store
+      .select(fromStore.selectFuelAssets)
+      .subscribe(assets => {
+        this.assetByClassNameMap = assets;
+        this.assetClassNameList = Object.keys(assets);
+      });
+    this.store.dispatch(fromStore.getFuelAssets({ siteId: -1 }));
+    this.departmentLocationSub$ = this.store
+      .select(fromStore.selectDepartmentLocations)
+      .subscribe(departmentLocation => {
+        if (departmentLocation['LOCATION'] !== undefined) {
+          this.locationlist = departmentLocation['LOCATION'];
         }
-        if (res['DEPARTMENT'] !== undefined) {
-          this.departmentList = res['DEPARTMENT'];
+        if (departmentLocation['DEPARTMENT'] !== undefined) {
+          this.departmentList = departmentLocation['DEPARTMENT'];
         }
       });
+    this.store.dispatch(fromStore.getDepartemntsAndLocations({ siteId: -1 }));
   }
 
   onAssetClassChanged(event: { value: string }): void {
@@ -127,7 +136,9 @@ export class RefuelAssetComponent implements OnInit {
     if (this.isDataValid()) {
       const formData = this.assetRefillForm.value;
       const responseObject: RefuelAssetReqObject = {
-        timestamp: moment(formData.timestamp).format('yyyy-MM-DD HH:mm'),
+        timestamp: moment(formData.timestamp).format(
+          TimeFormat_YYYY_MM_DD_HH_MM
+        ),
         assetId: formData.asset.id,
         fuelSourceId: formData.fuelSource.id,
         hourMeterReading: formData.hourMeterReading,
@@ -138,27 +149,24 @@ export class RefuelAssetComponent implements OnInit {
         comment: formData.comment,
         erpRef: formData.erpRef,
       };
-      this.fuelService.saveAssetFuelRefillRecord(responseObject).subscribe({
-        next: res => {
-          if (res !== null) {
-            console.log('Saved');
-          }
-        },
-        error: () => {
-          console.log('error');
-        },
-      });
+      this.store.dispatch(fromStore.saveAssetFuelRefillRecord(responseObject));
     }
   }
 
   isDataValid(): boolean {
     if (this.assetRefillForm.invalid) {
-      console.log('invalid Data');
+      this.store.dispatch(
+        fromStore.invalidRequestData({ error: ErrorMessage.INVALID_DATA })
+      );
       return false;
     } else {
       const data = this.assetRefillForm.value;
       if (data.tankStartReading > data.tankEndReading) {
-        console.log('meter data invalid');
+        this.store.dispatch(
+          fromStore.invalidRequestData({
+            error: ErrorMessage.INVALID_TANK_METER_READING,
+          })
+        );
         return false;
       } else {
         return true;
