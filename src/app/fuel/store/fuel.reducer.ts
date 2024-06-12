@@ -1,14 +1,23 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromFuelActions from './fuel.action';
-import { ISubModuleResponse } from '../interfaces';
+import {
+  DepartmentLocation,
+  FuelAssetData,
+  FuelSource,
+  ISubModuleResponse,
+} from '../interfaces';
 import { IMessageStatus } from 'src/app/shared/interfaces';
+import { SuccessMessage } from '../constants';
 
 export interface FuelState {
   isAsideVisible: boolean;
   globalSelectedSubModule: number | null;
   modules: Array<ISubModuleResponse>;
   messageStatus: IMessageStatus | null;
+  fuelSources: Array<FuelSource>;
+  fuelAssets: { [assetClassName: string]: FuelAssetData[] };
+  departmentLocationList: { [type: string]: DepartmentLocation[] };
 }
 
 const initialState: FuelState = {
@@ -16,6 +25,9 @@ const initialState: FuelState = {
   globalSelectedSubModule: null,
   modules: [],
   messageStatus: null,
+  fuelSources: [],
+  fuelAssets: {},
+  departmentLocationList: {},
 };
 export const _fuelReducer = createReducer(
   initialState,
@@ -73,6 +85,59 @@ export const _fuelReducer = createReducer(
     return {
       ...state,
       messageStatus: null,
+    };
+  }),
+  on(fromFuelActions.getFuelSourcesSuccess, (state, action): FuelState => {
+    return {
+      ...state,
+      fuelSources: action.fuelSources,
+    };
+  }),
+  on(fromFuelActions.saveRefuelRecordFailure, (state, action): FuelState => {
+    return {
+      ...state,
+      messageStatus: { type: 'error', message: action.error },
+    };
+  }),
+  on(fromFuelActions.saveRefuelRecordSuccess, (state): FuelState => {
+    return {
+      ...state,
+      globalSelectedSubModule: null,
+      messageStatus: {
+        type: 'success',
+        message: SuccessMessage.REFUEL_RECORD_SAVED,
+      },
+    };
+  }),
+  on(fromFuelActions.getFuelAssetsSuccess, (state, action): FuelState => {
+    return {
+      ...state,
+      fuelAssets: action.assets,
+    };
+  }),
+  on(
+    fromFuelActions.getDepartemntsAndLocationsSuccess,
+    (state, action): FuelState => {
+      return {
+        ...state,
+        departmentLocationList: action.departmentLocationList,
+      };
+    }
+  ),
+  on(fromFuelActions.adjustTankValuesFailure, (state, action): FuelState => {
+    return {
+      ...state,
+      messageStatus: { type: 'error', message: action.error },
+    };
+  }),
+  on(fromFuelActions.adjustTankValuesSuccess, (state): FuelState => {
+    return {
+      ...state,
+      globalSelectedSubModule: null,
+      messageStatus: {
+        type: 'success',
+        message: SuccessMessage.FUEL_SOURCE_UPDATED,
+      },
     };
   })
 );
