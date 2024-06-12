@@ -118,7 +118,7 @@ export class FuelService {
     fuelSourceId: number,
     data: { [key: string]: number }
   ): Observable<FuelSource> {
-    const requestUrl = `${environment.entityUrl}/fuel-source/${fuelSourceId}`;
+    const requestUrl = `${environment.dataRestUrl}/fuel-source/${fuelSourceId}`;
     return this.http
       .patch<FuelSource>(requestUrl, data)
       .pipe(catchError(this.handleError));
