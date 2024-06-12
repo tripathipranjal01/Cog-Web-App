@@ -7,6 +7,8 @@ import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
 import { FuelActionViewTypes, ISubModuleResponse } from '../interfaces';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AdjustTankComponent } from '../refuel/adjust-tank/adjust-tank.component';
 
 @Component({
   selector: 'app-home-fuel',
@@ -22,6 +24,8 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
   currentSelectedSubModule: number | null;
   modules: Array<ISubModuleResponse> = [];
 
+  ref: DynamicDialogRef | undefined;
+
   private actionViewSub$: Subscription;
   private activeSubModule$: Subscription;
   private fuelModulesSub$: Subscription;
@@ -30,7 +34,8 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
   constructor(
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -55,9 +60,16 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
           subModule => subModule.subModuleId === this.currentSelectedSubModule
         );
         if (currentSubModuleData) {
-          this.router.navigate([currentSubModuleData.subModulePath], {
-            relativeTo: this.route,
-          });
+          if (!currentSubModuleData.popup) {
+            this.router.navigate([currentSubModuleData.subModulePath], {
+              relativeTo: this.route,
+            });
+          } else {
+            switch (currentSubModuleData.subModulePath) {
+              case 'adjust-tank':
+                this.openAdjustTankBalance();
+            }
+          }
         }
       });
 
@@ -111,6 +123,15 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
 
   onChangeSubModule(moduleId: number) {
     this.store.dispatch(fromStore.setFuelActiveAction({ moduleId }));
+  }
+
+  openAdjustTankBalance() {
+    this.ref = this.dialogService.open(AdjustTankComponent, {
+      width: '50vw',
+      contentStyle: { overflow: 'auto' },
+    });
+
+    this.ref.onClose.subscribe();
   }
 
   ngOnDestroy(): void {
