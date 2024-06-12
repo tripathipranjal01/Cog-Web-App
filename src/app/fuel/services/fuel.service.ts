@@ -82,18 +82,14 @@ export class FuelService {
       .pipe(catchError(this.handleError));
   }
 
-  saveAssetFuelRefillRecord(
-    data: RefuelAssetReqObject
-  ): Observable<RefuelRecord> {
+  saveAssetRefuelRecord(data: RefuelAssetReqObject): Observable<RefuelRecord> {
     const requestUrl = `${environment.baseUrl}/fuel-refill/asset`;
     return this.http
       .post<RefuelRecord>(requestUrl, data)
       .pipe(catchError(this.handleError));
   }
 
-  saveAssetTankRefillRecord(
-    data: RefuelTankReqObject
-  ): Observable<RefuelRecord> {
+  saveTankRefuelRecord(data: RefuelTankReqObject): Observable<RefuelRecord> {
     const requestUrl = `${environment.baseUrl}/fuel-refill/tank`;
     return this.http
       .post<RefuelRecord>(requestUrl, data)
@@ -115,6 +111,16 @@ export class FuelService {
     const requestUrl = `${environment.baseUrl}/department-location/${siteId}`;
     return this.http
       .get<{ [type: string]: DepartmentLocation[] }>(requestUrl)
+      .pipe(catchError(this.handleError));
+  }
+
+  adjustTankValues(
+    fuelSourceId: number,
+    data: { [key: string]: number }
+  ): Observable<FuelSource> {
+    const requestUrl = `${environment.entityUrl}/fuel-source/${fuelSourceId}`;
+    return this.http
+      .patch<FuelSource>(requestUrl, data)
       .pipe(catchError(this.handleError));
   }
 }
