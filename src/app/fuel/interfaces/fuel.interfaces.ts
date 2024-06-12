@@ -17,6 +17,7 @@ export interface ISubModuleResponse {
   preferred: boolean;
   icon: string;
   subModulePath: string;
+  popup: boolean;
 }
 
 export interface RefuelAssetReqObject {
@@ -35,7 +36,6 @@ export interface RefuelAssetReqObject {
 export interface RefuelTankReqObject {
   erpRef?: string;
   timestamp?: string;
-  hourMeterReading?: number;
   fuelSourceId?: number;
   tankStartReading?: number;
   tankEndReading?: number;
@@ -72,6 +72,7 @@ export interface FuelSource {
   fuelByMeter?: boolean;
   siteId?: number;
   departmentLocationId?: number;
+  bookingEnabled?: boolean;
 }
 
 export interface FuelAssetData {
