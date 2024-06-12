@@ -9,9 +9,17 @@ import { FuelEffects } from './store';
 import { FUEL_STATE_NAME, fuelReducer } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { RefuelTankComponent } from './refuel/refuel-tank/refuel-tank.component';
+import { AdjustTankComponent } from './refuel/adjust-tank/adjust-tank.component';
 
 @NgModule({
-  declarations: [FuelComponent, RefuelAssetComponent, HomeFuelComponent],
+  declarations: [
+    FuelComponent,
+    RefuelAssetComponent,
+    HomeFuelComponent,
+    RefuelTankComponent,
+    AdjustTankComponent,
+  ],
   imports: [
     CommonModule,
     FuelRoutingModule,
