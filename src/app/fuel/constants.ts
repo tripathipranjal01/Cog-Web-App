@@ -14,5 +14,3 @@ export const ErrorMessage = {
   INVALID_TANK_METER_READING: 'Invalid tank meter readings entered!!!',
   NO_CONTENT: 'No content entered!!!',
 };
-
-export const TimeFormat_YYYY_MM_DD_HH_MM = 'yyyy-MM-DD HH:mm';

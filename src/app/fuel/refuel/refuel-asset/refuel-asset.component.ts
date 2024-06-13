@@ -7,11 +7,10 @@ import {
 } from '../../interfaces/fuel.interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuelService } from '../../services/fuel.service';
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
-import { ErrorMessage, TimeFormat_YYYY_MM_DD_HH_MM } from '../../constants';
+import { ErrorMessage } from '../../constants';
 
 @Component({
   selector: 'app-refuel-asset',
@@ -136,9 +135,7 @@ export class RefuelAssetComponent implements OnInit {
     if (this.isDataValid()) {
       const formData = this.assetRefillForm.value;
       const responseObject: RefuelAssetReqObject = {
-        timestamp: moment(formData.timestamp).format(
-          TimeFormat_YYYY_MM_DD_HH_MM
-        ),
+        timestamp: formData.timestamp.toISOString(),
         assetId: formData.asset.id,
         fuelSourceId: formData.fuelSource.id,
         hourMeterReading: formData.hourMeterReading,

@@ -6,16 +6,11 @@ import {
 } from '../../interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FuelService } from '../../services';
-import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
-import {
-  ErrorMessage,
-  RefuelTankTypes,
-  TimeFormat_YYYY_MM_DD_HH_MM,
-} from '../../constants';
+import { ErrorMessage, RefuelTankTypes } from '../../constants';
 
 @Component({
   selector: 'app-refuel-tank',
@@ -161,9 +156,7 @@ export class RefuelTankComponent implements OnInit {
     if (this.isDataValid()) {
       const formData = this.tankRefillForm.value;
       const responseObject: RefuelTankReqObject = {
-        timestamp: moment(formData.timestamp).format(
-          TimeFormat_YYYY_MM_DD_HH_MM
-        ),
+        timestamp: formData.timestamp.toISOString(),
         fuelSourceId: formData.fuelSource.id,
         tankStartReading: formData.tankStartReading,
         tankEndReading: formData.tankEndReading,

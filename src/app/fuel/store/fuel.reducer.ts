@@ -139,6 +139,12 @@ export const _fuelReducer = createReducer(
         message: SuccessMessage.FUEL_SOURCE_UPDATED,
       },
     };
+  }),
+  on(fromFuelActions.invalidRequestData, (state, action): FuelState => {
+    return {
+      ...state,
+      messageStatus: { type: 'error', message: action.error },
+    };
   })
 );
 
