@@ -10,9 +10,10 @@ import {
   configurationReducer,
 } from './store';
 import { StoreModule } from '@ngrx/store';
+import { HomeConfigurationComponent } from './home-configuration/home-configuration.component';
 
 @NgModule({
-  declarations: [ConfigurationComponent],
+  declarations: [ConfigurationComponent, HomeConfigurationComponent],
   imports: [
     CommonModule,
     ConfigurationRoutingModule,
