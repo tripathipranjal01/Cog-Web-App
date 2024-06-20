@@ -2,7 +2,7 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 9rem 6rem 1fr;
-  grid-template-columns: max-content 4fr;
+  grid-template-columns: 3fr 9fr;
   grid-template-areas:
     'header header'
     'actions actions'
@@ -34,7 +34,7 @@
     display: block;
     grid-area: aside;
     border-right: 1px solid $color-grey-dark-3;
-    padding: 2rem;
+    padding: 1rem;
     overflow-y: scroll;
   }
 }
