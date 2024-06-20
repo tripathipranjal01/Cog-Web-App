@@ -1,74 +1,29 @@
-<!-- <p-listbox
-  [options]="cardData"
-  scrollHeight="auto"
-  [autoOptionFocus]="true"
-  optionLabel="header"
-  [filter]="true"
-  [filterPlaceHolder]="'Search'"
-  emptyFilterMessage="nothing found"
-  (onClick)="onCardClicked($event)">
-  <ng-template let-data pTemplate="item">
-    <div
-      class="card-container"
-      [ngClass]="selectedCard?.id === data.id ? 'highlighted' : 'normal'">
-      <div class="card-container__header">
-        <h3 [pTooltip]="data.header">
-          {{ data.header }}
-        </h3>
-      </div>
-      <div class="card-container__card-details">
-        <div
-          class="card-container__column"
-          [ngClass]="'width-' + data.columns.length"
-          *ngFor="let column of data.columns">
-          <span [pTooltip]="column[0]">{{ column[0] }}</span>
-          <p class="card-container__paragraph" [pTooltip]="column[1]">
-            {{ column[1] }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</p-listbox> -->
-
-<div class="cards-container">
-  <div class="cards-container__header">
-    <span class="p-input-icon-left">
-      <i class="pi pi-search" style="font-size: 1.5rem"></i>
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="filterText"
-        (ngModelChange)="filterCardItems()" />
-    </span>
-    <p-button label="New" icon="fa-light fa-square-plus"></p-button>
+<div
+  class="card-container"
+  [ngClass]="
+    cardData.isSelected
+      ? 'card-container--highlighted'
+      : 'card-container--normal'
+  ">
+  <div class="card-container__header">
+    <h3 [pTooltip]="cardData.header">
+      {{ cardData.header }}
+    </h3>
   </div>
-
-  <div
-    *ngFor="let data of cardData"
-    (click)="onCardClicked(data)"
-    class="cards-container__item"
-    [ngClass]="
-      selectedCard?.id === data.id
-        ? 'cards-container__item--highlighted'
-        : 'cards-container__item--normal'
-    ">
-    <div class="cards-container__label">
-      <h3 [pTooltip]="data.header">
-        {{ data.header }}
-      </h3>
-    </div>
-    <div class="cards-container__details">
-      <div
-        class="cards-container__column cards-container__column--{{
-          data.columns.length
-        }}"
-        *ngFor="let column of data.columns">
-        <span [pTooltip]="column[0]">{{ column[0] }}</span>
-        <p class="cards-container__paragraph" [pTooltip]="column[1]">
-          {{ column[1] }}
-        </p>
-      </div>
+  <div class="card-container__details">
+    <div
+      class="card-container__column card-container__column--{{
+        cardData.columns.length
+      }}"
+      [ngClass]="column?.class"
+      *ngFor="let column of cardData.columns">
+      <span> {{ column?.label }}</span>
+      <p
+        class="card-container__paragraph"
+        [pTooltip]="column.value"
+        [ngStyle]="{ color: column?.color }">
+        {{ column.value }}
+      </p>
     </div>
   </div>
 </div>
