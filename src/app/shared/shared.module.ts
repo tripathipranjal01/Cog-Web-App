@@ -12,6 +12,8 @@ import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { ListboxModule } from 'primeng/listbox';
+import { SelectableCardComponent } from './selectable-card/selectable-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     ActionsComponent,
     CrudComponent,
     ChartCardComponent,
+    SelectableCardComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     AgGridModule,
     HighchartsChartModule,
     BreadcrumbModule,
+    ListboxModule,
   ],
   exports: [
     CommonModule,
@@ -39,6 +43,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     AgGridModule,
     ChartCardComponent,
     HighchartsChartModule,
+    SelectableCardComponent,
   ],
   providers: [BreadcrumbService],
 })

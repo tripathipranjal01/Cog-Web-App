@@ -1,0 +1,217 @@
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    min-height: 74vh;
+    width: min-content;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 1.5rem;
+        cursor: pointer; //
+        margin-bottom: 1rem; //
+        width: 30rem !important; //
+        background-color: var(--surface-0);
+        border-radius: 1rem;
+        box-shadow: 0px 6px 15px 0px #90909024, 0px 6px 15px 0px #90909024;
+        ;
+    }
+
+    &__details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+
+    &__label {
+        font-weight: 500;
+        font-size: 1.8rem;
+        color: var(--text-color);
+        line-height: 1.8rem;
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        color: var(--text-color-secondary);
+        line-height: 1rem;
+        border-right: 1px solid #dedede;
+
+        span {
+            font-weight: 500;
+        }
+    }
+
+    &__paragraph {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    &__item--highlighted {
+        background-color: #EFF6FE;
+    }
+
+    &__item--normal {
+        background-color: none;
+    }
+
+    &__column--1 {
+        width: 80% !important;
+    }
+
+    &__column--2 {
+        width: 45% !important;
+    }
+
+    &__column--3 {
+        width: 30% !important;
+    }
+
+    &__column--1:last-child,
+    &__column--2:last-child,
+    &__column--3:last-child {
+        border: none;
+    }
+}
+
+// .card-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: flex-start;
+//     padding: 1.5rem;
+//     cursor: pointer; //
+//     margin-bottom: 1rem; //
+//     width: 30rem !important; //
+//     background-color: var(--surface-0);
+//     border-radius: 1rem;
+//     box-shadow: 0px 0px 12px 1px rgba(144, 144, 144, 0.15), 0px 4px 12.7px 0px rgba(144, 144, 144, 0.15);
+
+//     &__header {
+//         font-weight: 500;
+//         font-size: 1.8rem;
+//         color: var(--text-color);
+//         line-height: 1.8rem;
+//     }
+
+//     &__card-details {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         width: 100%;
+//         font-size: 1.2rem;
+//         font-weight: 300;
+//     }
+
+//     &__column {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: flex-start;
+
+//         color: var(--text-color-secondary);
+//         line-height: 1rem;
+//         border-right: 1px solid #dedede;
+
+//         span {
+//             font-weight: 500;
+//         }
+//     }
+
+//     &__paragraph {
+//         width: 100%;
+//         overflow: hidden;
+//         text-overflow: ellipsis;
+//         font-weight: 500;
+//     }
+// }
+
+// .width-3 {
+//     width: 30% !important;
+// }
+
+// .width-2 {
+//     width: 45% !important;
+// }
+
+// .width-3:last-child,
+// .width-2:last-child {
+//     border: none;
+// }
+
+// .highlighted {
+//     background-color: #EFF6FE;
+// }
+
+// .normal {
+//     background-color: none;
+// }
+
+:host ::ng-deep {
+    .p-listbox {
+        border: none !important;
+    }
+
+    .p-listbox .p-listbox-header {
+        padding: 0 !important;
+        margin-bottom: 1rem;
+        background-color: none !important;
+    }
+
+    .p-listbox-filter .p-inputtext .p-component {
+        height: 3.5rem;
+    }
+
+    .p-listbox-list {
+        padding: 0 !important;
+    }
+
+    .p-listbox-item {
+        padding: 0 !important;
+        background: none !important;
+        border-radius: 1rem;
+    }
+
+    .p-button {
+        outline: none;
+        border: none;
+        background: #FF4786;
+        padding: 0.8rem 1.5rem !important;
+
+        .p-button-icon {
+            font-size: 2rem !important;
+            margin-right: 1rem !important;
+        }
+
+        .p-button-label {
+            font-size: 1.5rem !important;
+        }
+    }
+
+    .p-inputtext {
+        min-width: 50%;
+        width: 90%;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 0.7rem 1rem 0.7rem 2.8rem;
+    }
+}

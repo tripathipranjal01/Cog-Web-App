@@ -138,4 +138,65 @@ export class HomeMntnComponent implements OnInit, OnDestroy {
       this.activeErrorMessage$.unsubscribe();
     }
   }
+
+  selectionChanged(updatedSelection: string) {
+    console.log(updatedSelection);
+  }
+
+  cardData: any[] = [
+    {
+      id: 1,
+      header: 'Thiruvananthapuram',
+      columns: [
+        ['Location', 'Thiruvanan'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+    {
+      id: 2,
+      header: 'Kollam (KLM)',
+      columns: [
+        ['Location', 'Kollam'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+    {
+      id: 3,
+      header: 'Pathanamthitta ',
+      columns: [
+        ['Location', 'Pathanamthitta'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+    {
+      id: 4,
+      header: 'Alappuzha',
+      columns: [
+        ['Location', 'Alappuzha'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+    {
+      id: 5,
+      header: 'Kottayam (KTM)',
+      columns: [
+        ['Location', 'Kottayam'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+    {
+      id: 6,
+      header: 'Idukki (IDK)',
+      columns: [
+        ['Location', 'Erankulam'],
+        ['Status', 'Active'],
+        ['Created By', 'FuraGemsAdmin'],
+      ],
+    },
+  ];
 }
