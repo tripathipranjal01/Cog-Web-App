@@ -12,7 +12,6 @@ import { ChartCardComponent } from './chart-card/chart-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { ListboxModule } from 'primeng/listbox';
 import { SelectableCardComponent } from './selectable-card/selectable-card.component';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { SelectableCardComponent } from './selectable-card/selectable-card.compo
     AgGridModule,
     HighchartsChartModule,
     BreadcrumbModule,
-    ListboxModule,
   ],
   exports: [
     CommonModule,
