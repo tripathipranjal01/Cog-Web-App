@@ -12,6 +12,10 @@
   --surface-f: #ffffff;
   --text-color: #585858;
   --text-color-secondary: #8F8F8F;
+  --text-color-ternary: #696969;
+  --text-color-green: #77DD77;
+  --text-color-orange: #FFB347;
+  --text-color-red: #FF6961;
   --primary-color: #1F60C0;
   --primary-color-text: #ffffff;
   --surface-0: #ffffff;
@@ -51,46 +55,6 @@
   color-scheme: light;
 }
 
-@font-face {
-  font-family: "Poppins";
-  font-weight: 100 200 300;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Light";
-  src: url("/themes/lara/lara-light/blue/fonts/poppins-light-webfont.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Regular";
-  src: url("/themes/lara/lara-light/blue/fonts/poppins-regular-webfont.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Medium";
-  src: url("/themes/lara/lara-light/blue/fonts/poppins-medium-webfont.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Poppins";
-  font-weight: 600;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Semi Bold";
-  src: url("/themes/lara/lara-light/blue/fonts/poppins-semibold-webfont.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Poppins";
-  font-weight: 700 800 900;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Bold";
-  src: url("/themes/lara/lara-light/blue/fonts/poppins-bold-webfont.woff2") format("woff2");
-}
 :root {
   --blue-50:#f4f7fc;
   --blue-100:#c9d9f0;
@@ -223,14 +187,14 @@
   border: 1px solid #e5e7eb;
 }
 .p-editor-container .p-editor-toolbar.ql-snow .ql-stroke {
-  stroke: #8F8F8F;
+  stroke: #696969;
 }
 .p-editor-container .p-editor-toolbar.ql-snow .ql-fill {
-  fill: #8F8F8F;
+  fill: #696969;
 }
 .p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label {
   border: 0 none;
-  color: #8F8F8F;
+  color: #696969;
 }
 .p-editor-container .p-editor-toolbar.ql-snow .ql-picker .ql-picker-label:hover {
   color: #585858;
@@ -334,7 +298,7 @@
     color: #FF6961;
   }
   .p-text-secondary {
-    color: #8F8F8F;
+    color: #696969;
   }
   .pi {
     font-size: 1rem;
@@ -2062,16 +2026,16 @@
     border: 1px solid;
   }
   .p-button.p-button-outlined.p-button-plain {
-    color: #8F8F8F;
-    border-color: #8F8F8F;
+    color: #696969;
+    border-color: #696969;
   }
   .p-button.p-button-outlined.p-button-plain:not(:disabled):hover {
     background: #f3f4f6;
-    color: #8F8F8F;
+    color: #696969;
   }
   .p-button.p-button-outlined.p-button-plain:not(:disabled):active {
     background: #e5e7eb;
-    color: #8F8F8F;
+    color: #696969;
   }
   .p-button.p-button-text {
     background-color: transparent;
@@ -2089,15 +2053,15 @@
     border-color: transparent;
   }
   .p-button.p-button-text.p-button-plain {
-    color: #8F8F8F;
+    color: #696969;
   }
   .p-button.p-button-text.p-button-plain:not(:disabled):hover {
     background: #f3f4f6;
-    color: #8F8F8F;
+    color: #696969;
   }
   .p-button.p-button-text.p-button-plain:not(:disabled):active {
     background: #e5e7eb;
-    color: #8F8F8F;
+    color: #696969;
   }
   .p-button:focus-visible {
     outline: 0 none;
