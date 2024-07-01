@@ -83,14 +83,13 @@ export class RefuelAssetComponent implements OnInit {
       .subscribe(fuelSources => {
         this.fuelSourceList = fuelSources;
       });
-    this.store.dispatch(fromStore.getFuelSources({ siteId: -1 }));
+    this.store.dispatch(fromStore.getFuelSources({}));
     this.fuelAssetsSub$ = this.store
       .select(fromStore.selectFuelAssets)
       .subscribe(assets => {
         this.assetByClassNameMap = assets;
         this.assetClassNameList = Object.keys(assets);
       });
-    this.store.dispatch(fromStore.getFuelAssets({ siteId: -1 }));
     this.departmentLocationSub$ = this.store
       .select(fromStore.selectDepartmentLocations)
       .subscribe(departmentLocation => {
@@ -101,7 +100,7 @@ export class RefuelAssetComponent implements OnInit {
           this.departmentList = departmentLocation['DEPARTMENT'];
         }
       });
-    this.store.dispatch(fromStore.getDepartemntsAndLocations({ siteId: -1 }));
+    this.store.dispatch(fromStore.getDepartemntsAndLocations({}));
   }
 
   onAssetClassChanged(event: { value: string }): void {

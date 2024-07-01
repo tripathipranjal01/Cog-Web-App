@@ -42,6 +42,10 @@ const ADJUST_FUEL_SOURCE_VALUES_FAILURE =
   '[Fuel] Update Fuel Source Values Falure';
 const INVALID_REQUEST_DATA = '[Fuel] Invalid Request Data';
 
+interface SiteIds {
+  siteIds?: number[];
+}
+
 export const setFuelAside = createAction(
   SET_FUEL_ASIDE_VISIBILITY,
   props<{ isAsideVisible: boolean }>()
@@ -76,10 +80,7 @@ export const setFuelActiveAction = createAction(
 
 export const resetMessageStatus = createAction(RESET_FUEL_MESSAGE_STATUS);
 
-export const getFuelSources = createAction(
-  GET_FUEL_SOURCES,
-  props<{ siteId: number }>()
-);
+export const getFuelSources = createAction(GET_FUEL_SOURCES, props<SiteIds>());
 
 export const getFuelSourcesSuccess = createAction(
   GET_FUEL_SOURCES_SUCCESS,
@@ -106,10 +107,7 @@ export const saveRefuelRecordFailure = createAction(
   props<{ error: string }>()
 );
 
-export const getFuelAssets = createAction(
-  GET_FUEL_ASSETS,
-  props<{ siteId: number }>()
-);
+export const getFuelAssets = createAction(GET_FUEL_ASSETS, props<SiteIds>());
 
 export const getFuelAssetsSuccess = createAction(
   GET_FUEL_ASSETS_SUCCESS,
@@ -118,7 +116,7 @@ export const getFuelAssetsSuccess = createAction(
 
 export const getDepartemntsAndLocations = createAction(
   GET_DEPARTMENT_LOCATION,
-  props<{ siteId: number }>()
+  props<SiteIds>()
 );
 
 export const getDepartemntsAndLocationsSuccess = createAction(

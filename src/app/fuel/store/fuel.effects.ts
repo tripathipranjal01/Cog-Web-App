@@ -57,7 +57,7 @@ export class FuelEffects {
     return this.action$.pipe(
       ofType(fromStore.getFuelSources),
       switchMap(action => {
-        return this.fuelService.getFuelSources(action.siteId).pipe(
+        return this.fuelService.getFuelSources(action.siteIds).pipe(
           map(data => fromStore.getFuelSourcesSuccess({ fuelSources: data })),
           catchError(error => {
             return of(error);
@@ -110,7 +110,7 @@ export class FuelEffects {
       ofType(fromStore.getFuelAssets),
       switchMap(action => {
         return this.fuelService
-          .getAssetDataGroupedByAssetClassName(action.siteId)
+          .getAssetDataGroupedByAssetClassName(action.siteIds)
           .pipe(
             map(data => fromStore.getFuelAssetsSuccess({ assets: data })),
             catchError(error => {
@@ -125,7 +125,7 @@ export class FuelEffects {
     return this.action$.pipe(
       ofType(fromStore.getDepartemntsAndLocations),
       switchMap(action => {
-        return this.fuelService.getDepartmentAndLocations(action.siteId).pipe(
+        return this.fuelService.getDepartmentAndLocations(action.siteIds).pipe(
           map(data =>
             fromStore.getDepartemntsAndLocationsSuccess({
               departmentLocationList: data,

@@ -99,7 +99,7 @@ export class RefuelTankComponent implements OnInit {
             this.plantBooking(fuelSources);
         }
       });
-    this.store.dispatch(fromStore.getFuelSources({ siteId: siteId }));
+    this.store.dispatch(fromStore.getFuelSources({}));
   }
 
   refuelBowser(fuelSourcesList: FuelSource[]): void {

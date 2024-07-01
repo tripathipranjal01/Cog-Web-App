@@ -1,5 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
@@ -75,10 +79,11 @@ export class FuelService {
     return throwError(() => error);
   }
 
-  getFuelSources(siteId: number): Observable<FuelSource[]> {
-    const requestUrl = `${environment.baseUrl}/fuel-source/${siteId}`;
+  getFuelSources(siteIds?: number[]): Observable<FuelSource[]> {
+    const requestUrl = `${environment.baseUrl}/fuel-source/`;
+    const params = this.getSiteIdsHttpParams(siteIds);
     return this.http
-      .get<FuelSource[]>(requestUrl)
+      .get<FuelSource[]>(requestUrl, { params: params })
       .pipe(catchError(this.handleError));
   }
 
@@ -97,20 +102,26 @@ export class FuelService {
   }
 
   getAssetDataGroupedByAssetClassName(
-    siteId: number
+    siteIds?: number[]
   ): Observable<{ [assetClassName: string]: FuelAssetData[] }> {
-    const requestUrl = `${environment.baseUrl}/fuel-refill/getAssetDataGroupedByAssetClassName/${siteId}`;
+    const requestUrl = `${environment.baseUrl}/fuel-refill/getAssetDataGroupedByAssetClassName`;
+    const params = this.getSiteIdsHttpParams(siteIds);
     return this.http
-      .get<{ [assetClassName: string]: FuelAssetData[] }>(requestUrl)
+      .get<{
+        [assetClassName: string]: FuelAssetData[];
+      }>(requestUrl, { params: params })
       .pipe(catchError(this.handleError));
   }
 
   getDepartmentAndLocations(
-    siteId: number
+    siteIds?: number[]
   ): Observable<{ [type: string]: DepartmentLocation[] }> {
-    const requestUrl = `${environment.baseUrl}/department-location/${siteId}`;
+    const requestUrl = `${environment.baseUrl}/department-location/`;
+    const params = this.getSiteIdsHttpParams(siteIds);
     return this.http
-      .get<{ [type: string]: DepartmentLocation[] }>(requestUrl)
+      .get<{
+        [type: string]: DepartmentLocation[];
+      }>(requestUrl, { params: params })
       .pipe(catchError(this.handleError));
   }
 
@@ -122,5 +133,14 @@ export class FuelService {
     return this.http
       .patch<FuelSource>(requestUrl, data)
       .pipe(catchError(this.handleError));
+  }
+
+  getSiteIdsHttpParams(siteIds?: number[]): HttpParams {
+    const param = new HttpParams();
+    if (siteIds === undefined) {
+      return param;
+    } else {
+      return param.set('siteIds', siteIds.toString());
+    }
   }
 }

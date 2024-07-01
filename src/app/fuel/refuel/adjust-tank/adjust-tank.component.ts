@@ -50,7 +50,7 @@ export class AdjustTankComponent implements OnInit {
       .subscribe(fuelSources => {
         this.fuelSourceList = fuelSources;
       });
-    this.store.dispatch(fromStore.getFuelSources({ siteId: siteId }));
+    this.store.dispatch(fromStore.getFuelSources({}));
   }
 
   onFuelSourceChanged(event: { value: FuelSource }): void {
