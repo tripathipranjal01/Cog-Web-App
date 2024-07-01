@@ -41,10 +41,10 @@ export class AdjustTankComponent implements OnInit {
   fuelSourcesSub$: Subscription;
 
   ngOnInit(): void {
-    this.initializeData(-1);
+    this.initializeData();
   }
 
-  initializeData(siteId: number): void {
+  initializeData(): void {
     this.fuelSourcesSub$ = this.store
       .select(fromStore.selectFuelSources)
       .subscribe(fuelSources => {
