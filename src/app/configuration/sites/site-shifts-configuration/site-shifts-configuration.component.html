@@ -1,0 +1,85 @@
+<div class="shift-container">
+  <div class="header">
+    <div class="drop-down">
+      <label for="numOfShifts">No. of shifts</label>
+      <p-dropdown
+        [options]="shiftOptions"
+        [(ngModel)]="selectedShift"
+        placeholder="Select a shift"
+        (onChange)="updateShifts()"></p-dropdown>
+    </div>
+    <div class="check-box">
+      <i
+        class="fa-solid fa-eye"
+        style="color: #1f60c0; font-size: 20px; margin-right: 10px"></i>
+      <p-checkbox
+        [(ngModel)]="checked"
+        [binary]="true"
+        inputId="binary"></p-checkbox>
+      <label for="binary">Enable Alert</label>
+    </div>
+  </div>
+
+  <div *ngFor="let shift of shifts; let i = index" class="shift-group">
+    <div *ngIf="i > 0" class="divider"></div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="form-item shift-number">
+          <h4>Shift No: {{ i + 1 }}</h4>
+        </div>
+        <div class="form-item input-container">
+          <div class="flex flex-column gap-2">
+            <label for="startTime-{{ i }}">Start Time:</label>
+            <div class="input-icon">
+              <input
+                id="startTime-{{ i }}"
+                type="text"
+                pInputText
+                [(ngModel)]="shift.shiftStartTime"
+                (focus)="onInputFocus($event)"
+                (blur)="onInputBlur($event)" />
+              <!-- <i class="far fa-clock fa-lg"></i>
+              <i class="fas fa-circle fa-xs"></i> -->
+            </div>
+          </div>
+        </div>
+        <div class="form-item input-container">
+          <div class="flex flex-column gap-2">
+            <label for="endTime-{{ i }}">End Time:</label>
+            <div class="input-icon">
+              <input
+                id="endTime-{{ i }}"
+                type="text"
+                pInputText
+                [(ngModel)]="shift.shiftEndTime"
+                (focus)="onInputFocus($event)"
+                (blur)="onInputBlur($event)" />
+              <!-- <i class="far fa-clock fa-lg"></i>
+              <i class="fas fa-circle fa-xs"></i> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-shifts-footer">
+    <p-button
+      label="Back"
+      [outlined]="true"
+      severity="danger"
+      [style]="{
+        width: '130px',
+        'font-size': '12px',
+        'border-radius': '5px'
+      }"></p-button>
+    <p-button
+      label="Next"
+      iconPos="right"
+      icon="fa-solid fa-arrow-right"
+      [style]="{
+        width: '130px',
+        'font-size': '12px',
+        'border-radius': '5px'
+      }"></p-button>
+  </div>
+</div>

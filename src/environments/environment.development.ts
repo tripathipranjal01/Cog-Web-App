@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://api.cognecto.com/api',
+  baseUrl: 'http://localhost:8080/api',
 };

@@ -16,7 +16,9 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+import { DropdownModule } from 'primeng/dropdown';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 const modules = [
   FormsModule,
   ReactiveFormsModule,
@@ -34,11 +36,13 @@ const modules = [
   TooltipModule,
   DialogModule,
   ToastModule,
+  ConfirmDialogModule,
+  DropdownModule,
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
 })
 export class PrimeNgModule {}

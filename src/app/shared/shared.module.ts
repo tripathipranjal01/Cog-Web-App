@@ -13,6 +13,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { SelectableCardComponent } from './selectable-card/selectable-card.component';
+import { ConfigurationService } from '../configuration/services';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,6 @@ import { SelectableCardComponent } from './selectable-card/selectable-card.compo
     HighchartsChartModule,
     SelectableCardComponent,
   ],
-  providers: [BreadcrumbService],
+  providers: [BreadcrumbService, ConfigurationService],
 })
 export class SharedModule {}

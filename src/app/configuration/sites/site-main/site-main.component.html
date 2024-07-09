@@ -1,0 +1,14 @@
+<div class="site-details">
+  <p-tabView>
+    <p-tabPanel header="Site Details">
+      <app-site-details></app-site-details>
+    </p-tabPanel>
+    <p-tabPanel header="Site Shifts Configuration">
+      <app-site-shifts-configuration></app-site-shifts-configuration>
+    </p-tabPanel>
+
+    <p-tabPanel [disabled]="true" header="KMZ Files"></p-tabPanel>
+    <p-tabPanel [disabled]="true" header="Trip Details"></p-tabPanel>
+    <p-tabPanel [disabled]="true" header="Specifications"></p-tabPanel>
+  </p-tabView>
+</div>

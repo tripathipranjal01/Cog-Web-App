@@ -1,0 +1,94 @@
+<div class="roles-description">
+  <div class="roles-description__content">
+    <div class="flex flex-column gap-2">
+      <label for="siteDescription">Site Description*</label>
+      <input
+        id="siteDescription"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.description"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="siteName">Site Name*</label>
+      <input
+        id="siteName"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.name"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="timezone">Timezone</label>
+      <input
+        id="timezone"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.timeZone"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="siteLocation">Site Location</label>
+      <input
+        id="siteLocation"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.location"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="refuelByBarrel">Refuel By Barrel</label>
+      <input
+        id="refuelByBarrel"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.refuelByBarrel"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="siteType">Site Type</label>
+      <input
+        id="siteType"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.type"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="utilizationHour">Utilization Hour</label>
+      <input
+        id="utilizationHour"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.utilizationHour"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+  </div>
+  <div class="roles-description__buttons">
+    <p-button
+      label="Back"
+      [outlined]="true"
+      severity="danger"
+      [style]="{
+        width: '130px',
+        'font-size': '12px',
+        'border-radius': '5px'
+      }"></p-button>
+    <p-button
+      label="Next"
+      iconPos="right"
+      icon="fa-solid fa-arrow-right"
+      [style]="{
+        width: '130px',
+        'font-size': '12px',
+        'border-radius': '5px'
+      }"
+      (click)="updateSite()"></p-button>
+  </div>
+</div>

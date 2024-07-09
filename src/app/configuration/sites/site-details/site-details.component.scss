@@ -1,0 +1,109 @@
+/* Container for the form with a 2-column, 4-row grid layout */
+.roles-description {
+  display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    height: 100%;
+    padding: 1rem 0.6rem;
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap: 20px;
+    padding: 20px;
+    grid-row-gap: 70px; /* Adjust row gap */
+    grid-column-gap: 90px; /* Adjust column gap */
+  }
+  &__buttons {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+   
+  }
+  
+  
+  .form-group {
+    display: grid;
+    flex-direction: column;
+    label {
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+    input {
+  
+      border-radius: 1rem;
+      background: #FEFFFE;
+      box-shadow: 0px 6px 24px 4px rgba(144, 144, 144, 0.35);
+      
+  
+  
+    }
+  }
+  
+  /* Button code */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+  
+  .edit-tag-footer {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  // @media (max-width: 768px) {
+  //   .form-container {
+  //     grid-template-columns: 1fr;
+  //     grid-row-gap: 15px; /* Adjust row gap for smaller screens */
+  //     grid-column-gap: 15px; /* Adjust column gap for smaller screens */
+  //   }
+  
+  //   .form-actions {
+  //     justify-content: center;
+  //     padding: 10px;
+  //   }
+  
+  //   button.p-button {
+  //     width: 100%;
+  //     margin-bottom: 10px;
+  //   }
+  // }
+  :host ::ng-deep{
+    .roles-description__content {
+        
+
+        label {
+            color: #8F8F8F;
+            font-weight: 500;
+            font-size: 1.4rem;
+        }
+          .p-inputtext {
+            padding: 1rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            border: none;
+            color: #696969;
+            box-shadow: 0 4px 16px 0px rgba(144, 144, 144, 0.25);
+        }
+    }
+
+    .roles-description__buttons {
+        .p-button {
+            font-size: 1.5rem;
+        }
+
+        .p-inputtext {
+            padding: 1rem;
+            font-size: 1.4rem;
+            border: none;
+            color: #696969;
+            box-shadow: 0 4px 16px 0px rgba(144, 144, 144, 0.25);
+        }
+    }
+}
