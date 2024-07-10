@@ -38,3 +38,14 @@
     overflow-y: scroll;
   }
 }
+
+// TODO: GLOBAL STYLE CHANGE FOR PRIMENG COMPONENTS
+.p-component,
+.p-dropdown-label {
+  font-size: medium !important;
+}
+
+.p-calendar input {
+  border: none;
+  background: #EDECFC;
+}

@@ -13,9 +13,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const modules = [
   FormsModule,
@@ -32,13 +35,16 @@ const modules = [
   CheckboxModule,
   BadgeModule,
   TooltipModule,
+  DropdownModule,
+  CalendarModule,
   DialogModule,
   ToastModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  providers: [MessageService],
+  providers: [MessageService, DialogService],
 })
 export class PrimeNgModule {}

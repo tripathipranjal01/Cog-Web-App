@@ -1,0 +1,54 @@
+<form [formGroup]="tankAdjustForm" (ngSubmit)="onSubmit()">
+  <div class="top-row">
+    <app-label-value-card
+      title="Adjust Fuel Tank"
+      [showArrow]="false"
+      [showIcon]="false">
+    </app-label-value-card>
+  </div>
+  <div class="refuel-asset">
+    <app-label-value-card
+      title="Refuel From"
+      subtitle="Select Fuel Source"
+      faIconClass="fa-tint">
+      <p-dropdown
+        [options]="fuelSourceList"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="label"
+        formControlName="fuelSource"
+        [showClear]="true"
+        [style]="inputStyle"
+        placeholder="Select a Fuel Source"
+        [required]="true"
+        (onChange)="onFuelSourceChanged($event)" />
+    </app-label-value-card>
+    <app-label-value-card
+      title="Tank Meter Reading"
+      subtitle="Current Reading:
+          {{ selectedFuelSource.meterReading }}"
+      subtitleColor="red">
+      <p-inputNumber
+        mode="decimal"
+        [maxFractionDigits]="2"
+        placeholder="Update tank reading"
+        formControlName="tankMeterReading"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <app-label-value-card
+      title="Tank Balance"
+      subtitle="Current Balance:
+          {{ selectedFuelSource.balance }} (L)"
+      subtitleColor="red">
+      <p-inputNumber
+        mode="decimal"
+        [maxFractionDigits]="2"
+        placeholder="Update tank balance"
+        formControlName="tankBalance"
+        [style]="inputStyle" />
+    </app-label-value-card>
+    <div class="footer">
+      <p-button label="Save" type="submit" icon="pi pi-check"></p-button>
+    </div>
+  </div>
+</form>

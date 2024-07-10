@@ -25,3 +25,18 @@ export const selectMessageStatus = createSelector(
   selectFuelState,
   state => state.messageStatus
 );
+
+export const selectFuelSources = createSelector(
+  selectFuelState,
+  state => state.fuelSources
+);
+
+export const selectFuelAssets = createSelector(
+  selectFuelState,
+  state => state.fuelAssets
+);
+
+export const selectDepartmentLocations = createSelector(
+  selectFuelState,
+  state => state.departmentLocationList
+);

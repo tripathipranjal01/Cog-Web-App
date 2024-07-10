@@ -1,9 +1,22 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
-import { ISubModuleResponse, IAllModulesResponse } from '../interfaces';
+import {
+  ISubModuleResponse,
+  IAllModulesResponse,
+  FuelSource,
+  RefuelAssetReqObject,
+  RefuelRecord,
+  RefuelTankReqObject,
+  FuelAssetData,
+  DepartmentLocation,
+} from '../interfaces';
 import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
 
 @Injectable({
@@ -64,5 +77,70 @@ export class FuelService {
       );
     }
     return throwError(() => error);
+  }
+
+  getFuelSources(siteIds?: number[]): Observable<FuelSource[]> {
+    const requestUrl = `${environment.baseUrl}/fuel-source/`;
+    const params = this.getSiteIdsHttpParams(siteIds);
+    return this.http
+      .get<FuelSource[]>(requestUrl, { params: params })
+      .pipe(catchError(this.handleError));
+  }
+
+  saveAssetRefuelRecord(data: RefuelAssetReqObject): Observable<RefuelRecord> {
+    const requestUrl = `${environment.baseUrl}/fuel-refill/asset`;
+    return this.http
+      .post<RefuelRecord>(requestUrl, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  saveTankRefuelRecord(data: RefuelTankReqObject): Observable<RefuelRecord> {
+    const requestUrl = `${environment.baseUrl}/fuel-refill/tank`;
+    return this.http
+      .post<RefuelRecord>(requestUrl, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  getAssetDataGroupedByAssetClassName(
+    siteIds?: number[]
+  ): Observable<{ [assetClassName: string]: FuelAssetData[] }> {
+    const requestUrl = `${environment.baseUrl}/fuel-refill/getAssetDataGroupedByAssetClassName`;
+    const params = this.getSiteIdsHttpParams(siteIds);
+    return this.http
+      .get<{
+        [assetClassName: string]: FuelAssetData[];
+      }>(requestUrl, { params: params })
+      .pipe(catchError(this.handleError));
+  }
+
+  getDepartmentAndLocations(
+    siteIds?: number[]
+  ): Observable<{ [type: string]: DepartmentLocation[] }> {
+    const requestUrl = `${environment.baseUrl}/department-location/`;
+    const params = this.getSiteIdsHttpParams(siteIds);
+    return this.http
+      .get<{
+        [type: string]: DepartmentLocation[];
+      }>(requestUrl, { params: params })
+      .pipe(catchError(this.handleError));
+  }
+
+  adjustTankValues(
+    fuelSourceId: number,
+    data: { [key: string]: number }
+  ): Observable<FuelSource> {
+    const requestUrl = `${environment.dataRestUrl}/fuel-source/${fuelSourceId}`;
+    return this.http
+      .patch<FuelSource>(requestUrl, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  getSiteIdsHttpParams(siteIds?: number[]): HttpParams {
+    const param = new HttpParams();
+    if (siteIds === undefined) {
+      return param;
+    } else {
+      return param.set('siteIds', siteIds.toString());
+    }
   }
 }
