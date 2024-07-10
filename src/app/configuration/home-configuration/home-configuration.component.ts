@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as fromStore from '../store';
@@ -10,7 +16,7 @@ import * as fromStore from '../store';
 })
 export class HomeConfigurationComponent implements OnInit, OnDestroy {
   store = inject(Store);
-
+  cdr = inject(ChangeDetectorRef);
   isAsideVisible = false;
   private isAsideVisibleSub$: Subscription;
 
@@ -19,6 +25,7 @@ export class HomeConfigurationComponent implements OnInit, OnDestroy {
       .select(fromStore.selectIsAsideVisible)
       .subscribe(value => {
         this.isAsideVisible = value;
+        this.cdr.detectChanges();
       });
   }
 

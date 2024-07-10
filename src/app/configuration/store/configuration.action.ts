@@ -77,21 +77,25 @@ export const updateSiteFailure = createAction(
   props<{ error: any }>()
 );
 
-export const createSite = createAction(CREATE_SITE, props<{ newSite: any }>());
+export const createSite = createAction(CREATE_SITE, props<{ siteData: any }>());
+
 export const createSiteSuccess = createAction(
   CREATE_SITE_SUCCESS,
   props<{ site: any }>()
 );
+
 export const createSiteFailure = createAction(
   CREATE_SITE_FAILURE,
   props<{ error: any }>()
 );
 
 export const deleteSite = createAction(DELETE_SITE, props<{ siteId: any }>());
+
 export const deleteSiteSuccess = createAction(
   DELETE_SITE_SUCCESS,
   props<{ siteId: any }>()
 );
+
 export const deleteSiteFailure = createAction(
   DELETE_SITE_FAILURE,
   props<{ error: any }>()

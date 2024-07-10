@@ -18,11 +18,11 @@ interface TimeZone {
   styleUrls: ['./site-aside.component.scss'],
 })
 export class SiteAsideComponent implements OnInit {
-  filterSite: any;
-  selectedSite: any;
-  updatedData: ISelectableCard[];
-  backupData: ISelectableCard[];
-  visible = false;
+  filterSite = ''; // Explicitly defined as string
+  selectedSite: ISelectableCard | null = null; // Added type annotation
+  updatedData: ISelectableCard[] = [];
+  backupData: ISelectableCard[] = [];
+  visible = false; // Explicitly defined as boolean
   newSiteForm: FormGroup;
   timeZones: TimeZone[] = [];
   sites$: Observable<any[]> = this.store.select(
@@ -69,7 +69,7 @@ export class SiteAsideComponent implements OnInit {
       }));
       this.updatedData = newCards;
       this.backupData = [...newCards];
-      if (this.updatedData && this.updatedData.length > 0) {
+      if (this.updatedData.length > 0) {
         this.updatedData[0].isSelected = true;
         this.selectedSite = this.updatedData[0];
       }
@@ -88,23 +88,29 @@ export class SiteAsideComponent implements OnInit {
     this.store.dispatch(ConfigurationActions.loadSites());
   }
 
-  addNewSite() {
-    this.visible = true;
+  addNewSite(): void {
+    if (this.selectedSite) {
+      this.selectedSite.isSelected = false;
+      this.selectedSite = null;
+    }
+    this.router.navigate(['configuration/home/site', 'new']);
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.visible = false;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.newSiteForm.valid) {
       const newSite = this.newSiteForm.value;
-      this.store.dispatch(ConfigurationActions.createSite({ newSite }));
+      this.store.dispatch(
+        ConfigurationActions.createSite({ siteData: newSite })
+      );
       this.closeDialog();
     }
   }
 
-  updateSite(selectedCard: ISelectableCard) {
+  updateSite(selectedCard: ISelectableCard): void {
     if (this.selectedSite) {
       this.selectedSite.isSelected = false;
     }
@@ -113,10 +119,10 @@ export class SiteAsideComponent implements OnInit {
     this.router.navigate(['site', selectedCard.id], { relativeTo: this.route });
   }
 
-  filterSites() {
+  filterSites(): void {
     if (this.filterSite) {
       const filterTextLower = this.filterSite.toLowerCase();
-      this.updatedData = this.backupData.filter((e: { header: string }) =>
+      this.updatedData = this.backupData.filter((e: ISelectableCard) =>
         e.header.toLowerCase().includes(filterTextLower)
       );
     } else {

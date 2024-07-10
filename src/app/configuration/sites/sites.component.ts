@@ -17,7 +17,7 @@ import * as fromConfigurationSelectors from 'src/app/configuration/store/configu
 export class SitesComponent implements OnInit {
   context = {};
   components = {};
-  columnDefs: any = [
+  columnDefs: any[] = [
     {
       headerName: 'Site Name',
       field: 'name',
@@ -63,10 +63,10 @@ export class SitesComponent implements OnInit {
   ];
   rowData: any[] = [];
   gridApi: any;
-  filterSite = ''; // Removed explicit type annotation
-  newSiteForm: any;
+  filterSite = '';
+  newSiteForm: FormGroup; // Correct type annotation for form group
   visible: boolean;
-  timeZones: any[];
+  timeZones: { name: string; code: string }[] = []; // Added explicit type annotation
 
   constructor(
     private store: Store,
@@ -123,28 +123,29 @@ export class SitesComponent implements OnInit {
     this.store.dispatch(ConfigurationActions.loadSites());
   }
 
-  addNewSite() {
-    this.visible = true;
+  addNewSite(): void {
+    this.visible = false;
+    this.router.navigate(['configuration/home/site', 'new']);
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.visible = false;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.newSiteForm.valid) {
-      const newSite = this.newSiteForm.value;
-      this.store.dispatch(ConfigurationActions.createSite({ newSite }));
+      const siteData = this.newSiteForm.value;
+      this.store.dispatch(ConfigurationActions.createSite({ siteData }));
       this.closeDialog();
     }
   }
 
-  onGridReady(params: any) {
+  onGridReady(params: any): void {
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit();
   }
 
-  handleAgRendererEvent(event: AgCellRendererEvent) {
+  handleAgRendererEvent(event: AgCellRendererEvent): void {
     const data = event.params.data;
     switch (event.type) {
       case AgCellRendererEvent.DELETE_EVENT:
@@ -153,12 +154,12 @@ export class SitesComponent implements OnInit {
         );
         break;
       case AgCellRendererEvent.EDIT_EVENT:
-        this.router.navigate(['configuration/home/site/', data.id]);
+        this.router.navigate(['configuration/home/site', data.id]);
         break;
     }
   }
 
-  filterSites() {
+  filterSites(): void {
     this.gridApi.setQuickFilter(this.filterSite);
   }
 }

@@ -69,6 +69,15 @@
         [(ngModel)]="siteData.utilizationHour"
         [ngModelOptions]="{ standalone: true }" />
     </div>
+    <div class="flex flex-column gap-2">
+      <label for="siteStatus"> Site Status</label>
+      <input
+        id="siteStatus"
+        type="text"
+        pInputText
+        [(ngModel)]="siteData.status"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
   </div>
   <div class="roles-description__buttons">
     <p-button
@@ -89,6 +98,6 @@
         'font-size': '12px',
         'border-radius': '5px'
       }"
-      (click)="updateSite()"></p-button>
+      (click)="onNext()"></p-button>
   </div>
 </div>

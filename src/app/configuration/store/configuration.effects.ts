@@ -13,7 +13,7 @@ export class ConfigurationEffects {
 
   loadSites$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ConfigurationActions.loadSites), //here loadsites is merged with getall sites
+      ofType(ConfigurationActions.loadSites),
       mergeMap(() =>
         this.configurationService.getAllSites().pipe(
           map(sites => ConfigurationActions.loadSitesSuccess({ sites })),
@@ -59,7 +59,7 @@ export class ConfigurationEffects {
     return this.actions$.pipe(
       ofType(ConfigurationActions.createSite),
       mergeMap(action =>
-        this.configurationService.createSite(action.newSite).pipe(
+        this.configurationService.createSite(action.siteData).pipe(
           map(site => ConfigurationActions.createSiteSuccess({ site })),
           catchError(error =>
             of(ConfigurationActions.createSiteFailure({ error }))
