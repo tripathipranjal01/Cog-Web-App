@@ -45,7 +45,7 @@ export class SideNavComponent implements OnInit {
       {
         label: 'Configurator',
         icon: 'fa-light fa-sliders',
-        routerLink: 'configuration',
+        routerLink: 'configuration/home',
         styleClass: 'config-bottom',
       },
     ];
