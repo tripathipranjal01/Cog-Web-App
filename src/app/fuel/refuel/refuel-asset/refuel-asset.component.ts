@@ -90,6 +90,7 @@ export class RefuelAssetComponent implements OnInit {
         this.assetByClassNameMap = assets;
         this.assetClassNameList = Object.keys(assets);
       });
+    this.store.dispatch(fromStore.getFuelAssets({}));
     this.departmentLocationSub$ = this.store
       .select(fromStore.selectDepartmentLocations)
       .subscribe(departmentLocation => {
