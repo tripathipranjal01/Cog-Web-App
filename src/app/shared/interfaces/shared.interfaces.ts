@@ -17,6 +17,7 @@ export interface ISubModuleResponse {
   icon: string;
   subModulePath: string;
   popup: boolean;
+  childSubModules?: ISubModuleResponse[];
 }
 
 export interface ISubModulePreferenceRequest {
