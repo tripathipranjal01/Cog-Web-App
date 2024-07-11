@@ -26,7 +26,7 @@ export class ActionsComponent {
 
   onActionSelectionChange(submodule: ISubModuleResponse): void {
     this.changeActionSelection.emit({
-      subModuleId: submodule.subModuleId,
+      subModuleParamId: submodule.subModuleParamId,
       isPreferred: !submodule.preferred,
     });
   }

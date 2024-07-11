@@ -9,16 +9,18 @@ export interface IAllModulesResponse {
 
 export interface ISubModuleResponse {
   subModuleId: number;
-  subModuleName: string;
+  subModuleParamId: number;
+  subModuleParamName: string;
   sequenceNumber: number;
   subModuleType: string;
   preferred: boolean;
   icon: string;
   subModulePath: string;
+  popup: boolean;
 }
 
 export interface ISubModulePreferenceRequest {
-  subModuleId: number;
+  subModuleParamId: number;
   isPreferred: boolean;
 }
 

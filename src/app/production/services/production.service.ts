@@ -3,8 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
-import { ISubModuleResponse, IAllModulesResponse } from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+import {
+  IAllModulesResponse,
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',

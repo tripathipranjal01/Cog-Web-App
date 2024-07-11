@@ -5,8 +5,11 @@ import { Subscription } from 'rxjs';
 import * as fromStore from '../store';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
-import { FuelActionViewTypes, ISubModuleResponse } from '../interfaces';
+import {
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
+import { FuelActionViewTypes } from '../interfaces';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdjustTankComponent } from '../refuel/adjust-tank/adjust-tank.component';
 
@@ -57,7 +60,8 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
       .subscribe(action => {
         this.currentSelectedSubModule = action;
         const currentSubModuleData = this.modules.find(
-          subModule => subModule.subModuleId === this.currentSelectedSubModule
+          subModule =>
+            subModule.subModuleParamId === this.currentSelectedSubModule
         );
         if (currentSubModuleData) {
           if (!currentSubModuleData.popup) {
@@ -95,9 +99,9 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
         subModule => subModule.subModulePath === path
       );
       if (currentSubModuleData) {
-        this.onChangeSubModule(currentSubModuleData.subModuleId);
+        this.onChangeSubModule(currentSubModuleData.subModuleParamId);
       } else if (!currentSubModuleData && this.modules.length > 0) {
-        this.onChangeSubModule(this.modules[0].subModuleId);
+        this.onChangeSubModule(this.modules[0].subModuleParamId);
       }
     }
   }

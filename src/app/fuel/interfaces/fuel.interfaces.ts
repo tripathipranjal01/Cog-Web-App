@@ -1,25 +1,5 @@
 export type FuelActionViewTypes = 'home' | 'map' | 'side';
 
-export interface IAllModulesResponse {
-  moduleId: number;
-  moduleName: string;
-  sequenceNumber: number;
-  moduleIconPath: null;
-  moduleType: string;
-  subModules: null;
-}
-
-export interface ISubModuleResponse {
-  subModuleId: number;
-  subModuleName: string;
-  sequenceNumber: number;
-  subModuleType: string;
-  preferred: boolean;
-  icon: string;
-  subModulePath: string;
-  popup: boolean;
-}
-
 export interface RefuelAssetReqObject {
   erpRef?: string;
   timestamp?: string;

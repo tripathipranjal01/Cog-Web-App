@@ -1,8 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromMaintenanceActions from './maintenance.action';
-import { ISubModuleResponse, IServiceReminder } from '../interfaces';
-import { IMessageStatus } from 'src/app/shared/interfaces';
+import { IServiceReminder } from '../interfaces';
+import { IMessageStatus, ISubModuleResponse } from 'src/app/shared/interfaces';
 
 export interface MaintenanceState {
   isAsideVisible: boolean;
@@ -47,7 +47,7 @@ export const _maintenanceReducer = createReducer(
         messageStatus: { type: 'success', message: action.status },
         modules: state.modules.map(module => {
           const subModuleChange = action.subModules.find(
-            subModule => subModule.subModuleId === module.subModuleId
+            subModule => subModule.subModuleParamId === module.subModuleId
           );
           if (subModuleChange) {
             return {

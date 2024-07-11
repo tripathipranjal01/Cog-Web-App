@@ -28,12 +28,12 @@
         <div class="container__sub-menu-div" *ngIf="button.preferred">
           <p-button
             class="sub-menu-btn"
-            (click)="onActionNavigate(button.subModuleId)"
+            (click)="onActionNavigate(button.subModuleParamId)"
             [ngClass]="{
-              'button-selection': button.subModuleId === selectedSubModule
+              'button-selection': button.subModuleParamId === selectedSubModule
             }">
             <i [class]="button.icon"></i>
-            <span>{{ button.subModuleName }}</span>
+            <span>{{ button.subModuleParamName }}</span>
           </p-button>
         </div>
       </ng-container>
@@ -44,7 +44,7 @@
           <div
             class="checkbox-container"
             [ngClass]="{
-              'button-selection': button.subModuleId === selectedSubModule
+              'button-selection': button.subModuleParamId === selectedSubModule
             }">
             <p-checkbox
               class="checkbox-item"
@@ -54,9 +54,9 @@
             </p-checkbox>
             <label
               class="checkbox-label"
-              (click)="onActionNavigate(button.subModuleId)">
+              (click)="onActionNavigate(button.subModuleParamId)">
               <i [class]="'checkbox-label-icon pi ' + button.icon"></i>
-              {{ button.subModuleName }}
+              {{ button.subModuleParamName }}
             </label>
           </div>
           <p-divider></p-divider>

@@ -3,11 +3,14 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import * as fromStore from '../store';
-import { ISubModuleResponse, MaintenanceActionViewTypes } from '../interfaces';
+import { MaintenanceActionViewTypes } from '../interfaces';
 import { IChartData } from 'src/app/shared/chart-card/chart.interface';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+import {
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-home-mntn',

@@ -1,13 +1,8 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromFuelActions from './fuel.action';
-import {
-  DepartmentLocation,
-  FuelAssetData,
-  FuelSource,
-  ISubModuleResponse,
-} from '../interfaces';
-import { IMessageStatus } from 'src/app/shared/interfaces';
+import { DepartmentLocation, FuelAssetData, FuelSource } from '../interfaces';
+import { IMessageStatus, ISubModuleResponse } from 'src/app/shared/interfaces';
 import { SuccessMessage } from '../constants';
 
 export interface FuelState {
@@ -52,7 +47,7 @@ export const _fuelReducer = createReducer(
         messageStatus: { type: 'success', message: action.status },
         modules: state.modules.map(module => {
           const subModuleChange = action.subModules.find(
-            subModule => subModule.subModuleId === module.subModuleId
+            subModule => subModule.subModuleParamId === module.subModuleParamId
           );
           if (subModuleChange) {
             return {
