@@ -19,6 +19,7 @@ import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CalendarModule } from 'primeng/calendar';
 const modules = [
   FormsModule,
   ReactiveFormsModule,
@@ -38,6 +39,7 @@ const modules = [
   ToastModule,
   ConfirmDialogModule,
   DropdownModule,
+  CalendarModule,
 ];
 
 @NgModule({

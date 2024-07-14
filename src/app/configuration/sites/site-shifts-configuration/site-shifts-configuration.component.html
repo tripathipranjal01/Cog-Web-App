@@ -31,15 +31,13 @@
           <div class="flex flex-column gap-2">
             <label for="startTime-{{ i }}">Start Time:</label>
             <div class="input-icon">
-              <input
+              <p-calendar
                 id="startTime-{{ i }}"
-                type="text"
-                pInputText
-                [(ngModel)]="shift.shiftStartTime"
-                (focus)="onInputFocus($event)"
-                (blur)="onInputBlur($event)" />
-              <!-- <i class="far fa-clock fa-lg"></i>
-              <i class="fas fa-circle fa-xs"></i> -->
+                [(ngModel)]="shift.startTime"
+                [showIcon]="true"
+                [timeOnly]="true"
+                inputId="startTime-{{ i }}">
+              </p-calendar>
             </div>
           </div>
         </div>
@@ -47,17 +45,20 @@
           <div class="flex flex-column gap-2">
             <label for="endTime-{{ i }}">End Time:</label>
             <div class="input-icon">
-              <input
+              <p-calendar
                 id="endTime-{{ i }}"
-                type="text"
-                pInputText
-                [(ngModel)]="shift.shiftEndTime"
-                (focus)="onInputFocus($event)"
-                (blur)="onInputBlur($event)" />
-              <!-- <i class="far fa-clock fa-lg"></i>
-              <i class="fas fa-circle fa-xs"></i> -->
+                [(ngModel)]="shift.endTime"
+                [showIcon]="true"
+                [timeOnly]="true"
+                inputId="endTime-{{ i }}">
+              </p-calendar>
             </div>
           </div>
+        </div>
+        <div class="form-item delete-container">
+          <button class="delete-button" (click)="deleteShift(shift.id, i)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -71,15 +72,17 @@
         width: '130px',
         'font-size': '12px',
         'border-radius': '5px'
-      }"></p-button>
+      }"
+      (click)="onBack()"></p-button>
     <p-button
-      label="Next"
+      label="Save"
       iconPos="right"
-      icon="fa-solid fa-arrow-right"
+      icon="fa-solid fa-check"
       [style]="{
         width: '130px',
         'font-size': '12px',
         'border-radius': '5px'
-      }"></p-button>
+      }"
+      (click)="onNext()"></p-button>
   </div>
 </div>

@@ -1,13 +1,6 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-  inject,
-} from '@angular/core';
-import { Store } from '@ngrx/store';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import * as fromStore from '../store';
+import { ConfigurationService } from '../services'; // Adjust the path as per your actual service location
 
 @Component({
   selector: 'app-home-configuration',
@@ -15,18 +8,21 @@ import * as fromStore from '../store';
   styleUrls: ['./home-configuration.component.scss'],
 })
 export class HomeConfigurationComponent implements OnInit, OnDestroy {
-  store = inject(Store);
-  cdr = inject(ChangeDetectorRef);
   isAsideVisible = false;
   private isAsideVisibleSub$: Subscription;
 
+  constructor(
+    private configService: ConfigurationService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
   ngOnInit(): void {
-    this.isAsideVisibleSub$ = this.store
-      .select(fromStore.selectIsAsideVisible)
-      .subscribe(value => {
+    this.isAsideVisibleSub$ = this.configService.isAsideVisible$.subscribe(
+      (value: boolean) => {
         this.isAsideVisible = value;
         this.cdr.detectChanges();
-      });
+      }
+    );
   }
 
   ngOnDestroy(): void {

@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { ConfigurationService } from '../services';
 import { AgCellRendererEvent } from 'src/app/shared/ag-grid-renderers/ag-cell-renderer.event';
 import { CrudComponent } from 'src/app/shared/ag-grid-renderers/crud/crud.component';
-import * as ConfigurationActions from 'src/app/configuration/store/configuration.action';
-import * as fromConfigurationSelectors from 'src/app/configuration/store/configuration.selector';
 
 @Component({
   selector: 'app-sites',
@@ -64,12 +61,18 @@ export class SitesComponent implements OnInit {
   rowData: any[] = [];
   gridApi: any;
   filterSite = '';
-  newSiteForm: FormGroup; // Correct type annotation for form group
+  newSiteForm: FormGroup;
   visible: boolean;
-  timeZones: { name: string; code: string }[] = []; // Added explicit type annotation
+  timeZones: { name: string; code: string }[] = [
+    { name: 'Pacific Time (PT)', code: 'PT' },
+    { name: 'Mountain Time (MT)', code: 'MT' },
+    { name: 'Central Time (CT)', code: 'CT' },
+    { name: 'Eastern Time (ET)', code: 'ET' },
+    { name: 'Atlantic Time (AT)', code: 'AT' },
+  ];
 
   constructor(
-    private store: Store,
+    private configService: ConfigurationService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -88,9 +91,17 @@ export class SitesComponent implements OnInit {
       crudComponent: CrudComponent,
     };
 
-    this.store
-      .select(fromConfigurationSelectors.selectAllSites)
-      .subscribe((data: any[]) => {
+    this.newSiteForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      location: ['', Validators.required],
+      timeZone: ['', Validators.required],
+    });
+  }
+
+  loadSites(): void {
+    this.configService.getAllSites().subscribe(
+      (data: any[]) => {
         this.rowData = data.map((item: any) => ({
           id: item.id,
           name: item.name,
@@ -101,26 +112,11 @@ export class SitesComponent implements OnInit {
           siteType: item.type,
           actions: '',
         }));
-      });
-
-    this.timeZones = [
-      { name: 'Pacific Time (PT)', code: 'PT' },
-      { name: 'Mountain Time (MT)', code: 'MT' },
-      { name: 'Central Time (CT)', code: 'CT' },
-      { name: 'Eastern Time (ET)', code: 'ET' },
-      { name: 'Atlantic Time (AT)', code: 'AT' },
-    ];
-
-    this.newSiteForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      location: ['', Validators.required],
-      timeZone: ['', Validators.required],
-    });
-  }
-
-  loadSites(): void {
-    this.store.dispatch(ConfigurationActions.loadSites());
+      },
+      error => {
+        console.error('Failed to fetch sites:', error);
+      }
+    );
   }
 
   addNewSite(): void {
@@ -130,13 +126,31 @@ export class SitesComponent implements OnInit {
 
   closeDialog(): void {
     this.visible = false;
+    this.newSiteForm.reset();
   }
 
   onSubmit(): void {
     if (this.newSiteForm.valid) {
       const siteData = this.newSiteForm.value;
-      this.store.dispatch(ConfigurationActions.createSite({ siteData }));
-      this.closeDialog();
+      this.configService.createSite(siteData).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Site created successfully',
+          });
+          this.loadSites();
+          this.closeDialog();
+        },
+        error => {
+          console.error('Failed to create site:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to create site',
+          });
+        }
+      );
     }
   }
 
@@ -149,9 +163,30 @@ export class SitesComponent implements OnInit {
     const data = event.params.data;
     switch (event.type) {
       case AgCellRendererEvent.DELETE_EVENT:
-        this.store.dispatch(
-          ConfigurationActions.deleteSite({ siteId: data.id })
-        );
+        this.confirmationService.confirm({
+          message: 'Are you sure you want to delete this site?',
+          accept: () => {
+            this.configService.deleteSite(data.id).subscribe(
+              () => {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Success',
+                  detail: 'Site deleted successfully',
+                });
+                this.loadSites();
+              },
+              error => {
+                console.error('Failed to delete site:', error);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail:
+                    'CANNOT DELETE SITE, BECAUSE IT HAS USERS ASSIGNED TO IT.',
+                });
+              }
+            );
+          },
+        });
         break;
       case AgCellRendererEvent.EDIT_EVENT:
         this.router.navigate(['configuration/home/site', data.id]);
@@ -161,5 +196,13 @@ export class SitesComponent implements OnInit {
 
   filterSites(): void {
     this.gridApi.setQuickFilter(this.filterSite);
+  }
+
+  showToast(): void {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Toast Message',
+      detail: 'This is a sample toast message',
+    });
   }
 }

@@ -66,9 +66,9 @@ ag-grid-angular {
     border-radius: 0.4rem;
     box-shadow: 0 0.4rem 1.8rem 0.2rem rgba(144, 144, 144, 0.25);
   }
-  
-  }
-  ::ng-deep {
+
+}
+::ng-deep {
   .container {
     &__newBtn {
       .p-button {
@@ -113,5 +113,17 @@ ag-grid-angular {
         font-weight: 500;
       }
     }
+  }}
+
+  .site-container{
+    &__table{
+      padding: 1rem;
+    height: 100%;
+    width: 100%;
+    ag-grid-angular {
+      width: 100%;
+      height: calc(100vh - 23.5rem);
+    }
   }
+  
   }

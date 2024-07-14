@@ -6,7 +6,8 @@
         type="text"
         pInputText
         [(ngModel)]="filterSite"
-        (ngModelChange)="filterSites()" />
+        (ngModelChange)="filterSites()"
+        placeholder="Search Sites" />
     </span>
     <div class="container">
       <p-button
@@ -15,109 +16,14 @@
         class="container__newBtn"
         iconPos="left"
         (click)="addNewSite()"></p-button>
-      <p-dialog
-        header="Header"
-        class="container__newBtnDialog"
-        [(visible)]="visible"
-        [modal]="true"
-        [draggable]="false"
-        [closable]="true"
-        [resizable]="false"
-        [contentStyle]="{
-          padding: 0
-        }">
-        <ng-template pTemplate="header">
-          <div class="container__dialog-header">
-            <span>Add New Site</span>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="content">
-          <form
-            *ngIf="newSiteForm"
-            [formGroup]="newSiteForm"
-            (ngSubmit)="onSubmit()">
-            <div class="container__dialog-content">
-              <div class="container__dialog-content-grid">
-                <div class="container__dialog-content-group">
-                  <label for="siteName" class="container__dialog-content-label"
-                    >Site Name</label
-                  >
-                  <input
-                    id="siteName"
-                    formControlName="name"
-                    type="text"
-                    class="container__dialog-content-input"
-                    placeholder="Enter Site Name" />
-                </div>
-                <div class="container__dialog-content-group">
-                  <label for="siteDesc" class="container__dialog-content-label"
-                    >Site Desc</label
-                  >
-                  <input
-                    id="siteDescription"
-                    formControlName="description"
-                    type="text"
-                    class="container__dialog-content-input"
-                    placeholder="Enter Site Description" />
-                </div>
-                <div class="container__dialog-content-group">
-                  <label for="timeZone" class="container__dialog-content-label"
-                    >Time Zone</label
-                  >
-                  <p-dropdown
-                    id="timeZone"
-                    [options]="timeZones"
-                    formControlName="timeZone"
-                    optionLabel="name"
-                    scrollHeight="200px"
-                    placeholder="Select a Time Zone">
-                  </p-dropdown>
-                </div>
-                <div class="container__dialog-content-group">
-                  <label for="location" class="container__dialog-content-label"
-                    >Location</label
-                  >
-                  <input
-                    id="location"
-                    formControlName="location"
-                    type="text"
-                    class="container__dialog-content-input"
-                    placeholder="Enter Location" />
-                </div>
-                <div class="container__dialog-content-group">
-                  <label for="siteType" class="container__dialog-content-label"
-                    >Site Type</label
-                  >
-                  <input
-                    id="siteType"
-                    formControlName="type"
-                    type="text"
-                    class="container__dialog-content-input"
-                    placeholder="Enter Site Type" />
-                </div>
-              </div>
-            </div>
-          </form>
-        </ng-template>
-        <ng-template pTemplate="footer">
-          <p-button
-            label="Cancel"
-            [outlined]="true"
-            class="container__dialog-footer"
-            severity="danger"
-            (click)="closeDialog()"></p-button>
-          <p-button
-            label="Submit"
-            class="container__dialog-footer"
-            (click)="onSubmit()"></p-button>
-        </ng-template>
-      </p-dialog>
     </div>
   </div>
 
-  <ng-container *ngFor="let card of updatedData">
-    <app-selectable-card
-      [cardData]="card"
-      (click)="updateSite(card)"></app-selectable-card>
-  </ng-container>
+  <div class="sites-selector__content">
+    <ng-container *ngFor="let card of updatedData">
+      <app-selectable-card
+        [cardData]="card"
+        (click)="updateSite(card)"></app-selectable-card>
+    </ng-container>
+  </div>
 </div>

@@ -1,15 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import {
-  createSite,
-  loadSiteById,
-  updateSite,
-} from 'src/app/configuration/store/configuration.action';
-import * as fromConfigurationSelectors from 'src/app/configuration/store/configuration.selector';
-import * as fromStore from '../../store';
+import { ConfigurationService } from '../../services/configuration.service';
 
 @Component({
   selector: 'app-site-details',
@@ -21,55 +20,77 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
   siteData: any = {};
   isNewSite = false;
 
+  @Output() nextTab = new EventEmitter<void>();
+
   siteTypes = [
     { label: 'Construction', value: 'Construction' },
     { label: 'Mining', value: 'Mining' },
   ];
 
   constructor(
-    private store: Store,
+    private configurationService: ConfigurationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(fromStore.setSiteAside({ isAsideVisible: true }));
-    this.route.paramMap.subscribe(params => {
+    this.configurationService.setAsideVisible(true);
+    this.route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
       const id = params.get('id');
       this.isNewSite = id === 'new';
       if (this.isNewSite) {
-        this.siteData = {}; // Clear siteData when creating a new site
+        this.siteData = {};
       } else if (id) {
-        this.store.dispatch(loadSiteById({ siteId: id }));
+        this.loadSiteById(id);
       }
     });
+  }
 
-    this.store
-      .select(fromConfigurationSelectors.selectSelectedSite)
+  loadSiteById(siteId: string): void {
+    this.configurationService
+      .getSiteById(siteId)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(site => {
-        if (site && !this.isNewSite) {
-          this.siteData = { ...site };
-        }
+      .subscribe((site: any) => {
+        this.siteData = { ...site };
       });
   }
 
   onNext(): void {
-    this.isNewSite ? this.createSite() : this.updateSite();
+    if (this.isNewSite) {
+      this.createSite();
+    } else {
+      this.updateSite();
+    }
   }
 
   createSite(): void {
-    this.store.dispatch(createSite({ siteData: this.siteData }));
+    this.configurationService
+      .createSite(this.siteData)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((createdSite: any) => {
+        const newSiteId = createdSite.id;
+        this.router
+          .navigate(['/configuration/home/site', newSiteId])
+          .then(() => {
+            this.nextTab.emit();
+          });
+      });
   }
 
   updateSite(): void {
     const id = this.siteData.id;
-    this.store.dispatch(updateSite({ siteId: id, siteData: this.siteData }));
+    this.configurationService
+      .updateSite(id, this.siteData)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.nextTab.emit();
+        this.router.navigate(['/configuration/home/sites']);
+      });
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    this.store.dispatch(fromStore.setSiteAside({ isAsideVisible: false }));
+    this.configurationService.setAsideVisible(false);
   }
 }

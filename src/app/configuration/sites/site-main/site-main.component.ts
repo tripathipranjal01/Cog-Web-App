@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as ConfigurationActions from '../../store/configuration.action';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-site-main',
   templateUrl: './site-main.component.html',
   styleUrls: ['./site-main.component.scss'],
 })
-export class SiteMainComponent implements OnInit {
-  constructor(private store: Store) {}
+export class SiteMainComponent {
+  activeIndex = 0;
 
-  ngOnInit(): void {
-    this.store.dispatch(ConfigurationActions.loadSites());
+  onNextTab(): void {
+    this.activeIndex = 1;
+  }
+
+  onBackTab(): void {
+    this.activeIndex = 0;
+  }
+
+  onSaveTab(): void {
+    this.activeIndex = 0;
   }
 }

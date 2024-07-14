@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ConfigurationService } from '../../services';
 import { ISelectableCard } from 'src/app/shared/interfaces';
-import * as ConfigurationActions from '../../store/configuration.action';
-import * as fromConfigurationSelectors from '../../store/configuration.selector';
 
 interface TimeZone {
   name: string;
@@ -18,35 +15,45 @@ interface TimeZone {
   styleUrls: ['./site-aside.component.scss'],
 })
 export class SiteAsideComponent implements OnInit {
-  filterSite = ''; // Explicitly defined as string
-  selectedSite: ISelectableCard | null = null; // Added type annotation
+  filterSite = '';
+  selectedSite: ISelectableCard | null = null;
   updatedData: ISelectableCard[] = [];
   backupData: ISelectableCard[] = [];
-  visible = false; // Explicitly defined as boolean
+  visible = false;
   newSiteForm: FormGroup;
-  timeZones: TimeZone[] = [];
-  sites$: Observable<any[]> = this.store.select(
-    fromConfigurationSelectors.selectAllSites
-  );
+  timeZones: TimeZone[] = [
+    { name: 'Pacific Time (PT)', code: 'PT' },
+    { name: 'Mountain Time (MT)', code: 'MT' },
+    { name: 'Central Time (CT)', code: 'CT' },
+    { name: 'Eastern Time (ET)', code: 'ET' },
+    { name: 'Atlantic Time (AT)', code: 'AT' },
+  ];
 
   constructor(
-    private store: Store,
+    private configurationService: ConfigurationService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.initializeForm();
     this.loadSites();
+  }
+
+  initializeForm(): void {
     this.newSiteForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       location: ['', Validators.required],
-      timeZone: ['', Validators.required],
+      timeZone: [null, Validators.required],
+      type: ['', Validators.required],
     });
+  }
 
-    this.sites$.subscribe(data => {
-      const newCards: ISelectableCard[] = data.map(item => ({
+  loadSites(): void {
+    this.configurationService.getAllSites().subscribe((data: any[]) => {
+      const newCards: ISelectableCard[] = data.map((item: any) => ({
         id: item.id,
         header: item.name,
         isSelected: false,
@@ -74,18 +81,6 @@ export class SiteAsideComponent implements OnInit {
         this.selectedSite = this.updatedData[0];
       }
     });
-
-    this.timeZones = [
-      { name: 'Pacific Time (PT)', code: 'PT' },
-      { name: 'Mountain Time (MT)', code: 'MT' },
-      { name: 'Central Time (CT)', code: 'CT' },
-      { name: 'Eastern Time (ET)', code: 'ET' },
-      { name: 'Atlantic Time (AT)', code: 'AT' },
-    ];
-  }
-
-  loadSites(): void {
-    this.store.dispatch(ConfigurationActions.loadSites());
   }
 
   addNewSite(): void {
@@ -93,20 +88,22 @@ export class SiteAsideComponent implements OnInit {
       this.selectedSite.isSelected = false;
       this.selectedSite = null;
     }
+    this.visible = false;
     this.router.navigate(['configuration/home/site', 'new']);
   }
 
   closeDialog(): void {
     this.visible = false;
+    this.newSiteForm.reset();
   }
 
   onSubmit(): void {
     if (this.newSiteForm.valid) {
       const newSite = this.newSiteForm.value;
-      this.store.dispatch(
-        ConfigurationActions.createSite({ siteData: newSite })
-      );
-      this.closeDialog();
+      this.configurationService.createSite(newSite).subscribe(() => {
+        this.loadSites();
+        this.closeDialog();
+      });
     }
   }
 
@@ -120,7 +117,7 @@ export class SiteAsideComponent implements OnInit {
   }
 
   filterSites(): void {
-    if (this.filterSite) {
+    if (this.filterSite.trim() !== '') {
       const filterTextLower = this.filterSite.toLowerCase();
       this.updatedData = this.backupData.filter((e: ISelectableCard) =>
         e.header.toLowerCase().includes(filterTextLower)
