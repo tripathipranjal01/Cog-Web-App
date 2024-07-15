@@ -14,6 +14,14 @@ import { CrudComponent } from 'src/app/shared/ag-grid-renderers/crud/crud.compon
 export class SitesComponent implements OnInit {
   context = {};
   components = {};
+  defaultColDef = {
+    width: 150,
+    cellStyle: {
+      textAlign: 'center',
+      justifyContent: 'center',
+      display: 'flex',
+    },
+  };
   columnDefs: any[] = [
     {
       headerName: 'Site Name',
@@ -56,6 +64,8 @@ export class SitesComponent implements OnInit {
       headerName: 'Action',
       field: 'action',
       cellRenderer: 'crudComponent',
+      pinned: 'right',
+      width: 150,
     },
   ];
   rowData: any[] = [];

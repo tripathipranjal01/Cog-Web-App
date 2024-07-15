@@ -26,6 +26,7 @@ const CONFIGURATION_ROUTES = [
       {
         path: 'site/:id',
         component: SiteMainComponent,
+        data: { breadcrumb: ' Edit Site' },
       },
     ],
   },

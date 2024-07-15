@@ -1,10 +1,14 @@
 /* CSS for icons inside input boxes */
-.shift-container {
+.shift-container{
+  height: 100%;
+}
+.shift-container-content {
   padding: 10px;
   color: #8f8f8f;
   font-weight: 500;
   font-size: 1.4rem;
-
+  height: 80%;
+  // margin-bottom: 100px;
 }
 
 .header{
@@ -68,8 +72,8 @@
 .form-row {
   display: grid;
   grid-template-columns: 0.5fr 1.25fr 1.25fr 0.1fr;
-  row-gap: 20px;
-  column-gap: 10px;
+  row-gap: 10rem;
+  column-gap: 1rem;
   align-items: center;
 }
 
@@ -164,7 +168,17 @@
 
 
 }
-
+.shift-container{
+  .p-tabview-panel{
+    height: 100%;
+  }
+  .p-tabview-panels{
+    height: 90%;
+  }
+  .p-tabview{
+    height: 100%;
+  }
+}
 .delete-button {
   background: none;
   border: none;

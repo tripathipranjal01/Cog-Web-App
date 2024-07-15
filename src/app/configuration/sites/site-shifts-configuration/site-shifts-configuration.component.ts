@@ -32,6 +32,7 @@ export class SiteShiftsConfigurationComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.siteId = params.get('id') || null;
+      console.log('Site ID:', this.siteId); // Log siteId for debugging
       if (this.siteId) {
         this.loadShifts(this.siteId);
       }
@@ -94,6 +95,8 @@ export class SiteShiftsConfigurationComponent implements OnInit {
       this.configService.deleteShift(shiftId).subscribe(
         () => {
           this.shifts.splice(index, 1);
+          this.selectedShift--;
+          this.updateShifts();
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -104,6 +107,8 @@ export class SiteShiftsConfigurationComponent implements OnInit {
       );
     } else {
       this.shifts.splice(index, 1);
+      this.selectedShift--;
+      this.updateShifts();
     }
   }
 
@@ -118,8 +123,11 @@ export class SiteShiftsConfigurationComponent implements OnInit {
       endTime: this.formatTime(shift.endTime),
     }));
 
+    console.log('Formatted Shifts:', formattedShifts); // Log formatted shifts for debugging
+
     formattedShifts.forEach(shift => {
       if (shift.id) {
+        console.log('Updating Shift:', shift); // Log shift before update
         this.configService.updateShift(shift.id, shift).subscribe(
           () => {
             this.messageService.add({

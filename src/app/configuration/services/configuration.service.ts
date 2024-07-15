@@ -7,6 +7,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ConfigurationService {
+  getModules() {
+    throw new Error('Method not implemented.');
+  }
   private isAsideVisibleSubject = new BehaviorSubject<boolean>(false);
   isAsideVisible$: Observable<boolean> =
     this.isAsideVisibleSubject.asObservable();
@@ -39,9 +42,9 @@ export class ConfigurationService {
   }
 
   getAllShifts(siteId: string): Observable<any[]> {
-    const url = `${this.apiUrl}/shifts?siteId=${siteId}`;
-    console.log(`Fetching shifts from URL: ${url}`); // Debug log
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(
+      `${environment.baseUrl}/shifts?siteId=${siteId}`
+    );
   }
 
   createShift(shiftData: any): Observable<any> {
@@ -49,13 +52,14 @@ export class ConfigurationService {
   }
 
   updateShift(shiftId: string, shiftData: any): Observable<any> {
-    const url = `${this.apiUrl}/shifts/${shiftId}`;
-    console.log(`Updating shift at URL: ${url} with data:`, shiftData);
-    return this.http.put<any>(url, shiftData);
+    return this.http.put<any>(
+      `${environment.baseUrl}/shifts/${shiftId}`,
+      shiftData
+    );
   }
 
   deleteShift(shiftId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/shifts/${shiftId}`);
+    return this.http.delete<any>(`${environment.baseUrl}/shifts/${shiftId}`);
   }
 
   getPaginatedSites(page: number, size: number): Observable<any> {

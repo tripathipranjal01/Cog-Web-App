@@ -1,129 +1,93 @@
+@import '../../../styles.scss';
 
+.ag-grid__header {
+  display: flex;
+  gap: 3rem;
+  padding: 1.5rem;
+  border-bottom: 0.1rem solid var(--gray-300);
+  padding-left: 3rem;
+
+}
 
 ag-grid-angular {
   height: calc(100vh - 19rem);
 }
+
 .site-ag-grid {
   padding: 1rem;
 }
-
-.ag-grid__header{
-  display: flex;
-  gap: 2rem;
-  padding: 1.5rem;
-  align-items: center;
-}
-.container{
-  &__dialog-header {
-    border-bottom: 2px solid var(--gray-300);
-  
-    padding: 1.5rem 2rem;
-    border-radius: 0.7rem 0.7rem 0 0;
+.ag-grid__table{
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+  ag-grid-angular {
     width: 100%;
-    text-align: center;
-    span {
-      color: var(--text-color-ternary);
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-  }
-  &__dialog-content {
-    display: grid;
-    gap: 1rem;
-    padding: 2rem;
-    row-gap: 3rem;
-    overflow: scroll;
-  }
-  &__dialog-content-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  &__dialog-content-group {
-    display: flex;
-    flex-direction: column;
-  
-    & > *:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
-  }
-  
-  &__dialog-content-label {
-    color: var(--text-color-secondary);
-    font-weight: 500;
-    font-size: 1.2rem;
-  }
-  
-  &__dialog-content-input,
-  &__dialog-content-select {
-    height: 4rem;
-    width: 100%;
-    font-weight: 500;
-    color: var(--text-color-ternary);
-    padding: 0.5rem;
-    border: 0.1rem solid var(--gray-300);
-    border-radius: 0.4rem;
+    height: calc(100vh - 25.5rem);
     box-shadow: 0 0.4rem 1.8rem 0.2rem rgba(144, 144, 144, 0.25);
   }
-
 }
+.container {
+  .ag-grid__header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.1rem solid var(--gray-300);
+    .search-icon {
+      margin: 0 3rem;
+    }
+  }
+  &__newBtn {
+    .p-button {
+      border: none;
+      background: var(--pink-500);
+      width: 10rem;
+      padding: 0.8rem 2rem;
+      font-size: 1.4rem;
+    }
+    .p-button-label {
+      font-weight: 400;
+    }
+    .p-button-icon-left {
+      font-size: 1.8rem;
+    }
+  }
+}
+
 ::ng-deep {
-  .container {
-    &__newBtn {
+  .p-input-icon-left {
+    .pi {
+      font-size: 1.5rem;
+
+    }
+  }
+  .ag-grid__table{
+    .ag-header-cell-label{
+      justify-content: center;
+
+    }
+  }
+    .ag-grid__header{
+      .p-inputtext {
+        width: 35rem;
+        font-size: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-300);
+      }
+    }
+    .container__newBtn {
       .p-button {
         border: none;
         background: var(--pink-500);
         width: 10rem;
         padding: 0.8rem 2rem;
-        font-size: 1.4rem;
       }
       .p-button-label {
         font-weight: 400;
+        font-size: 1.5rem;
       }
       .p-button-icon-left {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
-    &__newBtnDialog {
-      .p-dialog {
-        width: 80rem;
-        // height:50rem;
-        overflow: scroll;
-      }
-      .p-dialog .p-dialog-header {
-        padding: 0;
-        background: rgb(217, 217, 217);
   
-      }
-      .p-dialog .p-dialog-footer {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-        padding-top: 2rem;
-      }
-    }
-    &__dialog-content-group{
-      .p-dropdown{
-        position: static;
-      }
-    }
-    &__dialog-footer {
-      .p-button .p-button-label {
-        font-weight: 500;
-      }
-    }
-  }}
-
-  .site-container{
-    &__table{
-      padding: 1rem;
-    height: 100%;
-    width: 100%;
-    ag-grid-angular {
-      width: 100%;
-      height: calc(100vh - 23.5rem);
-    }
-  }
-  
-  }
+}
