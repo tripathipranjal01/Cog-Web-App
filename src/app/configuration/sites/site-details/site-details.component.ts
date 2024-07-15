@@ -27,6 +27,11 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
     { label: 'Mining', value: 'Mining' },
   ];
 
+  siteStatus = [
+    { label: 'Active', value: 'Active' },
+    { label: 'Inactive', value: 'Inactive' },
+  ];
+
   constructor(
     private configurationService: ConfigurationService,
     private route: ActivatedRoute,
