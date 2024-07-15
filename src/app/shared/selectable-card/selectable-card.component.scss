@@ -1,0 +1,108 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    width: 100% !important;
+    background-color: var(--surface-0);
+    border-radius: 1rem;
+    box-shadow: 0px 6px 15px 0px #90909024, 0px 6px 15px 0px #90909024;
+
+    &--highlighted {
+        background-color: #EFF6FE;
+    }
+
+    &--normal {
+        background-color: none;
+    }
+
+
+    &__header {
+        font-weight: 500;
+        font-size: 1.8rem;
+        color: var(--text-color);
+        width: max-content;
+        overflow: hidden;
+
+        h3 {
+            margin: 1rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &__details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        color: var(--text-color-secondary);
+        line-height: 1.3rem;
+        border-right: 1px solid #dedede;
+
+        span {
+            font-weight: 500;
+        }
+    }
+
+    &__paragraph {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    &__column--1 {
+        width: 100%;
+        font-size: 1.4rem;
+
+        .card-container__paragraph {
+            margin: 0.51em 0;
+            font-size: 1.5rem;
+        }
+    }
+
+    &__column--2 {
+        width: 45%;
+    }
+
+    &__column--3 {
+        width: 30%;
+    }
+
+    &__column--1:last-child,
+    &__column--2:last-child,
+    &__column--3:last-child {
+        border: none;
+    }
+
+    .app-prestart-checkup {
+        width: 36%;
+
+        p {
+            margin: 0.5rem 0;
+        }
+    }
+
+    .app-prestart-checkup:first-child {
+        width: 24%;
+
+        p {
+            font-size: 1.8rem;
+            line-height: 2.6rem;
+            font-weight: 600;
+        }
+    }
+}

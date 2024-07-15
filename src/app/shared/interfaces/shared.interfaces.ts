@@ -26,3 +26,10 @@ export interface IMessageStatus {
   type: string;
   message: string;
 }
+
+export interface SelectableCardColumn {
+  label?: string;
+  value: string;
+  color?: string;
+  styleClass?: string;
+}

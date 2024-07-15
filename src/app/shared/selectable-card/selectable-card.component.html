@@ -1,0 +1,29 @@
+<div
+  class="card-container"
+  [ngClass]="
+    isSelected
+      ? 'card-container--highlighted'
+      : 'card-container--normal'
+  ">
+  <div class="card-container__header">
+    <h3 [pTooltip]="header">
+      {{ header }}
+    </h3>
+  </div>
+  <div class="card-container__details">
+    <div
+      class="card-container__column card-container__column--{{
+        columns.length
+      }}"
+      [ngClass]="column?.styleClass"
+      *ngFor="let column of columns">
+      <span> {{ column?.label }}</span>
+      <p
+        class="card-container__paragraph"
+        [pTooltip]="column.value"
+        [ngStyle]="{ color: column?.color }">
+        {{ column.value }}
+      </p>
+    </div>
+  </div>
+</div>
