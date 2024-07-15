@@ -13,6 +13,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { LabelValueCardComponent } from './templates/label-value-card/label-value-card.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { SelectableCardComponent } from './selectable-card/selectable-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     CrudComponent,
     ChartCardComponent,
     LabelValueCardComponent,
+    SelectableCardComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
     ChartCardComponent,
     HighchartsChartModule,
     LabelValueCardComponent,
+    SelectableCardComponent,
   ],
   providers: [BreadcrumbService],
 })
