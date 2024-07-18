@@ -376,6 +376,20 @@ app-actions {
 }
 
 .app-aside {
+  display: block;
+  border-right: 1px solid $color-grey-dark-3;
+  padding: 1rem;
+  flex-basis: 25%;
   overflow-y: scroll;
   @include scrollbar();
+}
+
+.app-main {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.app-component {
+  width: 75%;
 }

@@ -2,11 +2,10 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 9rem 6rem 1fr;
-  grid-template-columns: 3fr 9fr;
   grid-template-areas:
-    'header header'
-    'actions actions'
-    'main main';
+    'header'
+    'actions'
+    'main';
 
   .app-header {
     grid-area: header;
@@ -16,26 +15,8 @@
     grid-area: actions;
     border-bottom: 1px solid $color-grey-dark-3;
   }
-  .app-aside {
-    display: none;
-  }
   .app-main {
     grid-area: main;
-  }
-}
-
-.app-container-aside {
-  grid-template-areas:
-    'header header'
-    'actions actions'
-    'aside main';
-
-  .app-aside {
-    display: block;
-    grid-area: aside;
-    border-right: 1px solid $color-grey-dark-3;
-    padding: 1rem;
-    overflow-y: scroll;
   }
 }
 

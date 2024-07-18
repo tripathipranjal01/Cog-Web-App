@@ -1,8 +1,4 @@
-<div
-  class="app-container"
-  [ngClass]="{
-    'app-container-aside': isAsideVisible
-  }">
+<div class="app-container">
   <div class="app-header">
     <app-header
       icon="fa-light fa-gear-complex"
@@ -20,16 +16,18 @@
         onChangeSubModule($any($event))
       "></app-actions>
   </div>
-  <div class="app-aside">
-    <div class="aside-content">
-      <app-chart-card [chartData]="chartData"></app-chart-card>
-      <app-chart-card [chartData]="chartData"></app-chart-card>
-      <app-chart-card [chartData]="chartData"></app-chart-card>
-      <app-chart-card [chartData]="chartData"></app-chart-card>
-    </div>
-  </div>
   <div class="app-main">
-    <router-outlet></router-outlet>
+    <div class="app-aside" *ngIf="isAsideVisible">
+      <div class="aside-content">
+        <app-chart-card [chartData]="chartData"></app-chart-card>
+        <app-chart-card [chartData]="chartData"></app-chart-card>
+        <app-chart-card [chartData]="chartData"></app-chart-card>
+        <app-chart-card [chartData]="chartData"></app-chart-card>
+      </div>
+    </div>
+    <div class="app-component">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 

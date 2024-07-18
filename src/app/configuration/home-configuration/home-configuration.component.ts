@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-configuration.component.scss']
 })
 export class HomeConfigurationComponent {
-
+  isAsideVisible: boolean;
 }
