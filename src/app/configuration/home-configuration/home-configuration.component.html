@@ -11,8 +11,11 @@
           "></app-actions> -->
   </div>
   <div class="app-main">
-    <div class="app-aside" *ngIf="isAsideVisible">
-      <div class="aside-content"></div>
+    <div class="app-aside" *ngIf="configDataService.isAsideVisible">
+      <div class="aside-content">
+        <ng-container *ngComponentOutlet="configDataService.asideComponent">
+        </ng-container>
+      </div>
     </div>
     <div class="app-component">
       <router-outlet></router-outlet>
