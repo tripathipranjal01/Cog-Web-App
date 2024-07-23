@@ -14,6 +14,7 @@ import { LabelValueCardComponent } from './templates/label-value-card/label-valu
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { SelectableCardComponent } from './selectable-card/selectable-card.component';
+import { TruncateTextPipe } from '../core/pipes/truncate-text.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SelectableCardComponent } from './selectable-card/selectable-card.compo
     ChartCardComponent,
     LabelValueCardComponent,
     SelectableCardComponent,
+    TruncateTextPipe,
   ],
   imports: [
     CommonModule,
