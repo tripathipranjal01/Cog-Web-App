@@ -1,0 +1,42 @@
+.site-details {
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem 2rem;
+}
+:host ::ng-deep{
+    .site-details {
+        .p-tabview {
+            height: 100%;
+            border-radius: 0.8rem !important;
+            overflow: hidden;
+            box-shadow: 0px 4px 18px 2px #9090903b;
+        }
+        .p-tabview-nav {
+            height: 100%;
+            background-color: #EBEDEF;
+            padding: 0.5rem 2rem 0 2rem;
+            gap: 4rem;
+            
+            li {
+                color: #ADAFBD;
+                a {
+                    font-size: 1.6rem;
+                    background: transparent !important;
+                    font-weight: 500;
+                }
+            }
+            .p-highlight {
+                color: #1F60C0;
+                .p-tabview-nav-link {
+                    border-width: 0 0 3px 0;
+                }
+            }
+        }
+        .p-tabview-panels {
+            height: 90%;
+        }
+        .p-tabview-panel {
+            height: 100%;
+        }
+    }
+}

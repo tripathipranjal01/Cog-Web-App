@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { HomeConfigurationComponent } from './home-configuration/home-configuration.component';
 import { SitesComponent } from './sites/sites.component';
+import { SiteMainComponent } from './sites/site-main/site-main.component';
 
 export const CONFIGURATION_ROUTES_NAMES = {
   HOME: 'home',
