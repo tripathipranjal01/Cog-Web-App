@@ -9,3 +9,7 @@ export const selectAuthState =
 export const selectIsAuthenticated = createSelector(selectAuthState, state =>
   state.user ? true : false
 );
+
+export const selectRoles = createSelector(selectAuthState, state =>
+  state.user ? state.user['roles'] : []
+);

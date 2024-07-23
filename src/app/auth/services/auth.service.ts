@@ -44,7 +44,7 @@ export class AuthService {
     }
     const userDataString = JSON.parse(userData);
     const user = new User(
-      userDataString.role,
+      userDataString.roles,
       userDataString.token,
       new Date(userDataString.expiration)
     );
