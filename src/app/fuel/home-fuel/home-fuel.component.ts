@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import * as fromStore from '../store';
-import { MessageService } from 'primeng/api';
+import { ToastService } from 'src/app/core/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
 import { FuelActionViewTypes, ISubModuleResponse } from '../interfaces';
@@ -32,7 +32,7 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
   private activeErrorMessage$: Subscription;
 
   constructor(
-    private messageService: MessageService,
+    private toastService: ToastService,
     private router: Router,
     private route: ActivatedRoute,
     public dialogService: DialogService
@@ -77,12 +77,11 @@ export class HomeFuelComponent implements OnInit, OnDestroy {
       .select(fromStore.selectMessageStatus)
       .subscribe(message => {
         if (message) {
-          this.messageService.add({
-            key: 'br',
-            severity: message.type,
-            summary: message.type.toUpperCase(),
-            detail: message.message.toLowerCase(),
-          });
+          this.toastService.showToastMessage(
+            message.type.toUpperCase(),
+            message.message.toLowerCase(),
+            message.type
+          );
           this.store.dispatch(fromStore.resetMessageStatus());
         }
       });
