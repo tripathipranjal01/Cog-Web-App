@@ -1,0 +1,41 @@
+<div class="site-aside">
+  <div class="site-aside__header">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search search-icon"></i>
+      <input
+        type="text"
+        placeholder="Search category"
+        pInputText
+        [(ngModel)]="filterSite"
+        (ngModelChange)="filterSites()" />
+    </span>
+    <p-button
+      label="New"
+      icon="fa-light fa-square-plus"
+      (click)="addNewSite()"></p-button>
+  </div>
+
+  <ng-container *ngIf="updatedData && updatedData.length > 0 && !isLoading">
+    <app-selectable-card
+      *ngFor="let card of updatedData; trackBy: trackByCardId"
+      [header]="card.header"
+      [columns]="card.columns"
+      [isSelected]="card.isSelected"
+      (click)="updateSite(card)">
+    </app-selectable-card>
+  </ng-container>
+
+  <div
+    *ngIf="(!updatedData || updatedData.length < 1) && !isLoading"
+    class="site-aside__empty-content">
+    <img src="../../../../assets/icons/no_data_small.svg" alt="No data" />
+    <p class="site-aside__empty-heading">No Data</p>
+    <p class="site-aside__empty-sub-heading">
+      There is no data to show you right now
+    </p>
+  </div>
+
+  <div *ngIf="isLoading" class="tag-aside__empty-content">
+    <p class="site-aside__empty-heading">... Loading</p>
+  </div>
+</div>

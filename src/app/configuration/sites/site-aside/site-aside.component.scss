@@ -1,0 +1,60 @@
+.site-aside {
+    width: 100%;
+  
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+  
+      .search-icon {
+        font-size: 1.5rem;
+        top: 43%;
+      }
+  
+      .p-button {
+        outline: none;
+        border: none;
+        background: var(--pink-500);
+        padding: 0.8rem 1.5rem !important;
+        transition: none;
+  
+        .p-button-icon {
+          font-size: 2rem !important;
+          margin-right: 1rem !important;
+        }
+  
+        .p-button-label {
+          font-size: 1.5rem !important;
+          transition: none;
+        }
+      }
+  
+      .p-inputtext {
+        width: 90%;
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 0.7rem 1rem 0.7rem 2.8rem;
+      }
+    }
+  
+    &__empty-content {
+      text-align: center;
+      margin-top: 40%;
+      font-weight: 500;
+    }
+  
+    &__empty-heading {
+      font-size: 1.9rem;
+      color: var(--gray-400);
+      margin: 1rem 0 0;
+    }
+  
+    &__empty-sub-heading {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--gray-400);
+      margin: 0;
+    }
+  }
+  
