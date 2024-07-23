@@ -1,0 +1,98 @@
+<div class="roles-description">
+  <div class="roles-description__content">
+    <div class="flex flex-column gap-2">
+      <label for="siteDescription">Site Description*</label>
+      <input
+        id="siteDescription"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.description"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="siteName">Site Name*</label>
+      <input
+        id="siteName"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.name"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="timezone">Timezone</label>
+      <input
+        id="timezone"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.timeZone"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="siteLocation">Site Location</label>
+      <input
+        id="siteLocation"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.location"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="refuelByBarrel">Refuel By Barrel</label>
+      <input
+        id="refuelByBarrel"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.refuelByBarrel"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="siteType">Site Type</label>
+      <p-dropdown
+        id="siteType"
+        [options]="siteTypes"
+        [(ngModel)]="siteData.type"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Select a Site Type">
+      </p-dropdown>
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="utilizationHour">Utilization Hour</label>
+      <input
+        id="utilizationHour"
+        type="text"
+        pInputText
+        autocomplete="off"
+        [(ngModel)]="siteData.utilizationHour"
+        [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="siteStatus">Site Status</label>
+      <p-dropdown
+        id="siteStatus"
+        [options]="siteStatus"
+        [(ngModel)]="siteData.status"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Select a Site Status">
+      </p-dropdown>
+    </div>
+  </div>
+  <div class="roles-description__buttons">
+    <p-button
+      label="Back"
+      [outlined]="true"
+      severity="danger"
+      class="custom-button"
+      (onClick)="onBack()"></p-button>
+    <p-button
+      label="Next"
+      iconPos="right"
+      icon="fa-solid fa-arrow-right"
+      class="custom-button"
+      (click)="onNext()"></p-button>
+  </div>
+</div>

@@ -37,3 +37,23 @@ export interface PageEvent {
   page: number;
   pageCount: number;
 }
+
+export interface SiteType {
+  label: string;
+  value: string;
+}
+
+export interface SiteStatus {
+  label: string;
+  value: string;
+}
+
+export const siteTypes: SiteType[] = [
+  { label: 'Construction', value: 'Construction' },
+  { label: 'Mining', value: 'Mining' },
+];
+
+export const siteStatus: SiteStatus[] = [
+  { label: 'Active', value: 'Active' },
+  { label: 'Inactive', value: 'Inactive' },
+];

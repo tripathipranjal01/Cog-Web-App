@@ -29,4 +29,10 @@ export class ConfigurationService {
       `${environment.baseUrl}/site/${siteId}`
     );
   }
+  getSiteById(siteId: number): Observable<SiteDTO> {
+    return this.http.get<SiteDTO>(`${environment.baseUrl}/site/${siteId}`);
+  }
+  updateSite(siteId: number, siteData: any): Observable<SiteDTO> {
+    return this.http.put<SiteDTO>(`${environment.baseUrl}/site/`, siteData);
+  }
 }

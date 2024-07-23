@@ -7,6 +7,7 @@ import { SitesComponent } from './sites/sites.component';
 export const CONFIGURATION_ROUTES_NAMES = {
   HOME: 'home',
   SITE: 'site',
+  SITE_ID: 'site/:id',
 };
 
 const CONFIGURATION_ROUTES = [
@@ -22,6 +23,11 @@ const CONFIGURATION_ROUTES = [
       {
         path: CONFIGURATION_ROUTES_NAMES.SITE,
         component: SitesComponent,
+      },
+      {
+        path: CONFIGURATION_ROUTES_NAMES.SITE_ID,
+        component: SiteMainComponent,
+        data: { breadcrumb: ' Edit Site' },
       },
     ],
   },
