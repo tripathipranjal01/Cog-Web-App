@@ -21,6 +21,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
 
 const modules = [
   FormsModule,
@@ -44,6 +45,7 @@ const modules = [
   DynamicDialogModule,
   ConfirmDialogModule,
   PaginatorModule,
+  TabViewModule,
 ];
 
 @NgModule({

@@ -57,3 +57,11 @@ export const siteStatus: SiteStatus[] = [
   { label: 'Active', value: 'Active' },
   { label: 'Inactive', value: 'Inactive' },
 ];
+
+export interface ShiftDTO {
+  id: number;
+  startTime: string;
+  endTime: string;
+  sequence: number;
+  siteId: number;
+}
