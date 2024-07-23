@@ -17,8 +17,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PaginatorModule } from 'primeng/paginator';
 
 const modules = [
   FormsModule,
@@ -40,11 +42,13 @@ const modules = [
   DialogModule,
   ToastModule,
   DynamicDialogModule,
+  ConfirmDialogModule,
+  PaginatorModule,
 ];
 
 @NgModule({
   imports: [...modules],
   exports: [...modules],
-  providers: [MessageService, DialogService],
+  providers: [MessageService, DialogService, ConfirmationService],
 })
 export class PrimeNgModule {}

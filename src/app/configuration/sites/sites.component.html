@@ -1,0 +1,42 @@
+<div class="sites-ag-grid__header">
+  <span class="p-input-icon-left search-icon">
+    <i class="pi pi-search"></i>
+    <input
+      type="text"
+      placeholder="Search Site"
+      pInputText
+      [(ngModel)]="searchInput"
+      (input)="onSearchInputChange($event)" />
+  </span>
+  <p-button
+    label="New"
+    icon="fa-regular fa-square-plus"
+    class="sites-ag-grid__newBtn"
+    iconPos="left"
+    (click)="addNewSite()"></p-button>
+</div>
+<div class="sites-ag-grid__table">
+  <ag-grid-angular
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [components]="components"
+    [defaultColDef]="defaultColDef"
+    [context]="context"
+    (gridReady)="onGridReady($event)"
+    class="ag-theme-alpine custom-ag-theme-basic"></ag-grid-angular>
+</div>
+<div class="flex align-items-center justify-content-center">
+  <p-paginator
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    (onPageChange)="onPageChange($event)"
+    [showCurrentPageReport]="true"
+    class="sites-ag-grid__paginator"
+    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+    [showPageLinks]="false">
+  </p-paginator>
+</div>
+<p-confirmDialog
+  [style]="{ width: '40vw', 'font-size': '1.5rem' }"></p-confirmDialog>
+<p-toast></p-toast>

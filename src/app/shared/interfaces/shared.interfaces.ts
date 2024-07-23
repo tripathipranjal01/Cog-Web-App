@@ -36,3 +36,19 @@ export interface SelectableCardColumn {
   color?: string;
   styleClass?: string;
 }
+
+export interface PaginationReqDTO {
+  page: number;
+  size: number;
+  sorting: boolean;
+  sortBy: string;
+  search: string;
+  filters: string[];
+}
+
+export interface CardData {
+  id: number;
+  header: string;
+  isSelected: boolean;
+  columns: SelectableCardColumn[];
+}

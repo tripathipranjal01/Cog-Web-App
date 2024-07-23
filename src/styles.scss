@@ -394,3 +394,58 @@ app-actions {
 .app-component {
   width: 75%;
 }
+
+.app-component {
+  flex-grow: 1;
+}
+
+.sites-ag-grid {
+  .p-input-icon-left {
+    .pi {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__table {
+    .ag-header-cell-label {
+      justify-content: center;
+    }
+  }
+
+  &__header {
+    .p-inputtext {
+      width: 35rem;
+      font-size: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--gray-300);
+    }
+  }
+
+  &__new-btn {
+    .p-button {
+      border: none;
+      background: var(--pink-500);
+      width: 1rem;
+      padding: 0.8rem 2rem;
+    }
+
+    .p-button-label {
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    .p-button-icon-left {
+      font-size: 2rem;
+    }
+  }
+
+  &__paginator {
+    .p-paginator{
+      background: transparent;
+    }
+    .p-paginator .p-paginator-current{
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+  }
+}
