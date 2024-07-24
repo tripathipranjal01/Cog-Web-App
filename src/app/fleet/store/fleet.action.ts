@@ -1,6 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { ISubModuleResponse } from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+import {
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 const SET_FLEET_ASIDE_VISIBILITY = '[Fleet] Set Fleet Aside Visibility';
 

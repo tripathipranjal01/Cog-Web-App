@@ -1,8 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as fromFleetActions from './fleet.action';
-import { ISubModuleResponse } from '../interfaces';
-import { IMessageStatus } from 'src/app/shared/interfaces';
+import { IMessageStatus, ISubModuleResponse } from 'src/app/shared/interfaces';
 
 export interface FleetState {
   isAsideVisible: boolean;
@@ -40,7 +39,7 @@ export const _fleetReducer = createReducer(
         messageStatus: { type: 'success', message: action.status },
         modules: state.modules.map(module => {
           const subModuleChange = action.subModules.find(
-            subModule => subModule.subModuleId === module.subModuleId
+            subModule => subModule.subModuleParamId === module.subModuleId
           );
           if (subModuleChange) {
             return {

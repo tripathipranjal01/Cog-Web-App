@@ -3,13 +3,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
+import { IServiceRemindersResponse, REMINDER_STATUS } from '../interfaces';
 import {
-  IServiceRemindersResponse,
-  REMINDER_STATUS,
-  ISubModuleResponse,
   IAllModulesResponse,
-} from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',

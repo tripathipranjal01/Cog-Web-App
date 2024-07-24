@@ -8,8 +8,6 @@ import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
 import {
-  ISubModuleResponse,
-  IAllModulesResponse,
   FuelSource,
   RefuelAssetReqObject,
   RefuelRecord,
@@ -17,7 +15,11 @@ import {
   FuelAssetData,
   DepartmentLocation,
 } from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+import {
+  IAllModulesResponse,
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 @Injectable({
   providedIn: 'root',

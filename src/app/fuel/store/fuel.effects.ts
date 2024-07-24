@@ -19,7 +19,21 @@ export class FuelEffects {
       ofType(fromStore.getFuelModules),
       switchMap(() => {
         return this.fuelService.getFuelModules().pipe(
-          map(data => fromStore.getFuelModulesSuccess({ modules: data })),
+          map(data => {
+            const subModuleButtons = data.flatMap(subModule => {
+              if (
+                subModule.childSubModules &&
+                subModule.childSubModules.length > 0
+              ) {
+                return subModule.childSubModules;
+              } else {
+                return subModule;
+              }
+            });
+            return fromStore.getFuelModulesSuccess({
+              modules: subModuleButtons,
+            });
+          }),
           catchError(error => {
             return of(error);
           })

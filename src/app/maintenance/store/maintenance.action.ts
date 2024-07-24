@@ -1,10 +1,9 @@
 import { createAction, props } from '@ngrx/store';
+import { REMINDER_STATUS, IServiceReminder } from '../interfaces';
 import {
+  ISubModulePreferenceRequest,
   ISubModuleResponse,
-  REMINDER_STATUS,
-  IServiceReminder,
-} from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+} from 'src/app/shared/interfaces';
 
 const SET_MAINTENANCE_ASIDE_VISIBILITY =
   '[Maintenance] Set Maintenance Aside Visibility';

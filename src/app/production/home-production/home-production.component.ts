@@ -5,8 +5,11 @@ import { Subscription } from 'rxjs';
 import * as fromStore from '../store';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
-import { ProductionActionViewTypes, ISubModuleResponse } from '../interfaces';
+import {
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
+import { ProductionActionViewTypes } from '../interfaces';
 
 @Component({
   selector: 'app-home-production',

@@ -3,12 +3,14 @@ import {
   DepartmentLocation,
   FuelAssetData,
   FuelSource,
-  ISubModuleResponse,
   RefuelAssetReqObject,
   RefuelRecord,
   RefuelTankReqObject,
 } from '../interfaces';
-import { ISubModulePreferenceRequest } from 'src/app/shared/interfaces';
+import {
+  ISubModulePreferenceRequest,
+  ISubModuleResponse,
+} from 'src/app/shared/interfaces';
 
 const SET_FUEL_ASIDE_VISIBILITY = '[Fuel] Set Fuel Aside Visibility';
 
