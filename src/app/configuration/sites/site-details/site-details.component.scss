@@ -1,4 +1,4 @@
-.roles-description {
+.sites-description {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -53,7 +53,7 @@
   }
   
   :host ::ng-deep {
-    .roles-description__content {
+    .sites-description__content {
       label {
         color: #8f8f8f;
         font-weight: 500;
@@ -75,7 +75,7 @@
       }
     }
   
-    .roles-description__buttons {
+    .sites-description__buttons {
       .p-button {
         font-size: 1.5rem;
       }

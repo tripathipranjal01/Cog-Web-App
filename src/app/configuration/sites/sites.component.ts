@@ -1,29 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import {
+  ColDef,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  IDatasource,
+} from 'ag-grid-community';
+import { Subject, Subscription, of } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ConfirmationService } from 'primeng/api';
 import { ConfigurationService } from '../services';
-import { AgCellRendererEvent } from 'src/app/shared/ag-grid-renderers/ag-cell-renderer.event';
 import { CrudComponent } from 'src/app/shared/ag-grid-renderers/crud/crud.component';
 import { PaginationReqDTO } from '../../shared/interfaces';
-import { timeZones, PageEvent } from '../interfaces/configuration.interface';
+import { ToastService } from 'src/app/core/services/toast.service';
+import { AgCellRendererEvent } from 'src/app/shared/ag-grid-renderers/ag-cell-renderer.event';
 
 @Component({
   selector: 'app-sites',
   templateUrl: './sites.component.html',
   styleUrls: ['./sites.component.scss'],
 })
-export class SitesComponent implements OnInit {
-  context = {};
-  components = {};
-  defaultColDef = {
-    cellStyle: {
-      textAlign: 'center',
-      justifyContent: 'center',
-      display: 'flex',
-    },
-  };
-  columnDefs: any[] = [
+export class SitesComponent implements OnInit, OnDestroy {
+  context = { componentParent: this, deleteButton: true, editButton: true };
+  components = { crudComponent: CrudComponent };
+  searchInput = '';
+  currentPage = 1;
+  pageSize = 6;
+  totalRecords = 0;
+  loading = false;
+  error: string | null = null;
+
+  columnDefs: ColDef[] = [
     {
       headerName: 'Site Name',
       field: 'name',
@@ -69,120 +77,111 @@ export class SitesComponent implements OnInit {
       width: 150,
     },
   ];
-  rowData: any[] = [];
-  first = 0;
-  rows = 6;
-  totalRecords = 0;
-  searchInput = '';
-  newSiteForm: FormGroup;
-  visible: boolean;
-  currentPage = 1;
 
-  timeZones = timeZones;
+  defaultColDef = {
+    sortable: true,
+    resizable: true,
+    floatingFilter: false,
+    cellStyle: {
+      textAlign: 'center',
+      justifyContent: 'center',
+      display: 'flex',
+    },
+  };
+
+  gridOptions: GridOptions = {
+    context: this.context,
+    components: this.components,
+    pagination: true,
+    paginationPageSize: this.pageSize,
+    paginationPageSizeSelector: false,
+    rowModelType: 'infinite',
+    cacheBlockSize: this.pageSize,
+    maxBlocksInCache: 1,
+    datasource: this.createDataSource(),
+  };
+
+  gridApi!: GridApi;
+  private subscriptions = new Subscription();
+  private searchSubject = new Subject<string>();
 
   constructor(
     private configService: ConfigurationService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
-    this.loadPaginatedSites(this.currentPage);
-    this.context = {
-      componentParent: this,
-      deleteButton: true,
-      editButton: true,
-    };
-    this.components = {
-      crudComponent: CrudComponent,
-    };
-    this.newSiteForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      location: ['', Validators.required],
-      timeZone: ['', Validators.required],
-    });
+    this.searchSubject
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe(searchValue => {
+        this.searchInput = searchValue;
+        if (searchValue.length >= 3 || searchValue.length === 0) {
+          this.updateGridOptions();
+        }
+      });
   }
 
-  loadPaginatedSites(page: number, size = this.rows, search = ''): void {
-    const paginationRequest: PaginationReqDTO = {
-      page,
-      size,
-      sorting: false,
-      sortBy: 'name',
-      search,
-      filters: [],
-    };
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
-    this.configService.getPaginatedSites(paginationRequest).subscribe(
-      (data: any) => {
-        if (data && data.data) {
-          this.rowData = data.data.map((item: any) => ({
-            id: item.id,
-            name: item.name || '',
-            description: item.description || '',
-            location: item.location || '',
-            status: item.status || '',
-            utilizationHour: item.utilizationHour || '',
-            type: item.type || '',
-            actions: item.actions,
-          }));
-          this.totalRecords = data.totalElements;
-        } else {
-          this.rowData = [];
-          this.totalRecords = 0;
-        }
+  createDataSource(): IDatasource {
+    return {
+      getRows: params => {
+        this.loading = true;
+        const page = Math.floor(params.startRow / this.pageSize) + 1;
+        const paginationRequest: PaginationReqDTO = {
+          page,
+          size: this.pageSize,
+          sorting: false,
+          sortBy: 'name',
+          search: this.searchInput,
+          filters: [],
+        };
+
+        this.subscriptions.add(
+          this.configService
+            .getPaginatedSites(paginationRequest)
+            .pipe(
+              catchError(error => {
+                this.showMessage('error', 'Error', 'No Sites Found!');
+                this.error = error;
+                return of({
+                  data: [],
+                  pageNumber: 0,
+                  pageSize: 0,
+                  totalElements: 0,
+                  totalPages: 0,
+                });
+              })
+            )
+            .subscribe(response => {
+              params.successCallback(response.data, response.totalElements);
+              this.loading = false;
+            })
+        );
       },
-      error => {
-        console.error('Failed to fetch sites:', error);
-      }
-    );
+    };
   }
 
   addNewSite(): void {
-    this.visible = false;
     this.router.navigate(['configuration/home/site', 'new']);
   }
 
-  onGridReady(params: any): void {
-    params.api.sizeColumnsToFit();
+  onGridReady(params: GridReadyEvent): void {
+    this.gridApi = params.api;
+    this.gridApi.sizeColumnsToFit();
+    this.updateGridOptions();
   }
 
   handleAgRendererEvent(event: AgCellRendererEvent): void {
     const data = event.params.data;
     switch (event.type) {
       case AgCellRendererEvent.DELETE_EVENT:
-        this.confirmationService.confirm({
-          message: 'Are you sure you want to delete this site?',
-          accept: () => {
-            this.configService.deleteSite(data.id).subscribe(
-              () => {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Success',
-                  detail: 'Site deleted successfully',
-                });
-                this.loadPaginatedSites(
-                  this.currentPage,
-                  this.rows,
-                  this.searchInput
-                );
-              },
-              error => {
-                console.error('Failed to delete site:', error);
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail:
-                    'CANNOT DELETE SITE, BECAUSE IT HAS USERS ASSIGNED TO IT.',
-                });
-              }
-            );
-          },
-        });
+        this.confirmDelete(data);
         break;
       case AgCellRendererEvent.EDIT_EVENT:
         this.router.navigate(['configuration/home/site', data.id]);
@@ -190,34 +189,43 @@ export class SitesComponent implements OnInit {
     }
   }
 
-  onSearchInputChange(event: any): void {
-    const searchValue = event.target.value;
-    this.searchInput = searchValue;
-    if (searchValue.length >= 3 || searchValue.length === 0) {
-      this.loadPaginatedSites(this.currentPage, this.rows, this.searchInput);
+  confirmDelete(site: any): void {
+    if (site.id !== undefined) {
+      this.confirmationService.confirm({
+        message: 'Are you sure you want to delete this site?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.configService.deleteSite(site.id).subscribe(
+            () => this.updateGridOptions(),
+            error =>
+              this.showMessage(
+                'error',
+                'Error',
+                'Error deleting site: ' + error.message
+              )
+          );
+        },
+      });
+    } else {
+      this.showMessage('error', 'Error', 'Site ID is undefined');
     }
   }
 
-  onPageChange(event: any): void {
-    const pageEvent: PageEvent = {
-      first: event.first ?? 0,
-      rows: event.rows ?? 6,
-      page: event.page ?? 0,
-      pageCount: event.pageCount ?? 0,
-    };
-
-    this.first = pageEvent.first;
-    this.rows = pageEvent.rows;
-    this.currentPage = pageEvent.page + 1;
-
-    this.loadPaginatedSites(this.currentPage, this.rows, this.searchInput);
+  onSearchInputChange(event: any): void {
+    const searchValue = event.target.value;
+    this.searchSubject.next(searchValue);
   }
 
-  showToast(): void {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Toast Message',
-      detail: 'This is a sample toast message',
-    });
+  private updateGridOptions(): void {
+    this.gridApi.setDatasource(this.createDataSource());
+  }
+
+  private showMessage(severity: string, summary: string, detail: string): void {
+    this.toastService.showToastMessage(
+      severity.toUpperCase(),
+      summary,
+      severity
+    );
   }
 }

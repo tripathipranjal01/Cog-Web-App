@@ -1,14 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigurationService } from '../../services';
-import { DatePipe } from '@angular/common';
-import { MessageService } from 'primeng/api';
+import { SHIFT_OPTIONS } from '../../constants';
+import { ToastService } from 'src/app/core/services/toast.service';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-site-shifts-configuration',
   templateUrl: './site-shifts-configuration.component.html',
   styleUrls: ['./site-shifts-configuration.component.scss'],
-  providers: [DatePipe],
 })
 export class SiteShiftsConfigurationComponent implements OnInit {
   @Output() backTab = new EventEmitter<void>();
@@ -19,17 +19,12 @@ export class SiteShiftsConfigurationComponent implements OnInit {
   shifts: any[] = [];
   siteId: string | null = null;
 
-  shiftOptions = [
-    { label: '1', value: 1 },
-    { label: '2', value: 2 },
-    { label: '3', value: 3 },
-  ];
+  shiftOptions = SHIFT_OPTIONS;
 
   constructor(
     private route: ActivatedRoute,
     private configService: ConfigurationService,
-    private messageService: MessageService,
-    private datePipe: DatePipe
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -51,19 +46,15 @@ export class SiteShiftsConfigurationComponent implements OnInit {
           sequence: shift.sequence,
           siteId: shift.siteId,
         }));
-        if (this.shifts.length > 0) {
-          this.selectedShift = this.shifts.length;
-        } else {
-          this.selectedShift = 0;
-        }
+        this.selectedShift = this.shifts.length > 0 ? this.shifts.length : 0;
       },
       error => {
         console.error('Failed to fetch shifts:', error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to load shifts',
-        });
+        this.toastService.showToastMessage(
+          'Error',
+          'Failed to load shifts',
+          'error'
+        );
       }
     );
   }
@@ -91,29 +82,29 @@ export class SiteShiftsConfigurationComponent implements OnInit {
         () => {
           this.shifts.splice(index, 1);
           this.selectedShift = this.shifts.length;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Shift successfully deleted',
-          });
+          this.toastService.showToastMessage(
+            'Success',
+            'Shift successfully deleted',
+            'success'
+          );
         },
         error => {
           console.error('Failed to delete shift:', error);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to delete shift',
-          });
+          this.toastService.showToastMessage(
+            'Error',
+            'Failed to delete shift',
+            'error'
+          );
         }
       );
     } else {
       this.shifts.splice(index, 1);
       this.selectedShift = this.shifts.length;
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Shift successfully deleted',
-      });
+      this.toastService.showToastMessage(
+        'Success',
+        'Shift successfully deleted',
+        'success'
+      );
     }
   }
 
@@ -134,8 +125,13 @@ export class SiteShiftsConfigurationComponent implements OnInit {
           (updatedShift: any) => {
             console.log('Shift updated:', updatedShift);
           },
-          (error: any) => {
+          error => {
             console.error('Error updating shift:', error);
+            this.toastService.showToastMessage(
+              'Error',
+              'Error updating shift',
+              'error'
+            );
           }
         );
       } else {
@@ -143,8 +139,13 @@ export class SiteShiftsConfigurationComponent implements OnInit {
           (newShift: any) => {
             console.log('New shift created:', newShift);
           },
-          (error: any) => {
+          error => {
             console.error('Error creating shift:', error);
+            this.toastService.showToastMessage(
+              'Error',
+              'Error creating shift',
+              'error'
+            );
           }
         );
       }
@@ -155,7 +156,6 @@ export class SiteShiftsConfigurationComponent implements OnInit {
     if (!date) {
       return '';
     }
-    const parsedDate = new Date(date);
-    return this.datePipe.transform(parsedDate, 'HH:mm:ss') || '';
+    return DateTime.fromISO(date.toString()).toFormat('HH:mm:ss');
   }
 }

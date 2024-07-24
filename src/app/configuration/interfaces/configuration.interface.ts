@@ -3,14 +3,6 @@ export interface TimeZone {
   code: string;
 }
 
-export const timeZones: TimeZone[] = [
-  { name: 'Pacific Time (PT)', code: 'PT' },
-  { name: 'Mountain Time (MT)', code: 'MT' },
-  { name: 'Central Time (CT)', code: 'CT' },
-  { name: 'Eastern Time (ET)', code: 'ET' },
-  { name: 'Atlantic Time (AT)', code: 'AT' },
-];
-
 export interface SiteDTO {
   id?: number;
   name: string;
@@ -47,16 +39,6 @@ export interface SiteStatus {
   label: string;
   value: string;
 }
-
-export const siteTypes: SiteType[] = [
-  { label: 'Construction', value: 'Construction' },
-  { label: 'Mining', value: 'Mining' },
-];
-
-export const siteStatus: SiteStatus[] = [
-  { label: 'Active', value: 'Active' },
-  { label: 'Inactive', value: 'Inactive' },
-];
 
 export interface ShiftDTO {
   id: number;

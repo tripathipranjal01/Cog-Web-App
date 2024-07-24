@@ -3,14 +3,19 @@ import { MessageService } from 'primeng/api';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  messageService = inject(MessageService);
+  private messageService = inject(MessageService);
 
-  showToastMessage(heading: string, message: string, severity: string) {
+  showToastMessage(
+    heading: string,
+    message: string,
+    severity: string,
+    detail?: string
+  ): void {
     this.messageService.add({
       key: 'bc-toast',
       severity: severity,
       summary: heading,
-      detail: message,
+      detail: detail ? detail : message,
     });
   }
 }

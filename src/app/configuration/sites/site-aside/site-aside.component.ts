@@ -5,12 +5,8 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { ConfigurationService } from '../../services';
 import { CardData, SelectableCardColumn } from '../../../shared/interfaces';
-import {
-  TimeZone,
-  timeZones,
-  SiteDTO,
-} from '../../interfaces/configuration.interface';
-
+import { TimeZone, SiteDTO } from '../../interfaces/configuration.interface';
+import { timeZones } from '../../constants';
 @Component({
   selector: 'app-site-aside',
   templateUrl: './site-aside.component.html',

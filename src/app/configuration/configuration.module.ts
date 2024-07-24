@@ -11,7 +11,15 @@ import { SiteMainComponent } from './sites/site-main/site-main.component';
 import { SiteShiftsConfigurationComponent } from './sites/site-shifts-configuration/site-shifts-configuration.component';
 
 @NgModule({
-  declarations: [ConfigurationComponent, HomeConfigurationComponent, SitesComponent, SiteAsideComponent, SiteDetailsComponent, SiteMainComponent, SiteShiftsConfigurationComponent],
+  declarations: [
+    ConfigurationComponent,
+    HomeConfigurationComponent,
+    SitesComponent,
+    SiteAsideComponent,
+    SiteDetailsComponent,
+    SiteMainComponent,
+    SiteShiftsConfigurationComponent,
+  ],
   imports: [CommonModule, ConfigurationRoutingModule, SharedModule],
 })
 export class ConfigurationModule {}

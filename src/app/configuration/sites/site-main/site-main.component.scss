@@ -1,10 +1,10 @@
-.site-details {
+.site-main {
     height: 100%;
     width: 100%;
     padding: 1.5rem 2rem;
 }
 :host ::ng-deep{
-    .site-details {
+    .site-main {
         .p-tabview {
             height: 100%;
             border-radius: 0.8rem !important;

@@ -6,17 +6,14 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfigurationService } from '../../services/configuration.service';
-import {
-  SiteType,
-  SiteStatus,
-  siteTypes,
-  siteStatus,
-} from '../../interfaces/configuration.interface';
+import { SiteType, SiteStatus } from '../../interfaces/configuration.interface';
 import { ConfigurationDataService } from '../../services/configuration-data.service';
 import { SiteAsideComponent } from '../site-aside/site-aside.component';
+import { siteTypes, siteStatus } from '../../constants';
 
 @Component({
   selector: 'app-site-details',
@@ -26,18 +23,33 @@ import { SiteAsideComponent } from '../site-aside/site-aside.component';
 export class SiteDetailsComponent implements OnInit, OnDestroy {
   @Output() nextTab = new EventEmitter<void>();
   private destroy$ = new Subject<void>();
-  siteData: any = {};
+  siteForm: FormGroup;
   isNewSite = false;
 
   siteTypes: SiteType[] = siteTypes;
   siteStatus: SiteStatus[] = siteStatus;
 
   constructor(
+    private fb: FormBuilder,
     private configurationService: ConfigurationService,
     private route: ActivatedRoute,
     private router: Router,
     private configDataService: ConfigurationDataService
-  ) {}
+  ) {
+    this.siteForm = this.fb.group({
+      id: [null],
+      name: [''],
+      description: [''],
+      location: [''],
+      timeZone: [''],
+      clientId: [null],
+      status: [''],
+      type: [''],
+      refuelByBarrel: [''],
+      utilizationHour: [''],
+      createdBy: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.configDataService.asideComponent = SiteAsideComponent;
@@ -47,7 +59,7 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const id = params.get('id');
       this.isNewSite = id === 'new';
-      this.siteData = this.isNewSite ? {} : this.siteData;
+      this.siteForm.reset();
       if (id && !this.isNewSite) {
         this.loadSiteById(Number(id));
       }
@@ -59,7 +71,7 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
       .getSiteById(siteId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((site: any) => {
-        this.siteData = { ...site };
+        this.siteForm.patchValue(site);
       });
   }
 
@@ -68,12 +80,16 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
   }
 
   onNext(): void {
-    this.isNewSite ? this.createSite() : this.updateSite();
+    if (this.siteForm.dirty) {
+      this.isNewSite ? this.createSite() : this.updateSite();
+    } else {
+      this.nextTab.emit();
+    }
   }
 
   createSite(): void {
     this.configurationService
-      .createSite(this.siteData)
+      .createSite(this.siteForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe((createdSite: any) => {
         createdSite && createdSite.id
@@ -87,9 +103,9 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
   }
 
   updateSite(): void {
-    const id = this.siteData.id;
+    const id = this.siteForm.value.id;
     this.configurationService
-      .updateSite(id, this.siteData)
+      .updateSite(id, this.siteForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.nextTab.emit();
