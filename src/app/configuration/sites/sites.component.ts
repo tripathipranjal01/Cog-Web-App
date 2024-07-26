@@ -12,9 +12,10 @@ import { catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ConfirmationService } from 'primeng/api';
 import { ConfigurationService } from '../services';
 import { CrudComponent } from 'src/app/shared/ag-grid-renderers/crud/crud.component';
-import { PaginationReqDTO } from '../../shared/interfaces';
+import { PaginationRes, SiteDTO } from '../interfaces/configuration.interface';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { AgCellRendererEvent } from 'src/app/shared/ag-grid-renderers/ag-cell-renderer.event';
+import { PaginationReqDTO } from 'src/app/shared/interfaces/shared.interfaces';
 
 @Component({
   selector: 'app-sites',
@@ -55,12 +56,6 @@ export class SitesComponent implements OnInit, OnDestroy {
       field: 'status',
       filter: 'agTextColumnFilter',
       cellRenderer: () => 'Active',
-      suppressFloatingFilterButton: true,
-    },
-    {
-      headerName: 'Utilization Hour',
-      field: 'utilizationHour',
-      filter: 'agNumberColumnFilter',
       suppressFloatingFilterButton: true,
     },
     {
@@ -132,11 +127,10 @@ export class SitesComponent implements OnInit, OnDestroy {
     return {
       getRows: params => {
         this.loading = true;
-        const page = Math.floor(params.startRow / this.pageSize) + 1;
+        const page = Math.floor(params.startRow / this.pageSize);
         const paginationRequest: PaginationReqDTO = {
           page,
           size: this.pageSize,
-          sorting: false,
           sortBy: 'name',
           search: this.searchInput,
           filters: [],
@@ -150,16 +144,37 @@ export class SitesComponent implements OnInit, OnDestroy {
                 this.showMessage('error', 'Error', 'No Sites Found!');
                 this.error = error;
                 return of({
-                  data: [],
-                  pageNumber: 0,
-                  pageSize: 0,
+                  content: [],
+                  pageable: {
+                    pageNumber: 0,
+                    pageSize: 0,
+                    sort: {
+                      empty: false,
+                      sorted: false,
+                      unsorted: false,
+                    },
+                    offset: 0,
+                    paged: false,
+                    unpaged: true,
+                  },
                   totalElements: 0,
                   totalPages: 0,
+                  last: true,
+                  size: 0,
+                  number: 0,
+                  sort: {
+                    empty: false,
+                    sorted: false,
+                    unsorted: false,
+                  },
+                  numberOfElements: 0,
+                  first: true,
+                  empty: true,
                 });
               })
             )
-            .subscribe(response => {
-              params.successCallback(response.data, response.totalElements);
+            .subscribe((response: PaginationRes) => {
+              params.successCallback(response.content, response.totalElements);
               this.loading = false;
             })
         );
@@ -189,14 +204,14 @@ export class SitesComponent implements OnInit, OnDestroy {
     }
   }
 
-  confirmDelete(site: any): void {
+  confirmDelete(site: SiteDTO): void {
     if (site.id !== undefined) {
       this.confirmationService.confirm({
         message: 'Are you sure you want to delete this site?',
         header: 'Delete Confirmation',
         icon: 'pi pi-info-circle',
         accept: () => {
-          this.configService.deleteSite(site.id).subscribe(
+          this.configService.deleteSite(site.id!).subscribe(
             () => this.updateGridOptions(),
             error =>
               this.showMessage(

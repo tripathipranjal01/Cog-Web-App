@@ -10,7 +10,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ConfigurationService } from '../../services/configuration.service';
-import { SiteType, SiteStatus } from '../../interfaces/configuration.interface';
+import {
+  SiteType,
+  SiteStatus,
+  SiteDTO,
+} from '../../interfaces/configuration.interface';
 import { ConfigurationDataService } from '../../services/configuration-data.service';
 import { SiteAsideComponent } from '../site-aside/site-aside.component';
 import { siteTypes, siteStatus } from '../../constants';
@@ -45,8 +49,6 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
       clientId: [null],
       status: [''],
       type: [''],
-      refuelByBarrel: [''],
-      utilizationHour: [''],
       createdBy: [''],
     });
   }
@@ -70,7 +72,7 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
     this.configurationService
       .getSiteById(siteId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((site: any) => {
+      .subscribe((site: SiteDTO) => {
         this.siteForm.patchValue(site);
       });
   }
@@ -91,21 +93,22 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
     this.configurationService
       .createSite(this.siteForm.value)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((createdSite: any) => {
-        createdSite && createdSite.id
-          ? this.router
-              .navigate([`/configuration/home/site/${createdSite.id}`])
-              .then(() => {
-                this.nextTab.emit();
-              })
-          : console.error('Created site does not have an id');
+      .subscribe((createdSite: SiteDTO) => {
+        if (createdSite && createdSite.id) {
+          this.router
+            .navigate([`/configuration/home/site/${createdSite.id}`])
+            .then(() => {
+              this.nextTab.emit();
+            });
+        } else {
+          console.error('Created site does not have an id');
+        }
       });
   }
 
   updateSite(): void {
-    const id = this.siteForm.value.id;
     this.configurationService
-      .updateSite(id, this.siteForm.value)
+      .updateSite(this.siteForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.nextTab.emit();

@@ -22,10 +22,7 @@ export class ConfigurationService {
 
   getPaginatedSites(pagination: PaginationReqDTO): Observable<PaginationRes> {
     return this.http
-      .post<PaginationRes>(
-        `${environment.baseUrl}/site/get-paginated-sites`,
-        pagination
-      )
+      .post<PaginationRes>(`${environment.baseUrl}/site`, pagination)
       .pipe(catchError(this.apiErrorService.handleError));
   }
 
@@ -35,9 +32,21 @@ export class ConfigurationService {
       .pipe(catchError(this.apiErrorService.handleError));
   }
 
+  getSiteById(siteId: number): Observable<SiteDTO> {
+    return this.http
+      .get<SiteDTO>(`${environment.baseUrl}/site/${siteId}`)
+      .pipe(catchError(this.apiErrorService.handleError));
+  }
+
   createSite(newSite: SiteDTO): Observable<SiteDTO> {
     return this.http
       .post<SiteDTO>(`${environment.baseUrl}/site/`, newSite)
+      .pipe(catchError(this.apiErrorService.handleError));
+  }
+
+  updateSite(siteData: SiteDTO): Observable<SiteDTO> {
+    return this.http
+      .put<SiteDTO>(`${environment.baseUrl}/site/`, siteData)
       .pipe(catchError(this.apiErrorService.handleError));
   }
 
@@ -46,18 +55,6 @@ export class ConfigurationService {
       .delete<{
         [key: string]: string;
       }>(`${environment.baseUrl}/site/${siteId}`)
-      .pipe(catchError(this.apiErrorService.handleError));
-  }
-
-  getSiteById(siteId: number): Observable<SiteDTO> {
-    return this.http
-      .get<SiteDTO>(`${environment.baseUrl}/site/${siteId}`)
-      .pipe(catchError(this.apiErrorService.handleError));
-  }
-
-  updateSite(siteId: number, siteData: any): Observable<SiteDTO> {
-    return this.http
-      .put<SiteDTO>(`${environment.baseUrl}/site/`, siteData)
       .pipe(catchError(this.apiErrorService.handleError));
   }
 
@@ -71,13 +68,13 @@ export class ConfigurationService {
     return this.http
       .delete<{
         [key: string]: string;
-      }>(`${environment.baseUrl}/shifts/${shiftId}`)
+      }>(`${environment.baseUrl}/shift/${shiftId}`)
       .pipe(catchError(this.apiErrorService.handleError));
   }
 
   createShift(shiftData: any): Observable<ShiftDTO> {
     return this.http
-      .post<ShiftDTO>(`${environment.baseUrl}/shift/`, shiftData)
+      .post<ShiftDTO>(`${environment.baseUrl}/shift`, shiftData)
       .pipe(catchError(this.apiErrorService.handleError));
   }
 

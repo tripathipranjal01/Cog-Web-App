@@ -40,7 +40,6 @@ export interface SelectableCardColumn {
 export interface PaginationReqDTO {
   page: number;
   size: number;
-  sorting: boolean;
   sortBy: string;
   search: string;
   filters: string[];
