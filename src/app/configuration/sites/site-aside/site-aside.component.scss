@@ -11,31 +11,6 @@
         font-size: 1.5rem;
         top: 43%;
       }
-  
-      .p-button {
-        outline: none;
-        border: none;
-        background: var(--pink-500);
-        padding: 0.8rem 1.5rem !important;
-        transition: none;
-  
-        .p-button-icon {
-          font-size: 2rem !important;
-          margin-right: 1rem !important;
-        }
-  
-        .p-button-label {
-          font-size: 1.5rem !important;
-          transition: none;
-        }
-      }
-  
-      .p-inputtext {
-        width: 90%;
-        font-size: 1.5rem;
-        font-weight: 500;
-        padding: 0.7rem 1rem 0.7rem 2.8rem;
-      }
     }
   
     &__empty-content {

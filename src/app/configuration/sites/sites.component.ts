@@ -26,7 +26,6 @@ export class SitesComponent implements OnInit, OnDestroy {
   context = { componentParent: this, deleteButton: true, editButton: true };
   components = { crudComponent: CrudComponent };
   searchInput = '';
-  currentPage = 1;
   pageSize = 6;
   totalRecords = 0;
   loading = false;

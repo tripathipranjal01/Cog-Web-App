@@ -37,26 +37,29 @@ export class SiteShiftsConfigurationComponent implements OnInit {
   }
 
   loadShifts(siteId: string): void {
-    this.configService.getAllShifts(siteId).subscribe(
-      (shifts: any[]) => {
+    this.configService.getAllShifts(siteId).subscribe((shifts: any[]) => {
+      if (shifts.length === 0) {
+        this.shifts = [
+          {
+            startTime: '12:00',
+            endTime: '12:00',
+            sequence: 1,
+            siteId: siteId,
+          },
+        ];
+      } else {
         this.shifts = shifts.map(shift => ({
           id: shift.id,
-          startTime: this.formatTime(shift.startTime),
-          endTime: this.formatTime(shift.endTime),
+          startTime: shift.startTime
+            ? this.formatTime(shift.startTime)
+            : '12:00',
+          endTime: shift.endTime ? this.formatTime(shift.endTime) : '12:00',
           sequence: shift.sequence,
           siteId: shift.siteId,
         }));
-        this.selectedShift = this.shifts.length > 0 ? this.shifts.length : 0;
-      },
-      error => {
-        console.error('Failed to fetch shifts:', error);
-        this.toastService.showToastMessage(
-          'Error',
-          'Failed to load shifts',
-          'error'
-        );
       }
-    );
+      this.selectedShift = this.shifts.length;
+    });
   }
 
   updateShifts(): void {
@@ -67,8 +70,8 @@ export class SiteShiftsConfigurationComponent implements OnInit {
     } else if (this.shifts.length < requiredShifts) {
       for (let i = this.shifts.length; i < requiredShifts; i++) {
         this.shifts.push({
-          startTime: '',
-          endTime: '',
+          startTime: '12:00',
+          endTime: '12:00',
           sequence: i + 1,
           siteId: this.siteId,
         });
@@ -156,6 +159,6 @@ export class SiteShiftsConfigurationComponent implements OnInit {
     if (!date) {
       return '';
     }
-    return DateTime.fromISO(date.toString()).toFormat('HH:mm:ss');
+    return DateTime.fromISO(date.toString()).toFormat('HH:mm');
   }
 }

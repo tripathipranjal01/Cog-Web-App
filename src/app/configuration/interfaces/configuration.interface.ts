@@ -12,7 +12,7 @@ export interface SiteDTO {
   clientId?: number;
   status: string;
   type: string;
-  createdBy?: string;
+  createdBy: string;
 }
 
 export interface PaginationRes {

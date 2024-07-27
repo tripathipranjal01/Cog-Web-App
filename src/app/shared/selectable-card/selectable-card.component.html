@@ -1,9 +1,7 @@
 <div
   class="card-container"
   [ngClass]="
-    isSelected
-      ? 'card-container--highlighted'
-      : 'card-container--normal'
+    isSelected ? 'card-container--highlighted' : 'card-container--normal'
   ">
   <div class="card-container__header">
     <h3 [pTooltip]="header">

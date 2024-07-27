@@ -422,7 +422,7 @@ app-actions {
     .p-button {
       border: none;
       background: var(--pink-500);
-      width: 1rem;
+      width: 10rem;
       padding: 0.8rem 2rem;
     }
 
@@ -445,4 +445,31 @@ app-actions {
       font-size: 1.5rem;
     }
   }
+}
+.site-aside{
+  &__header{
+    .p-button {
+      outline: none;
+      border: none;
+      background: var(--pink-500);
+      padding: 0.8rem 1.5rem !important;
+      transition: none;
+    }
+      .p-button-icon {
+        font-size: 2rem !important;
+        margin-right: 1rem !important;
+      }
+  
+      .p-button-label {
+        font-size: 1.5rem !important;
+        transition: none;
+      }  
+    .p-inputtext {
+      width: 90%;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 0.7rem 1rem 0.7rem 2.8rem;
+    }
+  }
+  
 }

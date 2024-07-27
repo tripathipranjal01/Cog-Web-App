@@ -49,7 +49,7 @@ export class SiteDetailsComponent implements OnInit, OnDestroy {
       clientId: [null],
       status: [''],
       type: [''],
-      createdBy: [''],
+      createdBy: [null],
     });
   }
 
