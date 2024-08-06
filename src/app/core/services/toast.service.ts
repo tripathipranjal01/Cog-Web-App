@@ -5,17 +5,12 @@ import { MessageService } from 'primeng/api';
 export class ToastService {
   private messageService = inject(MessageService);
 
-  showToastMessage(
-    heading: string,
-    message: string,
-    severity: string,
-    detail?: string
-  ): void {
+  showToastMessage(heading: string, message: string, severity: string): void {
     this.messageService.add({
       key: 'bc-toast',
       severity: severity,
       summary: heading,
-      detail: detail ? detail : message,
+      detail: message,
     });
   }
 }
